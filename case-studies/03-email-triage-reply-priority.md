@@ -6,11 +6,15 @@ I evaluated an email triage agent that labels messages `respond`, `notify`, or `
 
 In a two-email contrast test, the agent labeled both the ordinary reminder and the reply-request version `notify`. I added a rule giving explicit email reply requests priority, then tested the original and revised policies on the same nine synthetic HR emails, three times each. The original completed 25 of 27 runs with the expected label; the revision completed 27 of 27. The difference is evidence from this small test, not a production reliability claim.
 
+The diagnostic pair differed in one sentence. The ordinary expense-report reminder said recipients could contact HR if they had questions; its expected and observed label was `notify`. Replacing that sentence with “Please reply to this email to confirm whether you can submit your expense reports by Friday” changed the expected label to `respond`, but the original agent still returned `notify`. This exposed the rule conflict before the held-out test.
+
 ## Evaluation setup
 
-The agent used DeepSeek V4.1 Flash through OpenRouter. LangSmith stored the dataset, experiments, and traces. The nine held-out examples covered explicit reply requests, reminders without a reply request, optional contact, and a promotional email. Each example had a reference label assigned by applying the triage rules.
+The agent used DeepSeek V4.1 Flash through OpenRouter. LangSmith stored the dataset, experiments, and traces. The held-out set contained nine synthetic emails: four with a direct reply request (`respond`), four important notices without one (`notify`), and one optional promotion (`ignore`). I assigned the reference labels by applying the stated triage rules. These examples were separate from the two emails used to identify the rule conflict.
 
 The policy change was narrow: an HR deadline reminder remains `notify` unless it explicitly asks the recipient to reply or confirm by email. Submitting a form elsewhere or offering to answer questions does not itself require `respond`.
+
+Each policy saw the same nine emails three times. A run passed only when it completed without an error **and** its parsed classification matched the reference label. Consistency means all three recorded outcomes for an email were identical; an error counts as a distinct outcome. Neither measure alone explains why a run failed.
 
 | Policy | Expected labels returned | Execution errors | Cases with consistent outcomes across three runs |
 |---|---:|---:|---:|
@@ -21,9 +25,9 @@ The policy change was narrow: an HR deadline reminder remains `notify` unless it
 
 Both original-policy errors occurred on the same email: “Open enrollment closes Friday. Please reply to confirm that you received this notice.” Its reference label was `respond`. Across three repetitions, the recorded outcomes were `ERROR`, `respond`, and `ERROR`.
 
-The two failed traces reported `Model returned no structured classification`. Inspecting the model calls revealed more than the top-level error: in both failed calls, the model wrote `notify` in a text representation of the decision and explained that the HR deadline-reminder rule took priority. The application could not parse those responses into the required structured decision, so the experiment recorded errors rather than `notify` outputs. The successful repetition returned a structured `respond` decision and cited the explicit confirmation request.
+The two failed traces reported `Model returned no structured classification`. Inspecting the model calls revealed more than the top-level error: in both failed calls, the model wrote `classification: notify` in text and justified it by prioritizing the HR deadline-reminder rule. The application could not parse those responses into the required structured decision, so the experiment recorded errors rather than `notify` outputs. The successful repetition returned a structured `Decision` with `classification: respond` and cited the explicit confirmation request.
 
-This separates two observed failure modes: the model applied the wrong rule in the failed calls, and the output was unusable by the application. The aggregate score alone did not show the mistaken `notify` decisions inside those traces.
+This separates two observed failure modes: the model applied the wrong rule in the failed calls, and the output was unusable by the application. The 25/27 score treats both as execution failures; it does not show the mistaken `notify` decisions inside those traces. Reading the model output was necessary to identify the rule-priority problem.
 
 ## What changed and what remains uncertain
 
