@@ -1,4 +1,4 @@
-# AI Agent Evaluation and Observability
+# AI Evals and Error Analysis
 
 Small, inspectable case studies of model behavior, evaluation criteria, and error analysis. Each case separates observed evidence from conclusions and limitations.
 
