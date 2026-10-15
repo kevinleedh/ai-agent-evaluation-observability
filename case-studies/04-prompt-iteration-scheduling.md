@@ -139,7 +139,3 @@ This publication does not run new paid API calls. The earlier proposed Python re
 There is no pre-registered protocol, blinded independent rater, complete attempt export, certified parameter parity, or repeated sample for each cell. The problems are small synthetic variants; both feasible-budget scenarios require Accelerated and both lower-budget scenarios are infeasible. A broader suite should also contain zero-cost feasible and all-methods-infeasible cases. The assistant helped create problems, review answers, and prepare this write-up, so manual-label uncertainty and evaluator dependence remain.
 
 The evidence supports “v4 corrected a development example but did not show a consistent advantage on two new problems.” It does not support a general accuracy gain, a model ranking, or a claim that shorter prompts prevent timeouts. Retain v3 as a provisional comparison baseline, keep v4's negative result, and evaluate new error types before adding more instructions.
-
-## 한국어 요약
-
-일정과 판정이 맞아도 설명은 틀릴 수 있었다. v4는 기존 문제의 가용 시간 구간 혼동을 해결했지만, 새로운 문제에서는 일정표와 모순되는 설명을 만들었다. 새 문제 두 개에서 v3의 설명 정확성은 2/2, v4는 1/2였다. 작은 관찰 결과이므로 일반적인 성능 차이를 단정하지 않는다. 이번 사례는 오류에 근거한 프롬프트 수정, 새로운 문제 검증, 결과와 설명의 별도 평가를 기록한다.
