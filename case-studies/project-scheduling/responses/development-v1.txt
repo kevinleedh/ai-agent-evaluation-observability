@@ -1,0 +1,24 @@
+Verdict: FEASIBLE
+Selected testing method: Accelerated
+Additional cost: 6
+Project completion: October 20, 2026 at 17:00
+Schedule:
+- A: October 19, 11:00–12:00
+- B: October 19, 13:00–14:30
+- C: October 19, 14:00–15:00
+- D: October 19, 15:00–17:00
+- E: October 19, 13:00–14:30
+- F: October 20, 09:00–10:00
+- G: October 20, 13:00–14:30
+- H: October 20, 10:00–11:00
+- I: October 20, 14:30–15:00
+- J: October 20, 15:00–15:30
+- K: October 20, 15:00–15:30
+- L: October 20, 15:30–16:00
+- M: October 20, 16:00–16:30
+- N: October 20, 16:30–17:00
+
+The approved availability changes leave only one continuous three-hour window where Ethan and the GPU are both available: October 20, 13:00–17:00. Standard testing must occupy that window and therefore cannot finish early enough for the required sequence I → J/K → L → M → N. Accelerated testing fits, as shown above, while respecting every prerequisite, availability window, resource exclusivity rule, continuity rule, and the requirement that M start at or after 16:00. Thus the minimum possible additional cost is 6. M cannot start before 16:00, and N requires 30 minutes after M, so no valid schedule can finish before 17:00.
+
+Scenario 2: INFEASIBLE
+The budget of 5 cannot pay for Accelerated testing, while Standard testing cannot leave enough time after G for I, J, K, L, M, and N before the October 20, 17:00 deadline. No approved change creates another valid option.

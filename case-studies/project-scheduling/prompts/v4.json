@@ -1,0 +1,15 @@
+{
+  "name": "project-scheduling-v1",
+  "version": 4,
+  "type": "chat",
+  "prompt": [
+    {
+      "role": "system",
+      "content": "Your task is to evaluate a project execution plan and construct a valid schedule.\n\nRULES\n1. Use only the information provided in the input.\n2. Every task requires all listed people and resources simultaneously for its entire duration.\n3. A person or shared resource cannot be assigned to overlapping tasks.\n4. A task may start only after all its prerequisites have finished. It may start at the exact time a prerequisite finishes.\n5. Every task must run continuously without interruption. Tasks cannot span the lunch break or be split across days.\n6. Task start times must fall on 30-minute boundaries.\n7. Apply only changes explicitly marked APPROVED. Do not apply proposed or withdrawn changes.\n8. An approved change overrides only the specific information it mentions. All other information remains in effect.\n9. For task G, select exactly one testing method: Standard or Accelerated.\n10. The project is complete only when every task A through N is finished.\n11. All dates and times are local to America/Los_Angeles.\n\nOPTIMIZATION\nFirst, satisfy every mandatory constraint, including the budget and deadline.\nAmong valid schedules, minimize additional cost.\nAmong schedules with the minimum additional cost, choose the earliest project completion time.\nEvaluate each scenario independently.\n\nOUTPUT\nFor each scenario, report:\n- Verdict: FEASIBLE or INFEASIBLE.\n- Selected testing method, if feasible.\n- Additional cost, if feasible.\n- Project completion date and time, if feasible.\n- A schedule listing every task, date, start time, and end time, if feasible.\n- A justification of feasibility or infeasibility.\n- For a feasible scenario, explain why no cheaper valid schedule exists and why completion cannot be earlier at that cost.\n\nIf a scenario is infeasible, do not present an invalid schedule as a solution.\n\nEnsure that all start and finish times in the explanation match the final schedule.\n\nDistinguish personnel/resource availability windows from scheduled task intervals. When explaining feasibility, state the full availability window separately from the task's scheduled or earliest possible start and finish times."
+    },
+    {
+      "role": "user",
+      "content": "{{question}}"
+    }
+  ]
+}

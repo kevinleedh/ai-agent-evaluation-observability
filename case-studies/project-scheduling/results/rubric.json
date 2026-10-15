@@ -1,0 +1,17 @@
+{
+  "type": "human_annotation",
+  "scope": "completed final answers only",
+  "task_success": {
+    "data_type": "BOOLEAN",
+    "description": "True if both scenario verdicts are correct and the schedule satisfies all constraints and optimization requirements. False otherwise. Explanation accuracy is scored separately."
+  },
+  "explanation_accuracy": {
+    "data_type": "BOOLEAN",
+    "description": "True if the final explanation is factually correct, consistent with the schedule and input constraints, and distinguishes availability windows from task intervals. False if any explanation contradicts the schedule or input, or misstates a time or duration. Leave unscored if no completed response is available."
+  },
+  "execution_errors": {
+    "task_success": null,
+    "explanation_accuracy": null,
+    "instruction": "Record timeout/concurrency errors separately; do not silently discard failed attempts."
+  }
+}

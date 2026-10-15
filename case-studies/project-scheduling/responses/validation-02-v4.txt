@@ -1,0 +1,32 @@
+Verdict: FEASIBLE
+Testing method: Accelerated
+Additional cost: 5
+Project completion: October 20, 2026 at 10:00
+
+Schedule:
+- A: October 19, 09:00–10:00
+- B: October 19, 10:00–11:00
+- C: October 19, 10:00–11:00
+- E: October 19, 10:00–11:00
+- D: October 19, 11:00–12:00
+- F: October 19, 13:00–14:00
+- H: October 19, 14:00–15:00
+- G: October 19, 14:00–15:00
+- I: October 19, 15:00–15:30
+- J: October 19, 15:30–16:00
+- K: October 19, 15:30–16:00
+- L: October 19, 16:00–16:30
+- M: October 20, 09:00–09:30
+- N: October 20, 09:30–10:00
+
+Justification: Alex, Maya, Ethan, the GPU, and the Review Room are available both days during 09:00–12:00 and 13:00–17:00 only. The approved constraint forces M to start on October 20 at or after 09:00. M and N are sequential 30-minute tasks and the deadline is 10:00, so the only legal placement is M at 09:00–09:30 and N at 09:30–10:00. Therefore L, and every predecessor of L, must finish on October 19.
+
+The schedule above respects every prerequisite, uses each person and shared resource only when that resource is inside its availability window, and never double-books a person or shared resource. Every task is continuous, stays inside one work block, and starts on a 30-minute boundary. Accelerated G is the selected method, so additional cost is 5, which is within the budget of 5. Completion is 10:00.
+
+No cheaper valid schedule exists. Standard G costs 0 but is 2 hours and cannot start before F. The earliest feasible chain is A 09:00–10:00, B and C 10:00–11:00, D 11:00–12:00, and F 13:00–14:00, so Standard G cannot finish before 16:00. I, then J/K, then L still require 1.5 hours after G and H, but only 1 hour remains before 17:00. L cannot move to October 20 because 09:00–10:00 is fully required by M and N. Thus cost 0 cannot meet the deadline, and 5 is the minimum additional cost.
+
+Completion cannot be earlier at that cost. M cannot start before October 20 at 09:00, and N cannot start before M finishes, so 10:00 is the earliest possible project completion.
+
+Verdict: INFEASIBLE
+
+Justification: The budget of 4 excludes Accelerated G, whose additional cost is 5, so only Standard G is allowed. As shown above, Standard G cannot finish before 16:00 on October 19 even on the earliest prerequisite chain. The remaining sequence I (30 minutes), J/K (30 minutes), and L (30 minutes) needs 1.5 hours, but work ends at 17:00. L also cannot run on October 20: M may start only at or after 09:00, and M plus N occupy the entire 09:00–10:00 interval required to meet the deadline. No approved change extends hours, permits lunch work, skips N, or moves the 10:00 deadline. Therefore no schedule completes every task A through N by the deadline within budget 4.

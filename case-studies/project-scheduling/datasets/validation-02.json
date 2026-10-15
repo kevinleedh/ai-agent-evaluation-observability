@@ -1,0 +1,18 @@
+{
+  "id": "validation-02",
+  "input": {
+    "question": "PROJECT INFORMATION\nAll dates are in 2026.\nAll dates and times are local to America/Los_Angeles.\nThe project may run on October 19 and October 20 only.\nWorking hours on each day are 09:00–12:00 and 13:00–17:00.\nLunch is 12:00–13:00.\nThe project deadline is October 20 at 10:00.\nEvery task A through N must be completed.\n\nBASELINE PERSONNEL AVAILABILITY\nAlex, Maya, and Ethan are each available on both days:\n09:00–12:00 and 13:00–17:00.\n\nBASELINE SHARED RESOURCE AVAILABILITY\nThe GPU and Review Room are each available on both days:\n09:00–12:00 and 13:00–17:00.\nThere is exactly one GPU and exactly one Review Room.\n\nTASKS\nEvery task requires all listed people and resources simultaneously\nfor its entire duration.\nA dash means no shared resource or no prerequisite, as applicable.\n\nTask | Duration | People | Shared resources | Prerequisites | Additional cost\nA | 1 hour | Alex, Maya | Review Room | - | 0\nB | 1 hour | Alex | - | A | 0\nC | 1 hour | Ethan | - | A | 0\nD | 1 hour | Ethan | GPU | B, C | 0\nE | 1 hour | Maya | - | A | 0\nF | 1 hour | Alex, Ethan | - | D | 0\nG, Standard | 2 hours | Ethan | GPU | F | 0\nG, Accelerated | 1 hour | Ethan | GPU | F | 5\nH | 1 hour | Maya | - | E, F | 0\nI | 0.5 hours | Maya, Ethan | Review Room | G, H | 0\nJ | 0.5 hours | Alex | - | I | 0\nK | 0.5 hours | Maya | - | I | 0\nL | 0.5 hours | Ethan | GPU | J, K | 0\nM | 0.5 hours | Alex, Maya | Review Room | L | 0\nN | 0.5 hours | Ethan | GPU | M | 0\n\nFor G, select exactly one testing method.\nNo person or shared resource may be assigned to overlapping tasks.\nTasks must run continuously and cannot cross lunch or day boundaries.\nTask start times must fall on 30-minute boundaries.\nA task may start at the exact time its final prerequisite finishes.\n\nCHANGE LOG\nOnly APPROVED changes apply.\nAn approved change overrides only the information it explicitly mentions.\nAll other information remains in effect.\n\n1. APPROVED:\nTask M may start only on October 20 at or after 09:00.\n\n2. PROPOSED:\nAllow F to run during the October 19 lunch break.\nThis proposal has not been approved.\n\n3. WITHDRAWN:\nThe proposal to skip task N has been withdrawn.\n\n4. PROPOSED:\nExtend the project deadline to October 20 at 10:30.\nThis proposal has not been approved.\n\nSCENARIOS\nEvaluate each scenario independently.\n\nScenario 1:\nThe additional-cost budget is 5.\nFind a valid schedule with the minimum additional cost.\nAmong schedules with that cost, choose the earliest completion.\nReport the verdict, testing method, additional cost, completion time,\nand the date, start, and finish of every task A through N.\nJustify feasibility, minimum cost, and earliest completion.\n\nScenario 2:\nThe additional-cost budget is 4.\nDetermine whether every task can be completed by the deadline.\nIf feasible, provide the optimal schedule and its justification.\nIf infeasible, explain why."
+  },
+  "expected_output": {
+    "scenario_1": {
+      "verdict": "FEASIBLE",
+      "testing_method": "Accelerated",
+      "minimum_additional_cost": 5,
+      "earliest_completion": "2026-10-20T10:00:00-07:00"
+    },
+    "scenario_2": {
+      "verdict": "INFEASIBLE"
+    },
+    "criteria": "Accept any valid schedule achieving minimum additional cost and earliest completion. Enforce durations, prerequisites, personnel/resource availability, exclusivity, continuity, lunch/day boundaries, approved changes, budget, and deadline. Evaluate explanation accuracy separately, distinguishing availability windows from task intervals."
+  }
+}

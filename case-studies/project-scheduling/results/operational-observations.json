@@ -1,0 +1,44 @@
+{
+  "scope": "Selected diagnostic observations from chat/screenshots, not an exhaustive attempt log or rate denominator. Separate from the seven completed answers.",
+  "events": [
+    {
+      "model_label": "Kimi kimi-k3",
+      "prompt_version": 2,
+      "status": "timeout",
+      "approx_elapsed_seconds": 120,
+      "task_success": null,
+      "explanation_accuracy": null,
+      "message": "The operation was aborted due to timeout"
+    },
+    {
+      "model_label": "Kimi kimi-k3",
+      "prompt_version": 3,
+      "status": "timeout",
+      "approx_elapsed_seconds": 120,
+      "task_success": null,
+      "explanation_accuracy": null,
+      "message": "The operation was aborted due to timeout"
+    },
+    {
+      "model_label": "Kimi kimi-k3",
+      "prompt_version": 3,
+      "status": "concurrency_limit",
+      "approx_elapsed_seconds": 1.5,
+      "task_success": null,
+      "explanation_accuracy": null,
+      "message_redacted": "Request reached maximum organization concurrency: 1.",
+      "diagnosis": "Different error from timeout; exact cause of an occupied slot was not established."
+    },
+    {
+      "model_label": "Grok (user-reported context)",
+      "prompt_version": 2,
+      "dataset": "development",
+      "status": "timeout",
+      "elapsed_seconds": null,
+      "task_success": null,
+      "explanation_accuracy": null,
+      "source": "User supplied Timeout for v2 between the v1 and v3 final answers."
+    }
+  ],
+  "interpretation": "Timeouts are execution outcomes, not evidence that the generated schedule is wrong. No runtime speedup or timeout-rate reduction is established."
+}

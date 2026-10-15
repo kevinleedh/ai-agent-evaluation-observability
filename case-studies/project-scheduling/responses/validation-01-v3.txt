@@ -1,0 +1,28 @@
+Scenario 1: FEASIBLE
+Selected testing method: Accelerated
+Additional cost: 4
+Project completion: October 20, 2026 at 16:30
+
+Schedule:
+- A: October 19, 11:00–12:00
+- B: October 19, 13:00–14:30
+- C: October 19, 14:00–15:00
+- D: October 19, 15:00–17:00
+- E: October 19, 13:00–14:30
+- F: October 20, 09:00–10:00
+- G: October 20, 13:00–14:00
+- H: October 20, 10:00–11:00
+- I: October 20, 14:00–14:30
+- J: October 20, 14:30–15:00
+- K: October 20, 14:30–15:00
+- L: October 20, 15:00–15:30
+- M: October 20, 15:30–16:00
+- N: October 20, 16:00–16:30
+
+Justification: Approved changes restrict Ethan to 14:00–17:00 and the GPU to 15:00–17:00 on October 19 afternoon, and require M to start on October 20 at or after 15:30. A must occur on October 19; the only Review Room slot early enough is 11:00–12:00. B, C, and E then fit that afternoon, and D exactly fills the GPU’s 15:00–17:00 window. F can therefore start at 09:00 on October 20. Accelerated G is one hour, so the dependent chain G–I–J–L–M–N fits in the October 20 afternoon while respecting lunch, availability, and non-overlap. M starts at the first permitted time, 15:30, and N finishes at 16:30. Every prerequisite, person, resource, continuity, and 30-minute-boundary constraint is satisfied, and the cost of 4 is within budget.
+
+No cheaper valid schedule exists: Standard G costs 0 but creates a strict 4.5-hour chain G–I–J–L–M–N. F cannot finish before 10:00 on October 20, Ethan has only one morning hour left after F, and G cannot cross lunch, so that 2-hour task must occupy the afternoon. Only two hours then remain before 17:00, which is less than the remaining 2.5-hour chain. Completion also cannot be earlier at cost 4: M cannot start before 15:30, so N cannot finish before 16:30.
+
+Scenario 2: INFEASIBLE
+
+Justification: The budget of 3 excludes Accelerated G, whose additional cost is 4. Standard G is impossible, as shown above: after the earliest possible finish of F, the continuous 2-hour G and the remaining dependent 2.5-hour chain cannot both fit before the October 20 17:00 deadline. No approved change removes a task, shortens Standard G, or extends the deadline.

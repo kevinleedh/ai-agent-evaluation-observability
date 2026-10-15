@@ -1,0 +1,27 @@
+Verdict: FEASIBLE
+Testing method: Accelerated
+Additional cost: 5
+Project completion: October 20, 2026 at 10:00
+
+Schedule:
+- A: October 19, 09:00–10:00
+- B: October 19, 10:00–11:00
+- C: October 19, 10:00–11:00
+- E: October 19, 10:00–11:00
+- D: October 19, 11:00–12:00
+- F: October 19, 13:00–14:00
+- G: October 19, 14:00–15:00
+- H: October 19, 14:00–15:00
+- I: October 19, 15:00–15:30
+- J: October 19, 15:30–16:00
+- K: October 19, 15:30–16:00
+- L: October 19, 16:00–16:30
+- M: October 20, 09:00–09:30
+- N: October 20, 09:30–10:00
+
+Justification: Approved change 1 requires M to start on October 20 at or after 09:00. M and N are sequential and together take 1 hour, and the deadline is 10:00, so the only deadline-feasible placement is M at 09:00–09:30 and N at 09:30–10:00. Every prerequisite of M must therefore finish on October 19. The chain A–B–D–F–G–I–J–L is sequential. With Standard G it takes 7.5 hours, but October 19 has only 7 working hours, so Standard is impossible. Accelerated G shortens that chain to 6.5 hours and costs 5, which is within the budget. The schedule above respects durations, prerequisites, 30-minute starts, lunch and day boundaries, and non-overlapping people and shared resources. No cheaper valid schedule exists because cost 0 requires Standard G, which cannot finish before M. Completion cannot be earlier at cost 5 because M cannot start before 09:00 on October 20, so N cannot finish before 10:00.
+
+Scenario 2
+Verdict: INFEASIBLE
+
+Justification: The budget is 4. As shown above, Standard testing cannot finish the mandatory chain before the only deadline-feasible M/N window, and Accelerated testing costs 5, which exceeds the budget. Proposed deadline and lunch changes are not approved, and skipping N was withdrawn, so no other option remains.

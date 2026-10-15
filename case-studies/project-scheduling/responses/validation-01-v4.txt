@@ -1,0 +1,31 @@
+The approved changes are in effect: Ethan is available on October 19 only at 09:00–12:00 and 14:00–17:00; the GPU is available on October 19 only at 10:00–12:00 and 15:00–17:00; and task M may start only on October 20 at or after 15:30. The unapproved proposals are ignored. Working intervals are 09:00–12:00 and 13:00–17:00, starts must be on 30-minute boundaries, and no task may cross lunch or a day boundary.
+
+Scenario 1: FEASIBLE
+Selected testing method: Accelerated
+Additional cost: 4
+Project completion: October 20, 2026 at 16:30
+
+Schedule:
+- A: October 19, 11:00–12:00
+- B: October 19, 13:00–14:30
+- C: October 19, 14:00–15:00
+- D: October 19, 15:00–17:00
+- E: October 19, 13:00–14:30
+- F: October 20, 09:00–10:00
+- G: October 20, 10:00–11:00
+- H: October 20, 10:00–11:00
+- I: October 20, 14:00–14:30
+- J: October 20, 14:30–15:00
+- K: October 20, 14:30–15:00
+- L: October 20, 15:00–15:30
+- M: October 20, 15:30–16:00
+- N: October 20, 16:00–16:30
+
+Availability windows used by this schedule, stated separately from the scheduled intervals, are: Alex October 19 09:00–12:00 and 13:00–16:00, October 20 09:00–12:00 and 13:00–17:00; Maya October 19 10:00–12:00 and 13:00–17:00, October 20 09:00–12:00 and 14:00–17:00; Ethan October 19 09:00–12:00 and 14:00–17:00, October 20 09:00–11:00 and 13:00–17:00; GPU October 19 10:00–12:00 and 15:00–17:00, October 20 09:00–12:00 and 13:00–17:00; Review Room October 19 11:00–12:00 and 14:00–16:00, October 20 10:00–12:00 and 14:00–17:00. Every scheduled interval lies inside the required people’s and resources’ windows, uses each person or shared resource for only one task at a time, follows all prerequisites, and respects the M start restriction.
+
+No cheaper valid schedule exists. Standard G costs 0 but is impossible by the deadline. A cannot start before 11:00 on October 19 because that is when the Review Room, Alex, and Maya first overlap, so B and C cannot finish early enough for the only 2-hour October 19 GPU window, 15:00–17:00. D therefore cannot finish before 17:00 on October 19, and F cannot start before 09:00 on October 20. Standard G needs 2 continuous hours. Ethan’s remaining October 20 morning window is only 10:00–11:00, so Standard G cannot start before 13:00 and cannot finish before 15:00. I, J/K, L, M, and N then require 2.5 sequential hours and would finish at 17:30, after the deadline. Accelerated G is consequently mandatory, and its additional cost of 4 is minimal.
+
+Completion cannot be earlier at that cost. F and Accelerated G together consume all of Ethan’s October 20 morning window, 09:00–11:00, so I cannot occur that morning. The Review Room’s next window begins at 14:00, so 14:00 is I’s earliest feasible start. The prerequisite chain I → J/K → L → M → N takes 2.5 hours, so N cannot finish before 16:30. The schedule attains that bound.
+
+Scenario 2: INFEASIBLE
+The budget of 3 cannot pay for Accelerated G. Standard G is the only zero-cost method, and, as shown above, its earliest possible finish is 15:00 on October 20, after which the remaining mandatory 2.5-hour chain finishes at 17:30, beyond the October 20 17:00 deadline. No other approved duration or resource window removes that overrun. Therefore no schedule completes every task A through N within both the budget and the deadline.

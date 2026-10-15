@@ -1,0 +1,28 @@
+{
+  "source": "Current chat, normalized for publication; see PROVENANCE.md",
+  "files": {
+    "README.md": "a478e34ddd332625de22cba07caf81d58801b50b4d5d5b9d971af026756b3148",
+    "case-studies/04-prompt-iteration-scheduling.md": "08ce08f8aff4dc3b114bf9e53c2a99e6e1fb6116739de8724f53441454e8203b",
+    "case-studies/project-scheduling/PROVENANCE.md": "8716643233764f8149d7834b24a217746c74d3d87a611d49b69fe61f06909c85",
+    "case-studies/project-scheduling/datasets/development.json": "ae951d6e76f195c38b55ad101213774a73e3f60c05fa5884a30a9faa572f8cc6",
+    "case-studies/project-scheduling/datasets/reference-constraints.json": "b7dedb64d3d15f0eec75686b9c469c12ced278cce70cab7edb975d3e2b3f7720",
+    "case-studies/project-scheduling/datasets/validation-01.json": "b09ef29a70b3330a2114245209e28ead386a632df19f6094fec26aab66467be0",
+    "case-studies/project-scheduling/datasets/validation-02.json": "8dadf6aebfbfa4ccabf91c63f03198f8d835d9477254d2cc026ae06b9b1af3bc",
+    "case-studies/project-scheduling/prompts/v1.json": "2d8e3ff83837b8ca468c59d6abde916bec8c47c3114a6dfab544a8530be7f90f",
+    "case-studies/project-scheduling/prompts/v2.json": "b0340b955af81d4d13a9d38bac82b11e1001ad11ba54482eef6474901a057309",
+    "case-studies/project-scheduling/prompts/v3.json": "ef8b9813d316e98a26a3eb717c0a9b3a79ece1c0b57214f9d45d3182dbcc4daa",
+    "case-studies/project-scheduling/prompts/v4.json": "e8b3be02b4667ccfd294b59ff81d65ed3164c0d8c7e460ca7a01ec2e76760f96",
+    "case-studies/project-scheduling/responses/development-v1.txt": "568e261237283b1e8b2ec23df11cbf196c9ba7a47171a7dcf1f08218a175d351",
+    "case-studies/project-scheduling/responses/development-v3.txt": "95fe3c9bfd81f4df473b621ea023d445151fd55b7742ee208a50e1238612f3ce",
+    "case-studies/project-scheduling/responses/development-v4.txt": "47ca4bb804274807fd93d9ce3f6f54d3ca19fd87b663df128ff5b2f6307b5b51",
+    "case-studies/project-scheduling/responses/validation-01-v3.txt": "660df854cec18d74af6bbc219cd19ea49e4046633cd007c17578624647600dda",
+    "case-studies/project-scheduling/responses/validation-01-v4.txt": "6924a6ce8ea0949763f31d33406a1362a25fca5ef38d5016a5fbad36e42137e1",
+    "case-studies/project-scheduling/responses/validation-02-v3.txt": "95c3fb3ead14066f317f2ece478d695c136afa0df7f30c894936df5bceac0769",
+    "case-studies/project-scheduling/responses/validation-02-v4.txt": "817efd6be4b9e576253e93e049056f6a48509c5f5aac09961d9d38522027d281",
+    "case-studies/project-scheduling/results/annotations.json": "ca5b4d374c114044111cc833177577fd0895b6f2d6280b65680c16996e6f2f32",
+    "case-studies/project-scheduling/results/operational-observations.json": "6d73ff10f987a578884a90c6004967201ce70bc27637c519a3ad3c9860d47941",
+    "case-studies/project-scheduling/results/rubric.json": "4ed785a873ad2617e5a9189a6587086ead8b347e2725f9c433c9efde374071d6",
+    "case-studies/project-scheduling/scripts/requirements-proof.txt": "2bc40e2fcd7a609ec720d16ae245d16061a265276184c9c9bb7460cc5a0e6d56",
+    "case-studies/project-scheduling/scripts/verify.py": "03393206919e8eefb6a9949f2ab5215b6c3bf1ef5816ae6a98c63dacaf96d327"
+  }
+}

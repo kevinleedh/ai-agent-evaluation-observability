@@ -1,0 +1,25 @@
+Scenario 1: FEASIBLE. Testing method: Accelerated. Additional cost: 6. Completion: October 20, 2026, 17:00.
+
+Schedule (all times America/Los_Angeles):
+- A: October 19, 11:00–12:00
+- B: October 19, 13:00–14:30
+- C: October 19, 14:00–15:00
+- D: October 19, 15:00–17:00
+- E: October 19, 13:00–14:30
+- F: October 20, 09:00–10:00
+- G: October 20, 13:00–14:30 (Accelerated)
+- H: October 20, 10:00–11:00
+- I: October 20, 14:30–15:00
+- J: October 20, 15:00–15:30
+- K: October 20, 15:00–15:30
+- L: October 20, 15:30–16:00
+- M: October 20, 16:00–16:30
+- N: October 20, 16:30–17:00
+
+Availability windows used (distinct from the scheduled intervals above): Alex October 19 09:00–12:00 and 13:00–16:00, October 20 09:00–12:00 and 13:00–17:00; Maya October 19 10:00–12:00 and 13:00–17:00, October 20 09:00–12:00 and 14:00–17:00; Ethan October 19 09:00–12:00 and 14:00–17:00, October 20 09:00–11:00 and 13:00–17:00; GPU October 19 10:00–12:00 and 15:00–17:00, October 20 09:00–12:00 and 13:00–17:00; Review Room October 19 11:00–12:00 and 14:00–16:00, October 20 10:00–12:00 and 14:00–17:00. Every scheduled interval lies inside those windows, uses the required people and resources together, respects prerequisites, stays on a 30-minute boundary, and does not cross lunch or days.
+
+No cheaper valid schedule exists. Standard G costs 0 but lasts 3 continuous hours and cannot cross lunch or days. The only Ethan–GPU overlap of at least 3 hours is October 20, 13:00–17:00. M may start only on October 20 at or after 16:00, and N still needs 30 minutes after M before 17:00, so M must be 16:00–16:30 and N 16:30–17:00. I, then J/K, then L require at least 1.5 hours after G and before 16:00, so G must finish by 14:30. A 3-hour G cannot finish by 14:30 in that only feasible window. Accelerated G (cost 6) is therefore required, and 6 is within the budget.
+
+Completion cannot be earlier at this cost. M cannot start before 16:00, and N is 30 minutes and must follow M, so 17:00 on October 20 is the earliest possible finish. The schedule achieves that finish.
+
+Scenario 2: INFEASIBLE. The budget of 5 excludes Accelerated G (cost 6). Standard G remains impossible for the same duration and window reasons as in Scenario 1, and every task A through N is mandatory by the deadline of October 20 at 17:00.

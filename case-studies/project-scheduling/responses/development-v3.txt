@@ -1,0 +1,25 @@
+Scenario 1: FEASIBLE
+Selected testing method: Accelerated
+Additional cost: 6
+Project completion: October 20, 2026 at 17:00
+
+Schedule:
+- A: October 19, 11:00–12:00
+- B: October 19, 13:00–14:30
+- C: October 19, 14:00–15:00
+- D: October 19, 15:00–17:00
+- E: October 19, 13:00–14:30
+- F: October 20, 09:00–10:00
+- G: October 20, 13:00–14:30
+- H: October 20, 11:00–12:00
+- I: October 20, 14:30–15:00
+- J: October 20, 15:00–15:30
+- K: October 20, 15:00–15:30
+- L: October 20, 15:30–16:00
+- M: October 20, 16:00–16:30
+- N: October 20, 16:30–17:00
+
+Justification: Approved changes restrict Ethan and the GPU on October 19 afternoon to 14:00–17:00 and 15:00–17:00, respectively. M must start on October 20 at or after 16:00, so the only slot that still lets N finish by 17:00 is M at 16:00–16:30 and N at 16:30–17:00. The post-G chain I → J/K → L requires 1.5 hours and must finish by 16:00, so G must end by 14:30. Standard G needs 3 continuous hours of Ethan and the GPU. The only 3-hour overlap is October 20, 13:00–16:00, which ends too late for that chain; every other Ethan–GPU overlap is at most 2 hours, and G cannot cross lunch or days. Accelerated G (1.5 hours, cost 6) fits at 13:00–14:30 after D on October 19, 15:00–17:00, and F on October 20, 09:00–10:00. The listed times respect every availability window, prerequisite, resource exclusivity rule, 30-minute boundary, and continuity rule. Cost 0 is impossible, so 6 is minimum. Completion cannot be earlier at that cost because M cannot start before 16:00 and N requires 30 minutes afterward.
+
+Scenario 2: INFEASIBLE
+The only feasible testing method is Accelerated, at additional cost 6. Standard G cannot be placed in any continuous Ethan–GPU window while still completing I, J, K, and L before the mandatory M start at October 20, 16:00. A budget of 5 therefore cannot meet the deadline.
