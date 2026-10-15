@@ -1,8 +1,8 @@
 {
   "source": "Current chat, normalized for publication; see PROVENANCE.md",
   "files": {
-    "README.md": "bb447bdacb4308322434aada21d2cea4df7c58fd950e3cf83d741968ff2b52d4",
-    "case-studies/04-prompt-iteration-scheduling.md": "f61b18bd0f77007bdedecdd3f2d5c07fc777a78befe8c4f654abed493718c63e",
+    "README.md": "cd13af0fd7b50c654695927c334c29fc0a0b67efc9af22b4e165aa79f4d9120c",
+    "case-studies/04-prompt-iteration-scheduling.md": "d2ecce5eb182a8778b44ade00df158f7d7a1848fe5de007e2e707a049d341dce",
     "case-studies/project-scheduling/PROVENANCE.md": "8716643233764f8149d7834b24a217746c74d3d87a611d49b69fe61f06909c85",
     "case-studies/project-scheduling/datasets/development.json": "ae951d6e76f195c38b55ad101213774a73e3f60c05fa5884a30a9faa572f8cc6",
     "case-studies/project-scheduling/datasets/reference-constraints.json": "b7dedb64d3d15f0eec75686b9c469c12ced278cce70cab7edb975d3e2b3f7720",

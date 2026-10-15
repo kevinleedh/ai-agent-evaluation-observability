@@ -8,6 +8,8 @@ Version 4 corrected the availability-window confusion on the development problem
 
 The lesson is narrower than “a longer prompt improves accuracy”: a targeted instruction can fix a visible example without producing a consistent improvement on new inputs. Outcome correctness and explanation correctness need separate labels.
 
+The follow-up [case 05: From Human Review to Code Assertions and an LLM Judge](05-human-code-llm-evaluation.md) reuses these answers to study evaluation methods. It preserves this prompt-iteration result rather than treating new evaluator scores as new generation evidence.
+
 ## Evidence and experimental scope
 
 This is a retrospective, AI-assisted learning case assembled from the user's pasted final answers, prompt text, problem definitions, and Langfuse screenshots on October 15, 2026. The artifact contains seven completed final answers; it is not a full API or Langfuse export. [Provenance and limitations](project-scheduling/PROVENANCE.md) distinguish reconstructed material from directly transcribed responses.

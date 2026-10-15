@@ -1,0 +1,41 @@
+{
+  "provenance": "Selected UI/screenshot evidence, not a full Langfuse export. See ../PROVENANCE.md.",
+  "judge_name": "llm_explanation_accuracy",
+  "visible_judge_model": "grok-4.7",
+  "judge_parameters": null,
+  "independent_blinded_human_labels": false,
+  "completed_results": [
+    {
+      "response_id": "validation-02-v3",
+      "human_explanation_accuracy": true,
+      "llm_explanation_accuracy": true
+    },
+    {
+      "response_id": "validation-02-v4",
+      "human_explanation_accuracy": true,
+      "llm_explanation_accuracy": true
+    },
+    {
+      "response_id": "validation-01-v4",
+      "human_explanation_accuracy": false,
+      "llm_explanation_accuracy": false,
+      "latency_seconds": 57.15,
+      "judge_comment": "Scenario 1’s decisive Standard-G impossibility argument is factually wrong. It says B and C ‘cannot finish early enough for the only 2-hour October 19 GPU window, 15:00–17:00.’ GPU also has a 2-hour window at 10:00–12:00, and B/C can finish by 15:00 for the afternoon window (as the schedule itself does: C ends 15:00 and D runs 15:00–17:00). The conclusion is not validly supported.",
+      "comment_fidelity": "Transcribed from completed execution screenshot; typographic quotation marks normalized."
+    }
+  ],
+  "validation_02_comments": [
+    {
+      "score_timestamp_local": "2026-10-15 17:00:24",
+      "value": true,
+      "comment": "Both scenario justifications are factually consistent with the project data, approved changes, and the submitted schedule. Accelerated G at 14:00–15:00 yields a conflict-free A–N schedule finishing at the 10:00 deadline for cost 5. The cost-0 rejection is supported: the earliest A–B/C–D–F chain places F at 13:00–14:00, so 2-hour Standard G cannot finish before 16:00, leaving only 1 hour for the remaining 1.5-hour I–J/K–L chain, while M and N must occupy 09:00–10:00 on October 20. Budget 4 therefore excludes the only feasible method, and 10:00 is the earliest possible completion because M cannot start before October 20 at 09:00."
+    },
+    {
+      "score_timestamp_local": "2026-10-15 17:00:13",
+      "value": true,
+      "comment": "Both scenario justifications are factually correct, match the submitted schedule, and support the requested conclusions. The schedule is valid: Accelerated G is 14:00–15:00, all durations and prerequisites hold, and people and the single GPU and Review Room never overlap. M must start at 09:00 on October 20, so M 09:00–09:30 and N 09:30–10:00 is the only deadline-feasible placement and 10:00 is the earliest possible finish. The mandatory chain A–B–D–F–G–I–J–L is 7.5 hours with Standard G but October 19 has only 7 working hours, so cost 0 is impossible; Accelerated reduces it to 6.5 hours at cost 5. Scenario 2 is therefore infeasible because Accelerated costs 5 against a budget of 4, and the unapproved lunch, deadline, and skip-N changes do not apply."
+    }
+  ],
+  "comment_binding_note": "Validation-02 v3 and v4 both scored True in the experiment comparison. Comments are preserved as score-table entries; no per-comment version binding is asserted without a sanitized exported join.",
+  "interpretation": "Two selected positive answers and one selected negative answer agree with previous human labels. This is a small retrospective calibration example, not an estimate of judge accuracy."
+}

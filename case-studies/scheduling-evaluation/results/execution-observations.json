@@ -1,0 +1,29 @@
+{
+  "source": "Selected live trace inspections and screenshots; incomplete attempt history.",
+  "observations": [
+    {
+      "dataset": "validation-01",
+      "judge_model": "grok-4.7",
+      "selected_items": 2,
+      "outcome": "timeout",
+      "elapsed_seconds_per_item": 120,
+      "quality_score": null
+    },
+    {
+      "dataset": "validation-01",
+      "judge_model": "grok-4.7",
+      "selected_items": 1,
+      "outcome": "timeout",
+      "elapsed_seconds": 120,
+      "quality_score": null
+    },
+    {
+      "response_id": "validation-01-v4",
+      "judge_model": "grok-4.7",
+      "outcome": "completed",
+      "elapsed_seconds": 57.15,
+      "quality_score": false
+    }
+  ],
+  "interpretation": "Timeout is an execution error, not a False explanation label. Removing Compare did not eliminate timeout. The eventual completion does not establish a latency improvement or a cause; applied parameter changes were not verified."
+}

@@ -1,0 +1,93 @@
+{
+  "source": "Observed live Langfuse scores and user screenshots; selected results, not a full export.",
+  "actual_answers": [
+    {
+      "response_id": "validation-02-v3",
+      "code_task_coverage": true,
+      "code_task_duration": true,
+      "sched_all_deterministic_checks": true,
+      "sched_input_status": "matched_validation_02",
+      "sched_s1_checks": {
+        "verdict_reference": true,
+        "coverage": true,
+        "required_fields": true,
+        "durations": true,
+        "dependencies": true,
+        "availability_lunch_continuity": true,
+        "start_boundaries": true,
+        "resource_exclusivity": true,
+        "approved_m_constraint": true,
+        "budget_cost": true,
+        "deadline": true,
+        "completion_consistency": true,
+        "optimality_reference": true
+      },
+      "sched_s2_checks": {
+        "verdict_reference": true,
+        "no_infeasible_schedule": true,
+        "justification_present": true
+      },
+      "sched_explanation_accuracy_status": "requires_human_or_llm_judge"
+    },
+    {
+      "response_id": "validation-02-v4",
+      "code_task_coverage": true,
+      "code_task_duration": true,
+      "sched_all_deterministic_checks": true,
+      "sched_input_status": "matched_validation_02",
+      "sched_s1_checks": {
+        "verdict_reference": true,
+        "coverage": true,
+        "required_fields": true,
+        "durations": true,
+        "dependencies": true,
+        "availability_lunch_continuity": true,
+        "start_boundaries": true,
+        "resource_exclusivity": true,
+        "approved_m_constraint": true,
+        "budget_cost": true,
+        "deadline": true,
+        "completion_consistency": true,
+        "optimality_reference": true
+      },
+      "sched_s2_checks": {
+        "verdict_reference": true,
+        "no_infeasible_schedule": true,
+        "justification_present": true
+      },
+      "sched_explanation_accuracy_status": "requires_human_or_llm_judge"
+    }
+  ],
+  "synthetic_self_tests": [
+    {
+      "base_response": "validation-02-v4",
+      "kind": "coverage",
+      "scores": {
+        "coverage_test_original": true,
+        "coverage_test_missing_n": false,
+        "coverage_test_duplicate_n": false,
+        "coverage_self_test_passed": true
+      }
+    },
+    {
+      "base_response": "validation-02-v3",
+      "kind": "duration",
+      "scores": {
+        "duration_test_original": true,
+        "duration_test_wrong_a": false,
+        "duration_self_test_passed": true
+      }
+    },
+    {
+      "base_response": "validation-02-v4",
+      "kind": "duration",
+      "scores": {
+        "duration_test_original": true,
+        "duration_test_wrong_a": false,
+        "duration_self_test_passed": true
+      }
+    }
+  ],
+  "synthetic_score_warning": "False on deliberately corrupted copies is expected. These scores do not indicate failures in the stored original model answers. Self-test evaluators contain copies of checking logic; they do not call another saved evaluator by ID.",
+  "scope": "Integrated evaluator supports the exact normalized validation-02 question only; no integrated validation-01 result is claimed."
+}

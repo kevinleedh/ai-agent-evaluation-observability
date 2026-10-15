@@ -1,0 +1,20 @@
+{
+  "source": "Authored evaluator sources and selected session evidence; see PROVENANCE.md. Hashes cover published files, not provider provenance.",
+  "files": {
+    "README.md": "cd13af0fd7b50c654695927c334c29fc0a0b67efc9af22b4e165aa79f4d9120c",
+    "case-studies/04-prompt-iteration-scheduling.md": "d2ecce5eb182a8778b44ade00df158f7d7a1848fe5de007e2e707a049d341dce",
+    "case-studies/05-human-code-llm-evaluation.md": "adab7b9117a680ee4c7c38794be1257a8370cb5df886fe165dfab068d6eb2f59",
+    "case-studies/scheduling-evaluation/PROVENANCE.md": "dc5a4229580cb893f21da776861c73c4dbd67bb90b266c229f2cbcd3e5594a2a",
+    "case-studies/scheduling-evaluation/evaluators/explanation_judge.txt": "847b865bd82c49184d778470c5f705cd7dfbe710e984ca7f271c619a9395bf95",
+    "case-studies/scheduling-evaluation/evaluators/scheduling_validation02.py": "14fa7d3dbbb787b4f2b2effc9dbc505ee44624b751052239b57b01fe5a6cd70c",
+    "case-studies/scheduling-evaluation/evaluators/task_coverage.py": "c12687ed2527c5e41954cb4da5757f812ba2069c2fd372106accb704d14a4bcb",
+    "case-studies/scheduling-evaluation/evaluators/task_coverage_self_test.py": "218cb92af11a62405559873ce210825cc909e1f98d56dfc043951b1ab4304bdd",
+    "case-studies/scheduling-evaluation/evaluators/task_duration.py": "46c12c49928b0e39cd32bdb67ddb379cda1bfb9c2f25212ff03f393b4cba8218",
+    "case-studies/scheduling-evaluation/evaluators/task_duration_self_test.py": "98685d03e5f54ff55ed3549b29aa7d0936e957cd598268ff6b9469daa6f476ba",
+    "case-studies/scheduling-evaluation/results/code-results.json": "9df4ebd07a871e5e7caee5817aae1e19381dfccb7f7cbd5bc3c946ef6a2a24f4",
+    "case-studies/scheduling-evaluation/results/execution-observations.json": "8da2ddfeff820dc2a10f4e7eb6f2fd6828505e987568569185da3ade95444f70",
+    "case-studies/scheduling-evaluation/results/judge-results.json": "6f6500f92bc0b8315c2204447c28c934193ffed316245fd6dcb6cdbfb2d9e435",
+    "case-studies/scheduling-evaluation/tests/test_basic_evaluators.py": "d6630e124a3a6aadca05fbcab90499a032171a24293d72d4bcae995af3bb1721",
+    "case-studies/scheduling-evaluation/tests/test_scheduling_validation02.py": "d6e056fab80f941859e9cc63fe28b12cb205ea83f221c913a777e880d5853d67"
+  }
+}
