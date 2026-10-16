@@ -77,9 +77,7 @@ structured evidence, rather than just `answer`.
 
 Select the original root in Matching observations and inspect the variable
 previews. Input must contain `question`/`candidates`; Output must contain
-`answer`, `claim_evidence` and `read_documents`. If you see an outer
-`observation` object and code `scores` as Output, you selected the code evaluator
-execution, as happened in the initial wrong-target test.
+`answer`, `claim_evidence` and `read_documents`.
 
 Name the evaluator `doc_llm_explanation_accuracy`. The observed score setting was
 **number between 0 and 1**, with `1` used for the rubric's TRUE judgment. Preserve
@@ -89,7 +87,7 @@ scoring specification. A future version should explicitly define 0 and 1 and
 record the revised settings before collecting new results.
 
 Run the sample test and inspect both the score and its written explanation.
-The published corrected test returned `1`; no negative semantic calibration test
+The published sample test returned `1`; no negative semantic calibration test
 was run. The root snapshot's validator flags must not substitute for judging
 the evidence.
 

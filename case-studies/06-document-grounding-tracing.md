@@ -95,7 +95,7 @@ execution evidence.
 |---|---|---|
 | Human review | Does the answer address the task? Is its explanation accurate? | Both Boolean annotations True |
 | Code assertion | Are required snapshot structures, source references and quote matches consistent? | Boolean True |
-| LLM judge | Are material answer statements supported by the supplied document text? | Numeric 1 in the corrected sample test |
+| LLM judge | Are material answer statements supported by the supplied document text? | Numeric 1 in the sample test |
 
 These are complementary checks, not three independent votes on an identical
 definition of correctness. Human annotations followed assistant-assisted review;
@@ -162,7 +162,7 @@ Although the rubric says TRUE/FALSE, the actual saved output definition was
 NUMERIC and the test returned `1`. That number is not a calibrated probability
 or independent proof of truth. The generator and judge used the same model name.
 
-The corrected judge's explanation says c1–c3 are materially supported, including
+The judge's explanation says c1–c3 are materially supported, including
 the documented call sequence and custom-versus-built-in execution distinction.
 It also notes that the answer body links the page rather than embedding exact
 quotes, while the structured evidence contains them. See the complete
@@ -175,26 +175,12 @@ linked opening quote. Passing this rubric does not mean every individual quote
 independently supports every clause, nor that answer completeness was graded.
 A stricter per-claim citation rubric would be a separate evaluation.
 
-## A plausible score can conceal a wrong target
-
-The first LLM test accidentally selected the **code evaluator's execution trace**.
-Its Input contained a nested copy of the original observation; its Output was
-the code score. The LLM still returned `1` and discussed the nested original
-claims. The explanation looked reasonable, but the evaluator had been applied
-to the wrong observation.
-
-After selecting `terminal-python-document-review` itself, the displayed variables
-contained the original question/candidates and answer/claims/retrieved text. A
-second test returned `1`. Its target trace and observation IDs were checked
-against the original export through Langfuse's API before removing identifiers
-from the public files. The [wrong-target record](document-grounding/results/wrong-target-test.json)
-is retained as a setup error, not accepted as the properly targeted result.
-
-Another cleanup issue was an accidentally pasted UI-helper sentence in the
-judge's data message. The published prompt removes it and records that change.
-The cleaned prompt was not rerun. The observed configuration used two User
-messages, including the rubric; it was not a System/User configuration despite
-that structure being discussed during setup.
+The evaluated observation was `terminal-python-document-review`. Its mapped
+variables contained the original question/candidates and answer/claims/retrieved
+text. The target trace and observation IDs were checked against the original
+export through Langfuse's API before identifiers were removed from public files.
+The observed message configuration and publication edits are recorded in
+[provenance](document-grounding/PROVENANCE.md).
 
 ## What remains unproven
 

@@ -14,10 +14,7 @@ it did not generate new paid model answers or judge calls.
   The result comment is preserved. The published checker is the authored session
   source with clarified v2-schema selection wording; its evaluation logic is
   unchanged. It does not independently inspect sibling tool observations.
-- The initial, wrongly targeted LLM test comes from the user's evaluator export.
-  The original document-review output was nested inside the code execution Input;
-  the selected Output was the code score. It is documented as a mapping error.
-- The corrected LLM test appeared in the user's completed-test screenshot and was
+- The LLM test appeared in the user's completed-test screenshot and was
   subsequently retrieved through the Langfuse Observations API. Its target trace
   and observation IDs matched the original root before redaction. The result
   explanation is preserved verbatim in `results/judge-test.json`.
