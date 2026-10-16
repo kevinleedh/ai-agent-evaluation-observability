@@ -1,0 +1,17 @@
+{
+  "case": "function-calling",
+  "source": "user-supplied evaluator execution export",
+  "execution_name": "Execute evaluator: code_trace_integrity",
+  "output": {
+    "scores": [
+      {
+        "name": "code_trace_integrity",
+        "comment": "Root snapshot checks passed: 4 decisions, 1 reads, 3 claims, 4 quotes checked. Status: answered. Semantic support and sibling tool execution records were not evaluated.",
+        "value": 1,
+        "dataType": "BOOLEAN"
+      }
+    ]
+  },
+  "evaluated_target": "original document-review root snapshot",
+  "scope": "root input/output only; no sibling execution verification or semantic judgment"
+}

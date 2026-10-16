@@ -1,0 +1,35 @@
+{
+  "case": "function-calling",
+  "source": "Langfuse Scores API, checked 2026-10-16",
+  "scores": [
+    {
+      "name": "code_trace_integrity",
+      "value": true,
+      "source": "EVAL",
+      "dataType": "BOOLEAN",
+      "comment": "Root snapshot checks passed: 4 decisions, 1 reads, 3 claims, 4 quotes checked. Status: answered. Semantic support and sibling tool execution records were not evaluated.",
+      "target_kind": "observation",
+      "target_is_original_root": true
+    },
+    {
+      "name": "task_success",
+      "value": true,
+      "source": "ANNOTATION",
+      "dataType": "BOOLEAN",
+      "comment": null,
+      "target_kind": "observation",
+      "target_is_original_root": true
+    },
+    {
+      "name": "explanation_accuracy",
+      "value": true,
+      "source": "ANNOTATION",
+      "dataType": "BOOLEAN",
+      "comment": null,
+      "target_kind": "observation",
+      "target_is_original_root": true
+    }
+  ],
+  "human_review": "User annotations following assistant-assisted review; not blinded independent labels.",
+  "note": "These are attached target scores. Evaluator test traces are separate evidence."
+}

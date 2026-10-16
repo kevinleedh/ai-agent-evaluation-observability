@@ -1,0 +1,11 @@
+{
+  "langfuse_base_url": "https://us.cloud.langfuse.com",
+  "prompt_name": "web-search-v1",
+  "prompt_version": 1,
+  "dataset_name": "web-search-validation-01",
+  "model": "grok-4.7",
+  "reasoning_effort": "low",
+  "reasoning_summary": "detailed",
+  "max_output_tokens": 6000,
+  "timeout_seconds": 180
+}

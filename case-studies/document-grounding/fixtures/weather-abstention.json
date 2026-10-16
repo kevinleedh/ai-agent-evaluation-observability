@@ -1,0 +1,74 @@
+{
+  "_publication": {
+    "alias": "weather-abstention",
+    "source": "user-supplied Langfuse JSON export",
+    "is_exact_trace_export": false,
+    "retrieved_text": "linked quote excerpts only",
+    "original_documents": []
+  },
+  "input": {
+    "question": "What will the weather be in New York tomorrow?",
+    "candidates": [
+      {
+        "id": "web-search",
+        "title": "Grok Web Search",
+        "url": "https://docs.x.ai/developers/tools/web-search"
+      },
+      {
+        "id": "citations",
+        "title": "Grok Citations",
+        "url": "https://docs.x.ai/developers/tools/citations"
+      },
+      {
+        "id": "reasoning",
+        "title": "Grok Reasoning",
+        "url": "https://docs.x.ai/developers/model-capabilities/text/reasoning"
+      },
+      {
+        "id": "function-calling",
+        "title": "Grok Function Calling",
+        "url": "https://docs.x.ai/developers/tools/function-calling"
+      }
+    ]
+  },
+  "output": {
+    "answer": "Limitations: None of the candidate documents are weather sources; they only document Grok tools and model capabilities. No forecast for New York tomorrow can be verified from the provided evidence.",
+    "claim_evidence": [],
+    "limitations": "None of the candidate documents are weather sources; they only document Grok tools and model capabilities. No forecast for New York tomorrow can be verified from the provided evidence.",
+    "quote_checks_passed": true,
+    "claim_support_evaluated": false,
+    "status": "abstained",
+    "candidate_review": {
+      "decisions": [
+        {
+          "document_id": "web-search",
+          "decision": "exclude",
+          "reason": "This page documents Grok's web search tool, not weather forecasts for New York.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "citations",
+          "decision": "exclude",
+          "reason": "This page documents Grok citations, which does not provide weather data.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "reasoning",
+          "decision": "exclude",
+          "reason": "This page describes Grok reasoning capabilities, not tomorrow's weather in New York.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "function-calling",
+          "decision": "exclude",
+          "reason": "This page documents function calling, which is unrelated to a weather forecast.",
+          "information_needed": ""
+        }
+      ],
+      "basis": "question_and_candidate_titles_urls",
+      "reason_kind": "model_declared_before_fetch"
+    },
+    "read_documents": [],
+    "reason_kind": "model_declared_before_fetch"
+  }
+}

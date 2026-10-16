@@ -1,0 +1,6 @@
+[
+  {"id": "web-search", "title": "Grok Web Search", "url": "https://docs.x.ai/developers/tools/web-search"},
+  {"id": "citations", "title": "Grok Citations", "url": "https://docs.x.ai/developers/tools/citations"},
+  {"id": "reasoning", "title": "Grok Reasoning", "url": "https://docs.x.ai/developers/model-capabilities/text/reasoning"},
+  {"id": "function-calling", "title": "Grok Function Calling", "url": "https://docs.x.ai/developers/tools/function-calling"}
+]

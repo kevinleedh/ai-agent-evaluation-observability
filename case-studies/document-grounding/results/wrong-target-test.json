@@ -1,0 +1,18 @@
+{
+  "source": "user-supplied initial LLM evaluator execution export",
+  "selected_target": "code evaluator execution, not original document-review root",
+  "input_shape": {
+    "observation": {
+      "input": "original question and candidates",
+      "output": "original document-review output"
+    }
+  },
+  "output_shape": {
+    "scores": "code_trace_integrity result"
+  },
+  "judge_output": {
+    "scoreExplanation": "All material claims are supported by the retrieved function-calling document. c1 matches the statement that the model requests a call and the caller executes it locally and returns the result. c2 restates the documented five-step flow. c3 is supported by the contrast that custom tools pause and return to the caller / run on the caller's side, while built-in tools run on SpaceXSI servers; the Python examples also show local execution. No claim invents document content or misstates execution roles.",
+    "score": 1
+  },
+  "interpretation": "A plausible score of 1 did not establish correct target mapping; the original answer was nested inside the input. This is not accepted as the correctly targeted validation."
+}

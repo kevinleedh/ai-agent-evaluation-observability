@@ -1,0 +1,62 @@
+{
+  "case": "function-calling",
+  "source": "user-supplied trace export",
+  "observations": [
+    {
+      "name": "terminal-python-document-review",
+      "type": "SPAN"
+    },
+    {
+      "name": "grok-document-selection / 1",
+      "type": "GENERATION"
+    },
+    {
+      "name": "candidate-review",
+      "type": "TOOL"
+    },
+    {
+      "name": "grok-document-selection / 2",
+      "type": "GENERATION"
+    },
+    {
+      "name": "read-document",
+      "type": "TOOL"
+    },
+    {
+      "name": "grok-document-selection / 3",
+      "type": "GENERATION"
+    },
+    {
+      "name": "claim-evidence",
+      "type": "TOOL"
+    }
+  ],
+  "continuation": [
+    {
+      "generation": 1,
+      "name": "grok-document-selection / 1",
+      "model": "grok-4.7",
+      "version": "2",
+      "previous_response_present": false,
+      "previous_response_matches_prior_response": null
+    },
+    {
+      "generation": 2,
+      "name": "grok-document-selection / 2",
+      "model": "grok-4.7",
+      "version": "2",
+      "previous_response_present": true,
+      "previous_response_matches_prior_response": true
+    },
+    {
+      "generation": 3,
+      "name": "grok-document-selection / 3",
+      "model": "grok-4.7",
+      "version": "2",
+      "previous_response_present": true,
+      "previous_response_matches_prior_response": true
+    }
+  ],
+  "root_prompt_version": "2",
+  "note": "Observation and provider response IDs are omitted; continuation matches were checked before omission."
+}

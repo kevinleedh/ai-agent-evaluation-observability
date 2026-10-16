@@ -1,0 +1,21 @@
+{
+  "case": "function-calling",
+  "source": "Langfuse Observations API; matches user supplied completed-test screenshot",
+  "model": "grok-4.7",
+  "model_parameters": {},
+  "output": {
+    "scoreExplanation": "TRUE. Claims c1–c3 are materially supported by the function-calling document. c1 matches the opening statement that the model requests the call and the caller executes it locally and returns the result. c2 tracks the documented five-step flow, including a tool_call and local execution. c3 is supported by the contrast that built-in tools run on SpaceXSI servers while custom tools pause and return to the caller and “run on your side”; Python examples show that execution in the caller’s application. No material contradiction or invented source content. The answer body cites the page rather than embedding the exact quotes, but the linked evidence quotes are present and the full text supports the claims.",
+    "score": 1
+  },
+  "target": "original document-review root",
+  "target_trace_and_observation_ids_checked": true,
+  "data_type": "NUMERIC",
+  "range": [
+    0,
+    1
+  ],
+  "test_only": true,
+  "automatic_rule_count_at_inspection": 0,
+  "full_retrieved_text_supplied": true,
+  "note": "The full text was sent to the judge; public fixtures retain only quoted excerpts. No original-target LLM score was present in the inspected Scores response."
+}

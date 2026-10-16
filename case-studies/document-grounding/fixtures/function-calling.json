@@ -1,0 +1,142 @@
+{
+  "_publication": {
+    "alias": "function-calling",
+    "source": "user-supplied Langfuse JSON export",
+    "is_exact_trace_export": false,
+    "retrieved_text": "linked quote excerpts only",
+    "original_documents": [
+      {
+        "document_id": "function-calling",
+        "text_characters": 14176,
+        "original_truncated": false
+      }
+    ]
+  },
+  "input": {
+    "question": "How does Grok function calling work, and who executes a custom function—the model provider or our Python application? Support each claim with an exact quote.",
+    "candidates": [
+      {
+        "id": "web-search",
+        "title": "Grok Web Search",
+        "url": "https://docs.x.ai/developers/tools/web-search"
+      },
+      {
+        "id": "citations",
+        "title": "Grok Citations",
+        "url": "https://docs.x.ai/developers/tools/citations"
+      },
+      {
+        "id": "reasoning",
+        "title": "Grok Reasoning",
+        "url": "https://docs.x.ai/developers/model-capabilities/text/reasoning"
+      },
+      {
+        "id": "function-calling",
+        "title": "Grok Function Calling",
+        "url": "https://docs.x.ai/developers/tools/function-calling"
+      }
+    ]
+  },
+  "output": {
+    "answer": "- Grok function calling lets you define custom tools that the model can request during a conversation; the application executes the call locally and returns the result so the model can continue. [function-calling](https://docs.x.ai/developers/tools/function-calling)\n\n- The documented flow is: define tools with a name, description, and JSON schema; include them in the request; the model returns a tool_call when it needs external data; you execute the function locally and return the result; then the model continues. [function-calling](https://docs.x.ai/developers/tools/function-calling)\n\n- A custom function is executed by the user's application, not by the model provider. Custom tools pause and are returned to the caller for handling, whereas built-in tools run automatically on SpaceXSI servers. [function-calling](https://docs.x.ai/developers/tools/function-calling)",
+    "claim_evidence": [
+      {
+        "claim_id": "c1",
+        "claim": "Grok function calling lets you define custom tools that the model can request during a conversation; the application executes the call locally and returns the result so the model can continue.",
+        "evidence": [
+          {
+            "document_id": "function-calling",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "Define custom tools that the model can invoke during a conversation. The model requests the call, you execute it locally, and return the result. This enables integration with databases, APIs, and any external system.",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          }
+        ]
+      },
+      {
+        "claim_id": "c2",
+        "claim": "The documented flow is: define tools with a name, description, and JSON schema; include them in the request; the model returns a tool_call when it needs external data; you execute the function locally and return the result; then the model continues.",
+        "evidence": [
+          {
+            "document_id": "function-calling",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "1. Define tools with a name, description, and JSON schema for parameters\n2. Include tools in your request\n3. Model returns a `tool_call` when it needs external data\n4. Execute the function locally and return the result\n5. Model continues with your result",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          }
+        ]
+      },
+      {
+        "claim_id": "c3",
+        "claim": "A custom function is executed by the user's application, not by the model provider. Custom tools pause and are returned to the caller for handling, whereas built-in tools run automatically on SpaceXSI servers.",
+        "evidence": [
+          {
+            "document_id": "function-calling",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "* **Built-in tools** execute automatically on SpaceXSI servers\n* **Custom tools** pause execution and return to you for handling",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          },
+          {
+            "document_id": "function-calling",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "tool(                            # Custom: runs on your side",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          }
+        ]
+      }
+    ],
+    "limitations": "The documentation describes client-side execution in general ('you' / 'your side'), including Python SDK examples, but does not name a specific Python framework as required. It does not detail internal provider infrastructure beyond stating that built-in tools run on SpaceXSI servers and custom tools are returned to the caller.",
+    "quote_checks_passed": true,
+    "claim_support_evaluated": false,
+    "status": "answered",
+    "candidate_review": {
+      "decisions": [
+        {
+          "document_id": "web-search",
+          "decision": "exclude",
+          "reason": "Web search tool docs are not about custom function execution or who runs functions.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "citations",
+          "decision": "exclude",
+          "reason": "Citations docs do not address function calling execution responsibility.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "reasoning",
+          "decision": "exclude",
+          "reason": "Reasoning capability docs are adjacent but not the function-calling specification.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "function-calling",
+          "decision": "select",
+          "reason": "This is the official Grok function calling documentation and should explain the call flow and who executes custom functions.",
+          "information_needed": "How function calling works and whether the model provider or the user's Python application executes custom functions."
+        }
+      ],
+      "basis": "question_and_candidate_titles_urls",
+      "reason_kind": "model_declared_before_fetch"
+    },
+    "read_documents": [
+      {
+        "document_id": "function-calling",
+        "selection_reason": "Official docs should describe the function-calling flow and execution ownership.",
+        "information_needed": "How Grok function calling works and who executes a custom function.",
+        "source_url": "https://docs.x.ai/developers/tools/function-calling",
+        "content_url": "https://docs.x.ai/developers/tools/function-calling.md",
+        "text": "Define custom tools that the model can invoke during a conversation. The model requests the call, you execute it locally, and return the result. This enables integration with databases, APIs, and any external system.\n\n1. Define tools with a name, description, and JSON schema for parameters\n2. Include tools in your request\n3. Model returns a `tool_call` when it needs external data\n4. Execute the function locally and return the result\n5. Model continues with your result\n\n* **Built-in tools** execute automatically on SpaceXSI servers\n* **Custom tools** pause execution and return to you for handling\n\ntool(                            # Custom: runs on your side",
+        "truncated": true,
+        "status": "read"
+      }
+    ],
+    "reason_kind": "model_declared_before_fetch"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-16",
+  "python": "3.12.12",
+  "command": "python -m unittest -v test_documents.py test_evidence.py test_terminal.py test_hosted_evaluator.py",
+  "working_directory": "case-studies/document-grounding/lab",
+  "tests_run": 30,
+  "failures": 0,
+  "errors": 0,
+  "network_used_by_tests": false,
+  "scope": "18 runner/recorder checks and 12 hosted root-snapshot checks; not an LLM calibration run",
+  "additional_checks": [
+    "Python AST and JSON parsing",
+    "relative Markdown link targets",
+    "secret-value scan against local credentials",
+    "macOS launcher shell syntax"
+  ]
+}
