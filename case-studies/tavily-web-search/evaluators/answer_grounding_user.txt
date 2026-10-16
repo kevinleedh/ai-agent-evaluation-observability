@@ -1,0 +1,4 @@
+Evaluate the quality of the response.
+
+Input: {{input}}
+Response: {{output}}

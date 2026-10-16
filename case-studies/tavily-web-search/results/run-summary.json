@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-16",
+  "runs": [
+    {
+      "case": "connection-check",
+      "root": "terminal-tavily-web-search",
+      "model": "grok-4.7",
+      "observation_count": 10,
+      "model_calls": 4,
+      "search_attempts": 1,
+      "candidate_count": 5,
+      "read_attempts": 2,
+      "claims": 3,
+      "quotes": 3,
+      "original_read_lengths": [
+        {
+          "document_id": "search-1-doc-2",
+          "returned_text_characters": 22753,
+          "original_truncated": false,
+          "public_text": "linked quote excerpts"
+        },
+        {
+          "document_id": "search-1-doc-1",
+          "returned_text_characters": 7856,
+          "original_truncated": false,
+          "public_text": "opening 300 characters; unused as final evidence"
+        }
+      ],
+      "continuation_links_match": true,
+      "observations": [
+        {
+          "name": "terminal-tavily-web-search",
+          "type": "SPAN"
+        },
+        {
+          "name": "grok-tavily-agent / 1",
+          "type": "GENERATION"
+        },
+        {
+          "name": "tavily-search",
+          "type": "TOOL"
+        },
+        {
+          "name": "grok-tavily-agent / 2",
+          "type": "GENERATION"
+        },
+        {
+          "name": "candidate-review",
+          "type": "TOOL"
+        },
+        {
+          "name": "grok-tavily-agent / 3",
+          "type": "GENERATION"
+        },
+        {
+          "name": "tavily-extract",
+          "type": "TOOL"
+        },
+        {
+          "name": "tavily-extract",
+          "type": "TOOL"
+        },
+        {
+          "name": "grok-tavily-agent / 4",
+          "type": "GENERATION"
+        },
+        {
+          "name": "claim-evidence",
+          "type": "TOOL"
+        }
+      ]
+    },
+    {
+      "case": "user-replay",
+      "root": "terminal-tavily-web-search",
+      "model": "grok-4.7",
+      "observation_count": 10,
+      "model_calls": 4,
+      "search_attempts": 1,
+      "candidate_count": 5,
+      "read_attempts": 2,
+      "claims": 3,
+      "quotes": 3,
+      "original_read_lengths": [
+        {
+          "document_id": "search-1-doc-2",
+          "returned_text_characters": 22753,
+          "original_truncated": false,
+          "public_text": "linked quote excerpts"
+        },
+        {
+          "document_id": "search-1-doc-1",
+          "returned_text_characters": 7856,
+          "original_truncated": false,
+          "public_text": "opening 300 characters; unused as final evidence"
+        }
+      ],
+      "continuation_links_match": true,
+      "observations": [
+        {
+          "name": "terminal-tavily-web-search",
+          "type": "SPAN"
+        },
+        {
+          "name": "grok-tavily-agent / 1",
+          "type": "GENERATION"
+        },
+        {
+          "name": "tavily-search",
+          "type": "TOOL"
+        },
+        {
+          "name": "grok-tavily-agent / 2",
+          "type": "GENERATION"
+        },
+        {
+          "name": "candidate-review",
+          "type": "TOOL"
+        },
+        {
+          "name": "grok-tavily-agent / 3",
+          "type": "GENERATION"
+        },
+        {
+          "name": "tavily-extract",
+          "type": "TOOL"
+        },
+        {
+          "name": "tavily-extract",
+          "type": "TOOL"
+        },
+        {
+          "name": "grok-tavily-agent / 4",
+          "type": "GENERATION"
+        },
+        {
+          "name": "claim-evidence",
+          "type": "TOOL"
+        }
+      ]
+    }
+  ],
+  "note": "Same question and search query in two executions; not an independent benchmark."
+}

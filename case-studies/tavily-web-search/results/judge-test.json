@@ -1,0 +1,17 @@
+{
+  "case": "user-replay",
+  "source": "Completed-test screenshot and Langfuse Observations API",
+  "target": "original Tavily root; matched to the local user-replay file before ID redaction",
+  "full_input_output_match_verified": true,
+  "full_extracted_text_supplied": true,
+  "model": "grok-4.7",
+  "model_parameters": {},
+  "data_type": "BOOLEAN",
+  "output": {
+    "scoreExplanation": "All three claims are supported by the successfully read official function-calling page. It states that the model requests a call while the caller executes it locally, lists the five-step tool_call flow, and contrasts built-in tools that run on xAI servers with custom tools that pause and return to the caller. The Python SDK examples and limitation correctly place execution in the caller's code without overstating a named Python process.",
+    "score": true
+  },
+  "test_only": true,
+  "automatic_rule_count_at_inspection": 0,
+  "note": "No saved score on the original target was present at inspection. Public fixtures contain excerpts instead of the full judge context."
+}

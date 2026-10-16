@@ -1,0 +1,7 @@
+{
+  "langfuse_base_url": "https://us.cloud.langfuse.com",
+  "model": "grok-4.7",
+  "reasoning_effort": "low",
+  "max_output_tokens": 6000,
+  "timeout_seconds": 180
+}

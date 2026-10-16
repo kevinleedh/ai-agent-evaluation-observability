@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-16",
+  "python": "3.12.12",
+  "command": "python -m unittest -v test_tavily.py test_langfuse_tavily_evaluator.py",
+  "working_directory": "case-studies/tavily-web-search/lab",
+  "tests_run": 23,
+  "failures": 0,
+  "errors": 0,
+  "negative_mutations_within_one_test": 25,
+  "network_used_by_tests": false,
+  "elapsed_seconds": 0.56,
+  "source": "Published runner and exact saved hosted evaluator source",
+  "note": "No new paid model, search or judge calls. This is deterministic validation, not semantic judge calibration."
+}

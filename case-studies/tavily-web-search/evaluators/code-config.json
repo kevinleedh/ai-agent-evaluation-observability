@@ -1,0 +1,9 @@
+{
+  "name": "code_tavily_trace_integrity",
+  "type": "code",
+  "language": "PYTHON",
+  "source": "../lab/langfuse_tavily_code_evaluator.py",
+  "saved_version": 1,
+  "status": "active",
+  "automatic_rule_count": 0
+}

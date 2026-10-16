@@ -1,0 +1,45 @@
+{
+  "hosted_sample_test": {
+    "source": "User-supplied completed Code Output screenshot, October 16, 2026",
+    "name": "code_tavily_trace_integrity",
+    "value": true,
+    "data_type": "BOOLEAN",
+    "comment": "Root snapshot checks passed: 5 candidates, 5 decisions, 2 read attempts, 3 claims, 3 quotes. Status: answered. Semantic support, model-call count, action order and sibling execution records were not evaluated.",
+    "target_note": "Screenshot reports 5 candidates, 5 decisions, 2 reads, 3 claims and 3 quotes; sample target IDs were not exported."
+  },
+  "local_replays": [
+    {
+      "case": "connection-check",
+      "name": "code_tavily_trace_integrity",
+      "value": true,
+      "data_type": "BOOLEAN",
+      "comment": "Root snapshot checks passed: 5 candidates, 5 decisions, 2 read attempts, 3 claims, 3 quotes. Status: answered. Semantic support, model-call count, action order and sibling execution records were not evaluated.",
+      "source": "Local replay of saved evaluator source; not a new hosted score"
+    },
+    {
+      "case": "user-replay",
+      "name": "code_tavily_trace_integrity",
+      "value": true,
+      "data_type": "BOOLEAN",
+      "comment": "Root snapshot checks passed: 5 candidates, 5 decisions, 2 read attempts, 3 claims, 3 quotes. Status: answered. Semantic support, model-call count, action order and sibling execution records were not evaluated.",
+      "source": "Local replay of saved evaluator source; not a new hosted score"
+    },
+    {
+      "case": "public-connection-fixture",
+      "name": "code_tavily_trace_integrity",
+      "value": true,
+      "data_type": "BOOLEAN",
+      "comment": "Root snapshot checks passed: 5 candidates, 5 decisions, 2 read attempts, 3 claims, 3 quotes. Status: answered. Semantic support, model-call count, action order and sibling execution records were not evaluated.",
+      "source": "Local replay of saved evaluator source; not a new hosted score"
+    },
+    {
+      "case": "public-replay-fixture",
+      "name": "code_tavily_trace_integrity",
+      "value": true,
+      "data_type": "BOOLEAN",
+      "comment": "Root snapshot checks passed: 5 candidates, 5 decisions, 2 read attempts, 3 claims, 3 quotes. Status: answered. Semantic support, model-call count, action order and sibling execution records were not evaluated.",
+      "source": "Local replay of saved evaluator source; not a new hosted score"
+    }
+  ],
+  "note": "The hosted result is screenshot evidence. The current saved source was independently exported and tested locally."
+}

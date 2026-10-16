@@ -1,0 +1,6 @@
+{
+  "source": "Langfuse Scores API, checked October 16, 2026",
+  "connection_check_saved_scores": [],
+  "user_replay_saved_scores": [],
+  "note": "Both arrays were empty. Evaluator definitions were saved; completed sample tests are distinct from scores persisted on original targets."
+}

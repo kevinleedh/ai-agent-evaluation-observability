@@ -1,0 +1,303 @@
+{
+  "input": {
+    "question": "Using official xAI documentation, explain how Grok function calling works and who executes custom functions: the model provider or our Python application. Use at most three claims, each with an exact supporting quote.",
+    "budgets": {
+      "max_search_attempts": 1,
+      "max_results": 5,
+      "max_read_attempts": 2,
+      "max_model_calls": 10
+    }
+  },
+  "output": {
+    "answer": "- For Grok custom function calling, the model only requests the call; the developer executes the function locally and returns the result. [search-1-doc-2](https://docs.x.ai/developers/tools/function-calling)\n\n- The documented loop is: define tools and include them in the request, receive a tool_call, execute the function locally, then let the model continue with that result. [search-1-doc-2](https://docs.x.ai/developers/tools/function-calling)\n\n- Unlike built-in tools that xAI executes automatically on its servers, custom tools pause and return to the calling application for handling, so a Python application executes custom functions rather than the model provider. [search-1-doc-2](https://docs.x.ai/developers/tools/function-calling)",
+    "claim_evidence": [
+      {
+        "claim_id": "c1",
+        "claim": "For Grok custom function calling, the model only requests the call; the developer executes the function locally and returns the result.",
+        "evidence": [
+          {
+            "document_id": "search-1-doc-2",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "Define custom tools that the model can invoke during a conversation. The model requests the call, you execute it locally, and return the result. This enables integration with databases, APIs, and any external system.",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          }
+        ]
+      },
+      {
+        "claim_id": "c2",
+        "claim": "The documented loop is: define tools and include them in the request, receive a tool_call, execute the function locally, then let the model continue with that result.",
+        "evidence": [
+          {
+            "document_id": "search-1-doc-2",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "1. Define tools with a name, description, and JSON schema for parameters\n2. Include tools in your request\n3. Model returns a `tool_call` when it needs external data\n4. Execute the function locally and return the result\n5. Model continues with your result",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          }
+        ]
+      },
+      {
+        "claim_id": "c3",
+        "claim": "Unlike built-in tools that xAI executes automatically on its servers, custom tools pause and return to the calling application for handling, so a Python application executes custom functions rather than the model provider.",
+        "evidence": [
+          {
+            "document_id": "search-1-doc-2",
+            "source_url": "https://docs.x.ai/developers/tools/function-calling",
+            "quote": "* **Built-in tools** execute automatically on xAI servers\n* **Custom tools** pause execution and return to you for handling",
+            "quote_verified": true,
+            "match_method": "whitespace_normalized_substring",
+            "claim_support_evaluated": false
+          }
+        ]
+      }
+    ],
+    "limitations": "Official docs describe client-side execution as “you” / the developer, illustrated with Python SDK snippets, but they do not use the phrase “Python application” as a required runtime. Built-in tools are a separate server-side path and are not executed by the application.",
+    "quote_checks_passed": true,
+    "claim_support_evaluated": false,
+    "status": "answered",
+    "search_result": {
+      "query": "Grok function calling official xAI documentation who executes custom functions",
+      "search_reason": "Find official xAI docs explaining Grok function calling and who executes custom functions.",
+      "information_needed": "Official explanation of Grok function calling flow and whether the model provider or the client/Python application executes custom functions.",
+      "status": "searched",
+      "request": {
+        "query": "Grok function calling official xAI documentation who executes custom functions",
+        "search_depth": "basic",
+        "max_results": 5,
+        "topic": "general",
+        "include_answer": false,
+        "include_raw_content": false,
+        "include_images": false,
+        "auto_parameters": false,
+        "include_usage": true
+      },
+      "candidates": [
+        {
+          "id": "search-1-doc-1",
+          "title": "Tools Overview | SpaceXAI Docs",
+          "url": "https://docs.x.ai/developers/tools/overview",
+          "snippet": "#### Tools\n\n# Overview\n\nView as Markdown\n\nCreate API keyMeet grok-4.7\n\nThe xAI API supports tool calling, enabling Grok to perform actions beyond generating text—like searching the web, executing code, querying your data, or calling your own custom functions. Tools extend what's possible with the AP",
+          "snippet_truncated": true,
+          "retrieval_score": 0.7159213,
+          "search_result_rank": 1
+        },
+        {
+          "id": "search-1-doc-2",
+          "title": "Function Calling | SpaceXAI Docs",
+          "url": "https://docs.x.ai/developers/tools/function-calling",
+          "snippet": "#### Tools\n\n# Function Calling\n\nView as Markdown\n\nCreate API keyTry PlaygroundMeet grok-4.6\n\nDefine custom tools that the model can invoke during a conversation. The model requests the call, you execute it locally, and return the result. This enables integration with databases, APIs, and any externa",
+          "snippet_truncated": true,
+          "retrieval_score": 0.69049704,
+          "search_result_rank": 2
+        },
+        {
+          "id": "search-1-doc-3",
+          "title": "Grok 4.20 Agent Mode Explained: xAI’s 4-Agent AI Architecture (Full Breakdown + API Guide)",
+          "url": "https://www.youtube.com/watch?v=uorRJ9bwQjU",
+          "snippet": "[7:22] you use function calling. You define a function with a name, a description, and a JSON schema for its parameters.\n[7:30] Include it in the tools array. When the model decides it needs that function, it returns a tool call response instead of\n[7:38] a final answer. Your code then executes the ",
+          "snippet_truncated": true,
+          "retrieval_score": 0.65252984,
+          "search_result_rank": 3
+        },
+        {
+          "id": "search-1-doc-4",
+          "title": "Function calling for Grok models  |  Gemini Enterprise Agent Platform  |  Google Cloud Documentation",
+          "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/grok/capabilities/function-calling",
+          "snippet": "\\  \"Authorization: Bearer $(  ) \"  \\  \"Content-Type: application/json\"  \\   \\'{ \"model\": \"xai/grok-4.1-fast-reasoning\", \"messages\": [ { \"role\": \"user\", \"content\": \"Which city has a higher temperature, Boston or New Delhi and by how much in F?\" }, { \"role\": \"assistant\", \"content\": \"I'      for      i",
+          "snippet_truncated": true,
+          "retrieval_score": 0.58123237,
+          "search_result_rank": 4
+        },
+        {
+          "id": "search-1-doc-5",
+          "title": "Introducing Grok Build | SpaceXSI",
+          "url": "https://x.ai/news/grok-build-cli",
+          "snippet": "Upgrade\n\n~/Documents/GitHub/xai\n\n|4.2%|\n\n◆Thought for 3.8s\n\nEnter:run│Esc:reset│Tab:next example│Type:custom command\n\n## Plan, review, approve\n\nFor complex tasks, start Grok Build in plan mode. You can approve the plan, comment on individual steps, or rewrite it entirely before execution begins. Onc",
+          "snippet_truncated": true,
+          "retrieval_score": 0.40373197,
+          "search_result_rank": 5
+        }
+      ],
+      "skipped_results": [],
+      "returned_result_count": 5,
+      "response_time": 1.36,
+      "usage": {
+        "credits": 1
+      },
+      "evidence_scope": "Search snippets are selection context, not verified page reads."
+    },
+    "candidates": [
+      {
+        "id": "search-1-doc-1",
+        "title": "Tools Overview | SpaceXAI Docs",
+        "url": "https://docs.x.ai/developers/tools/overview",
+        "snippet": "#### Tools\n\n# Overview\n\nView as Markdown\n\nCreate API keyMeet grok-4.7\n\nThe xAI API supports tool calling, enabling Grok to perform actions beyond generating text—like searching the web, executing code, querying your data, or calling your own custom functions. Tools extend what's possible with the AP",
+        "snippet_truncated": true,
+        "retrieval_score": 0.7159213,
+        "search_result_rank": 1
+      },
+      {
+        "id": "search-1-doc-2",
+        "title": "Function Calling | SpaceXAI Docs",
+        "url": "https://docs.x.ai/developers/tools/function-calling",
+        "snippet": "#### Tools\n\n# Function Calling\n\nView as Markdown\n\nCreate API keyTry PlaygroundMeet grok-4.6\n\nDefine custom tools that the model can invoke during a conversation. The model requests the call, you execute it locally, and return the result. This enables integration with databases, APIs, and any externa",
+        "snippet_truncated": true,
+        "retrieval_score": 0.69049704,
+        "search_result_rank": 2
+      },
+      {
+        "id": "search-1-doc-3",
+        "title": "Grok 4.20 Agent Mode Explained: xAI’s 4-Agent AI Architecture (Full Breakdown + API Guide)",
+        "url": "https://www.youtube.com/watch?v=uorRJ9bwQjU",
+        "snippet": "[7:22] you use function calling. You define a function with a name, a description, and a JSON schema for its parameters.\n[7:30] Include it in the tools array. When the model decides it needs that function, it returns a tool call response instead of\n[7:38] a final answer. Your code then executes the ",
+        "snippet_truncated": true,
+        "retrieval_score": 0.65252984,
+        "search_result_rank": 3
+      },
+      {
+        "id": "search-1-doc-4",
+        "title": "Function calling for Grok models  |  Gemini Enterprise Agent Platform  |  Google Cloud Documentation",
+        "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/grok/capabilities/function-calling",
+        "snippet": "\\  \"Authorization: Bearer $(  ) \"  \\  \"Content-Type: application/json\"  \\   \\'{ \"model\": \"xai/grok-4.1-fast-reasoning\", \"messages\": [ { \"role\": \"user\", \"content\": \"Which city has a higher temperature, Boston or New Delhi and by how much in F?\" }, { \"role\": \"assistant\", \"content\": \"I'      for      i",
+        "snippet_truncated": true,
+        "retrieval_score": 0.58123237,
+        "search_result_rank": 4
+      },
+      {
+        "id": "search-1-doc-5",
+        "title": "Introducing Grok Build | SpaceXSI",
+        "url": "https://x.ai/news/grok-build-cli",
+        "snippet": "Upgrade\n\n~/Documents/GitHub/xai\n\n|4.2%|\n\n◆Thought for 3.8s\n\nEnter:run│Esc:reset│Tab:next example│Type:custom command\n\n## Plan, review, approve\n\nFor complex tasks, start Grok Build in plan mode. You can approve the plan, comment on individual steps, or rewrite it entirely before execution begins. Onc",
+        "snippet_truncated": true,
+        "retrieval_score": 0.40373197,
+        "search_result_rank": 5
+      }
+    ],
+    "candidate_review": {
+      "decisions": [
+        {
+          "document_id": "search-1-doc-1",
+          "decision": "select",
+          "reason": "Official xAI tools overview distinguishing built-in server-side tools from custom function calling.",
+          "information_needed": "Who executes built-in vs custom functions."
+        },
+        {
+          "document_id": "search-1-doc-2",
+          "decision": "select",
+          "reason": "Official xAI function calling page stating the model requests the call and the developer executes it locally.",
+          "information_needed": "Exact flow of custom function execution and who runs the function."
+        },
+        {
+          "document_id": "search-1-doc-3",
+          "decision": "exclude",
+          "reason": "YouTube transcript is not official xAI documentation.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "search-1-doc-4",
+          "decision": "exclude",
+          "reason": "Google Cloud partner docs, not official xAI documentation.",
+          "information_needed": ""
+        },
+        {
+          "document_id": "search-1-doc-5",
+          "decision": "exclude",
+          "reason": "Grok Build CLI announcement, not function-calling execution model.",
+          "information_needed": ""
+        }
+      ],
+      "basis": "question_and_search_titles_urls_snippets",
+      "reason_kind": "model_declared_before_extract"
+    },
+    "read_documents": [
+      {
+        "document_id": "search-1-doc-2",
+        "selection_reason": "Primary official page for Grok function calling execution model.",
+        "information_needed": "Verbatim statements that the developer/application executes custom functions locally after the model requests the call.",
+        "source_url": "https://docs.x.ai/developers/tools/function-calling",
+        "content_url": "https://docs.x.ai/developers/tools/function-calling",
+        "backend": "tavily-extract",
+        "request": {
+          "urls": [
+            "https://docs.x.ai/developers/tools/function-calling"
+          ],
+          "extract_depth": "basic",
+          "format": "markdown",
+          "include_images": false,
+          "include_usage": true,
+          "timeout": 20
+        },
+        "failed_results": [],
+        "response_time": 0.01,
+        "usage": {
+          "credits": 0
+        },
+        "status": "read",
+        "text": "Define custom tools that the model can invoke during a conversation. The model requests the call, you execute it locally, and return the result. This enables integration with databases, APIs, and any external system.\n\n1. Define tools with a name, description, and JSON schema for parameters\n2. Include tools in your request\n3. Model returns a `tool_call` when it needs external data\n4. Execute the function locally and return the result\n5. Model continues with your result\n\n* **Built-in tools** execute automatically on xAI servers\n* **Custom tools** pause execution and return to you for handling",
+        "returned_text_characters": 597,
+        "truncated": true,
+        "evidence_scope": "Only the extracted text returned to the model is available as evidence."
+      },
+      {
+        "document_id": "search-1-doc-1",
+        "selection_reason": "Official overview contrasting server-side tools with custom function calling.",
+        "information_needed": "Verbatim distinction between built-in tools managed by xAI and custom functions the developer defines.",
+        "source_url": "https://docs.x.ai/developers/tools/overview",
+        "content_url": "https://docs.x.ai/developers/tools/overview",
+        "backend": "tavily-extract",
+        "request": {
+          "urls": [
+            "https://docs.x.ai/developers/tools/overview"
+          ],
+          "extract_depth": "basic",
+          "format": "markdown",
+          "include_images": false,
+          "include_usage": true,
+          "timeout": 20
+        },
+        "failed_results": [],
+        "response_time": 0.02,
+        "usage": {
+          "credits": 0
+        },
+        "status": "read",
+        "text": "#### [Tools](#tools)\n\n# [Overview](#overview)\n\n[View as Markdown](/developers/tools/overview.md)\n\n[Create API key](https://console.x.ai/team/default/api-keys?utm_source=docs&utm_medium=referral&utm_campaign=developers-tools-overview&utm_content=article-api-key)[Meet grok-4.7](https://x.ai/news/grok-",
+        "returned_text_characters": 300,
+        "truncated": true,
+        "evidence_scope": "Only the extracted text returned to the model is available as evidence."
+      }
+    ],
+    "search_attempts": 1,
+    "read_attempts": 2,
+    "backend": "tavily-search-extract",
+    "web_wide_search": true,
+    "reason_kind": "model_declared_action_justification"
+  },
+  "_publication": {
+    "alias": "connection-check",
+    "is_exact_trace_export": false,
+    "original_documents": [
+      {
+        "document_id": "search-1-doc-2",
+        "returned_text_characters": 22753,
+        "original_truncated": false,
+        "public_text": "linked quote excerpts"
+      },
+      {
+        "document_id": "search-1-doc-1",
+        "returned_text_characters": 7856,
+        "original_truncated": false,
+        "public_text": "opening 300 characters; unused as final evidence"
+      }
+    ],
+    "changes": [
+      "Private trace/request IDs omitted",
+      "Search snippets shortened to at most 300 characters",
+      "Extracted bodies replaced with quote excerpts or an unused opening excerpt; public truncation flags updated"
+    ],
+    "note": "Live model and judge received full returned text. This public fixture is for inspection and code replay."
+  }
+}
