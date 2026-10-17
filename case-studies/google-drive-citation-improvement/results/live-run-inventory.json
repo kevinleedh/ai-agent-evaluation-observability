@@ -1,0 +1,202 @@
+[
+  {
+    "source_file": "drive-20261017T020908902755Z.json",
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 4,
+    "reads": [
+      {
+        "document_id": "aurora-final-approval",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "failed",
+        "error_type": "ValueError"
+      },
+      {
+        "document_id": "aurora-responsibilities",
+        "status": "failed",
+        "error_type": "ValueError"
+      },
+      {
+        "document_id": "aurora-draft",
+        "status": "failed",
+        "error_type": "ValueError"
+      }
+    ]
+  },
+  {
+    "source_file": "drive-20261017T021311485047Z.json",
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 4,
+    "reads": [
+      {
+        "document_id": "aurora-final-approval",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-responsibilities",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-draft",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "source_file": "drive-20261017T021852567004Z.json",
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "abstained",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 4,
+    "reads": [
+      {
+        "document_id": "aurora-final-approval",
+        "status": "failed",
+        "error_type": "ValueError",
+        "validation_error": "Expected one original-file Pipedream File Stash resource URL"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-responsibilities",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-draft",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "source_file": "drive-20261017T022515156865Z.json",
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "abstained",
+    "listing_status": "failed",
+    "candidate_count": 0,
+    "list_attempts": 1,
+    "read_attempts": 0,
+    "reads": []
+  },
+  {
+    "source_file": "drive-20261017T022704127129Z.json",
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 4,
+    "reads": [
+      {
+        "document_id": "aurora-final-approval",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-responsibilities",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-draft",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "source_file": "drive-20261017T023032125619Z.json",
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 4,
+    "reads": [
+      {
+        "document_id": "aurora-final-approval",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-responsibilities",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-draft",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "source_file": "drive-20261017T023209253943Z.json",
+    "question": "The final approved launch date for Project Aurora is November 15, 2026, right? Verify this using an exact quote from the documents.",
+    "status": "answered",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 4,
+    "reads": [
+      {
+        "document_id": "aurora-final-approval",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-responsibilities",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-draft",
+        "status": "read"
+      }
+    ]
+  },
+  {
+    "source_file": "drive-20261017T023607335083Z.json",
+    "question": "How did the launch date for Project Aurora change between the draft plan and final approval? Provide an exact quote supporting each date.",
+    "status": "answered",
+    "listing_status": "listed",
+    "candidate_count": 5,
+    "list_attempts": 1,
+    "read_attempts": 3,
+    "reads": [
+      {
+        "document_id": "aurora-draft",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-final-approval",
+        "status": "read"
+      },
+      {
+        "document_id": "aurora-meeting",
+        "status": "read"
+      }
+    ]
+  }
+]

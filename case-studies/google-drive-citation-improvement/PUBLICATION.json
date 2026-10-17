@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-17",
+  "language": "English",
+  "source": "Local Grok/Drive/Pipedream MCP learning lab and its recorded experiments.",
+  "source_report_hashes": {
+    "partial-answer-initial-judge.json": {
+      "source_file": "runs/experiments/20261017T031504Z.json",
+      "source_sha256": "9ba53a02c774c86df32c9c368e65ee380ae3c90b70e12eae737ee249b08095b7",
+      "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+    },
+    "partial-answer-corrected-judge.json": {
+      "source_file": "runs/experiments/20261017T032142Z-rescored.json",
+      "source_sha256": "911e1a6335599309bca1ab2e5dd0968618c7ce8f5651e51fa7ce36e6a9b89256",
+      "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+    },
+    "citation-preflight-01.json": {
+      "source_file": "runs/citation-experiments/20261017T034939Z.json",
+      "source_sha256": "3732e2dd882ea975dbb3e89512e328cc3a9d9726829ed12e2c103ad674b4231f",
+      "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+    },
+    "citation-preflight-02.json": {
+      "source_file": "runs/citation-experiments/20261017T035203Z.json",
+      "source_sha256": "8678ac866042173b52b49cea29899774f9a1bcc95adc9be9697d8eda72036fca",
+      "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+    },
+    "citation-coverage-v1.json": {
+      "source_file": "runs/citation-experiments/20261017T035344Z.json",
+      "source_sha256": "c5af69a22b6e719410dbd69a2c6af31a88156f61ed1ca96350df22b6ab38012f",
+      "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+    },
+    "citation-coverage-v2.json": {
+      "source_file": "runs/citation-experiments-v2/20261017T035841Z.json",
+      "source_sha256": "0a0cc163e19c7194dff9914fb04bbc9a3849d4e2197bb8f61564159578f2dd6c",
+      "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+    }
+  },
+  "adapted_code": {
+    "verify_run.py": {
+      "source_sha256": "9e0137bd9e6cb88d3396344f0080fb984eb5fc675b9467b3c556cae8cac10fb5",
+      "published_sha256": "2c541f311159a157bf3caa17c392ee0940b9c8cb7766d7de9d2f6e9ea08548fa"
+    },
+    "drive_experiment.py": {
+      "source_sha256": "1fc676b7cc018d599e7cda652e22209dc594bfa2fba12d9a653cc6871b184a44",
+      "published_sha256": "6d9561e74c2154d645a2288eb7eff27cad5ff96d3454ff8c861dd8d87f9ed4ed"
+    },
+    "test_drive_backend.py": {
+      "source_sha256": "bacdf635b92fd9df57c95565e370a08e8a6c868717e391b5706255fc2bc08452",
+      "published_sha256": "986fa079f0e6914412416df5b1f806fa73cf23815fe5c4479b2c275896ee573c"
+    },
+    "connect_drive.py": {
+      "source_sha256": "f6eaa3a30476cd33e1039fea94a562ffab4476cd6db51c23f04496adc5710628",
+      "published_sha256": "987bf47d01f55a37fcd9ff87a24d4243e8a07b7f841965c69397536ddd0b52c9"
+    },
+    "test_mcp_connection.py": {
+      "source_sha256": "07eded59c7c7b0292adddaf5272401a83a3acbb5d40aa17903831e569b5fd0b1",
+      "published_sha256": "79068769646b94b15d0c3273a6530de6c9a588d7a5635f3b747a45218ec6d17a"
+    },
+    "citation_experiment.py": {
+      "source_sha256": "4dc62cd767223394296d9dfd400558e6b1869abfe753e3255db2102be1f451af",
+      "published_sha256": "b80ac2e020c4bb6416429f44c1bf458bffb57d54e8784aa1b527b5273a7d3972"
+    },
+    "report_drive_experiment.py": {
+      "source_sha256": "281f0fd6dcf632bd54ae7d527e878557201435c855a470b43daee8547e5f6462",
+      "published_sha256": "9321ea7aa1bc59983f4fb4ed080357e675042a745880de81faf200a26712a7da"
+    }
+  },
+  "code_adaptations": [
+    "Load credentials from this public lab .env/environment without the adjacent private lab dependency.",
+    "Use portfolio-prefixed hosted dataset names so pseudonymized data does not overwrite private originals.",
+    "Point original-fixture verification at the bundled fixtures directory.",
+    "Represent Unicode test data with escape sequences; no non-English instructional text.",
+    "Generate reproduction commands using the current lab directory instead of a private absolute path."
+  ],
+  "data_adaptations": [
+    "Stable public aliases replace real Drive file IDs and source URLs; private folder IDs and local paths replaced.",
+    "Private Langfuse trace/account links removed; raw MCP payloads and signed download URLs excluded.",
+    "Frozen evidence bodies, claims, quotes, judge decisions and reasoning are retained verbatim.",
+    "Public dataset hashes and per-input hashes recomputed; original private source-report hashes retained for provenance.",
+    "Public replay is equivalent input structure with aliased IDs, not a byte-identical replay of private requests."
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "case_id": "venue_not_in_documents",
+    "variant": "baseline",
+    "trial": 2,
+    "assessment": "The venue-absence claim used a date/precedence quote that cannot establish absence of a venue across all read documents. The final candidate correctly used empty claims and stated the evidence gap in limitations.",
+    "reviewer": "Codex assistant; not independent human review",
+    "raw_llm_score_changed": false
+  },
+  {
+    "case_id": "owner_read_failed",
+    "variant": "baseline",
+    "trial": 3,
+    "assessment": "The extra supersession claim refers to a November 20 approval while its own quote does not contain that date. November 20 is the launch date; the phrase also risks confusing launch date with approval date. The final candidate can answer the requested launch date directly and leave the failed owner read unresolved.",
+    "reviewer": "Codex assistant; not independent human review",
+    "raw_llm_score_changed": false
+  }
+]

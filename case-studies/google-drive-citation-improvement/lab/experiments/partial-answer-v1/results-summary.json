@@ -1,0 +1,280 @@
+{
+  "model": "grok-4.7",
+  "answer_trials": 30,
+  "dataset_sha256": "b26956419488d73adae1331ac36a68207ec914fc22ba33fcd77ffb1557094a71",
+  "judge_sha256": "21d409451dfab4ce8e1c1de409272adbe9436cb4e3005a2fc903036df2b9ad8a",
+  "variant_summary": [
+    {
+      "variant": "baseline",
+      "trials": 15,
+      "code_passes": 15,
+      "grounding_passes": 14,
+      "task_successes": 15,
+      "combined_passes": 14,
+      "evaluator_errors": 0,
+      "median_answer_latency_seconds": 3.272
+    },
+    {
+      "variant": "candidate",
+      "trials": 15,
+      "code_passes": 15,
+      "grounding_passes": 14,
+      "task_successes": 15,
+      "combined_passes": 14,
+      "evaluator_errors": 0,
+      "median_answer_latency_seconds": 2.624
+    }
+  ],
+  "case_summary": [
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "baseline",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trials": 3,
+      "passed": 2,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "passed": 2,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trials": 3,
+      "passed": 3,
+      "code_failures": 0,
+      "judge_errors": 0
+    }
+  ],
+  "matched_case_trial_transitions": {
+    "pass->pass": 13,
+    "pass->fail": 1,
+    "fail->pass": 1
+  },
+  "changed_judgments_after_context_fix": [
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trial": 1,
+      "old_pass": false,
+      "corrected_pass": true
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trial": 1,
+      "old_pass": false,
+      "corrected_pass": true
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trial": 2,
+      "old_pass": false,
+      "corrected_pass": true
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trial": 2,
+      "old_pass": false,
+      "corrected_pass": true
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trial": 3,
+      "old_pass": false,
+      "corrected_pass": true
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trial": 3,
+      "old_pass": false,
+      "corrected_pass": true
+    }
+  ],
+  "remaining_flagged_outputs": [
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trial": 2,
+      "trace_id": null,
+      "original_answer_trace_id": "c0703d12cf017447838818f5220d5929",
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": false,
+        "task_success": true,
+        "reason": "Required facts are correctly claimed with exact supporting quotes: November 20, 2026 (aurora_final_date) and Minji as launch owner (aurora_launch_owner). Limitations match the read draft, meeting notes, and responsibilities text. Grounding fails because two extra claims exceed their quotes: aurora_approval_precedence asserts conflict precedence not present in its quote, and aurora_roles_distinct asserts distinct roles and Seoyeon as schedule approver beyond the cited quotes.",
+        "failure_types": [
+          "unsupported_claim"
+        ]
+      },
+      "submission": {
+        "claims": [
+          {
+            "claim_id": "aurora_final_date",
+            "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+              }
+            ]
+          },
+          {
+            "claim_id": "aurora_approval_precedence",
+            "claim": "The Final Launch Approval supersedes the October 1 draft schedule and the October 8 meeting proposal, and takes precedence if launch dates conflict.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+              }
+            ]
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "claim": "The launch owner for Project Aurora is Minji.",
+            "evidence": [
+              {
+                "document_id": "aurora-responsibilities",
+                "quote": "The launch owner for Project Aurora is Minji."
+              }
+            ]
+          },
+          {
+            "claim_id": "aurora_roles_distinct",
+            "claim": "The approver and launch owner are distinct roles; Seoyeon is the approver of the final launch schedule, while the Responsibilities document assigns roles and directs readers to the Final Launch Approval for the schedule.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "Approver: Seoyeon"
+              },
+              {
+                "document_id": "aurora-responsibilities",
+                "quote": "This document defines role assignments; consult the Final Launch Approval for the launch schedule."
+              }
+            ]
+          }
+        ],
+        "limitations": "The draft planned November 15, 2026 and the meeting-proposed November 18, 2026 are not final approvals. Junho is the customer inquiries owner, not the launch owner. No unread file was used."
+      }
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trial": 2,
+      "trace_id": null,
+      "original_answer_trace_id": "86e3f73cd2208e55d67cf74b4a2983c1",
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": false,
+        "task_success": true,
+        "reason": "The required launch date (November 20, 2026) is correctly stated in claims with a full supporting quote from the successfully read final approval. The launch owner is unavailable because the Responsibilities document read failed, and limitations explicitly leave that fact unresolved rather than substituting the approver. Claim aurora_approval_precedence is not fully grounded: its quote supports superseding the October 1 draft and October 8 proposal, but not the additional assertion that the approval “takes precedence if dates conflict.”",
+        "failure_types": [
+          "unsupported_claim"
+        ]
+      },
+      "submission": {
+        "claims": [
+          {
+            "claim_id": "aurora_final_date",
+            "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+              }
+            ]
+          },
+          {
+            "claim_id": "aurora_approval_precedence",
+            "claim": "The Final Launch Approval supersedes the October 1 draft and the October 8 meeting proposal and takes precedence if dates conflict.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+              }
+            ]
+          },
+          {
+            "claim_id": "aurora_owner_not_in_approval",
+            "claim": "The final approval document does not assign the launch owner and directs readers to a separate Responsibilities document.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+              }
+            ]
+          }
+        ],
+        "limitations": "The Responsibilities document could not be read, so the launch owner is not established by the available evidence. The draft date of November 15, 2026 and the meeting proposal of November 18, 2026 are not final approvals. The approver named in the final approval is Seoyeon, which the same document treats as a role distinct from launch owner."
+      }
+    }
+  ],
+  "conclusion": "No demonstrated improvement in partial-answer recovery: both prompts completed all recorded recovery trials. The historical over-abstention is real but did not recur at this reconstructed final-answer checkpoint.",
+  "experiment_links": [],
+  "review_status": "Assistant reviewed source evidence and evaluator disagreements. Not independent human review."
+}

@@ -1,0 +1,74 @@
+DRIVE CLAIM / QUOTE COVERAGE: RESULTS
+
+QUESTION
+Atomic claims and an explicit whole-claim/attached-quote check improve citation support without reducing required fact coverage.
+
+METHOD
+Fresh final-answer generations at a reconstructed checkpoint with frozen evidence; no live Drive requests.
+7 cases; 42 freshly generated answers; one prompt block differs.
+Both variants used the same frozen evidence, model settings, code checks and per-claim judge.
+Baseline source: lab/experiments/partial-answer-v1/candidate.txt
+Changed variable: Only the added claim-to-quote coverage instruction block.
+These are new trials, independently generated for both variants.
+
+RAW EVALUATOR RESULTS
+Variant | answers | code | attached quote support | requested facts | grounding | combined
+baseline | 21 | 21 | 15 | 21 | 15 | 15
+candidate | 21 | 21 | 19 | 21 | 19 | 19
+
+RELATIONSHIP QUESTIONS (required distinctions cannot be skipped)
+baseline: 3/6
+candidate: 6/6
+
+BY CASE
+all_reads_failed / baseline: 3/3 combined; 3/3 citation; 3/3 task
+all_reads_failed / candidate: 3/3 combined; 3/3 citation; 3/3 task
+all_required_reads_succeeded / baseline: 3/3 combined; 3/3 citation; 3/3 task
+all_required_reads_succeeded / candidate: 3/3 combined; 3/3 citation; 3/3 task
+approval_read_failed / baseline: 2/3 combined; 2/3 citation; 3/3 task
+approval_read_failed / candidate: 3/3 combined; 3/3 citation; 3/3 task
+approver_owner_distinction / baseline: 1/3 combined; 1/3 citation; 3/3 task
+approver_owner_distinction / candidate: 3/3 combined; 3/3 citation; 3/3 task
+launch_customer_role_distinction / baseline: 2/3 combined; 2/3 citation; 3/3 task
+launch_customer_role_distinction / candidate: 3/3 combined; 3/3 citation; 3/3 task
+owner_read_failed / baseline: 1/3 combined; 1/3 citation; 3/3 task
+owner_read_failed / candidate: 2/3 combined; 2/3 citation; 3/3 task
+venue_not_in_documents / baseline: 3/3 combined; 3/3 citation; 3/3 task
+venue_not_in_documents / candidate: 2/3 combined; 2/3 citation; 3/3 task
+
+INTERPRETATION
+The revised prompt has a higher observed combined pass count in this exploratory suite.
+Counts are judge decisions, not independently confirmed production accuracy.
+Inspect every flagged claim and its attached quotes. Quote support and factual completion are separate.
+An empty answer cannot win by avoiding citations when requested supported facts are missing.
+
+FLAGGED ANSWERS
+baseline r1 approver_owner_distinction: All three requested facts are correct in the successful reads, so the task succeeds, but the approver claim's attached quote is only a role label and does not carry the Project Aurora final-launch-approval scope. The other quotes fully support their claims, and the limitations match the reads.
+candidate r1 venue_not_in_documents: The venue is correctly left unresolved: the successful Aurora reads never state a launch location, and the limitation does not assert that no venue exists. Extra date facts in the full reads are correct, so task success holds, but two claims overreach their attached quotes, so the answer is not fully grounded.
+baseline r2 launch_customer_role_distinction: Requested ownership facts are correct in the successful responsibilities read, and the limitations match the reads. Two claims add Project Aurora scope that their attached quotes do not contain, so citation grounding fails even though task facts are complete.
+baseline r2 owner_read_failed: The launch date and precedence claims are fully supported by their quotes. The approver claim's distinct-roles assertion is not in its attached quote, so the answer is not grounded. The requested date is correct and the unread responsibilities document leaves the launch owner explicitly unresolved, so the task succeeds.
+baseline r2 approval_read_failed: The requested launch owner is correctly identified as Minji, and the unavailable final launch date is explicitly left unresolved with limitations supported by the failed approval read and the successful draft and meeting reads. Grounding fails because the extra role-status claim asserts a distinction from the customer inquiries owner that its attached quote does not contain.
+baseline r3 approver_owner_distinction: Requested facts are correct in the full reads (Seoyeon approver, Minji launch owner, distinct roles) and limitations match the reads, but the approver claim's attached quote does not cover the full claim.
+baseline r3 owner_read_failed: The launch date is correctly supported and the unread responsibilities document leaves the launch owner explicitly unresolved, so the requested facts are handled correctly. Grounding fails because the precedence claim's conflict rule is not in its attached quote.
+candidate r3 owner_read_failed: The requested launch date is correctly November 20, 2026, and the unavailable launch owner is explicitly unresolved from the failed responsibilities read rather than inferred from the approver or other documents. Grounding fails because the precedence claim's attached quotes do not support superseding the draft and meeting notes as whole documents.
+
+REFERENCE CHECKS
+The actual role-citation defect was isolated from a separate disputed precedence clause.
+Seven reference checks passed before any A/B answers were generated. Earlier disagreements
+and the evaluator clarification are retained in the audit files. Neither answer prompt nor
+the study evidence dataset was changed by those evaluator preflight repairs.
+
+LIMITS
+Exploratory hand-selected synthetic-document cases, same-model judge, no independent held-out set. Refined evaluator is shared by both fresh variants; do not compare its pass rate directly with the previous study.
+No model training, live Drive integration test, or independent human adjudication was performed.
+
+LANGFUSE EXPERIMENTS
+baseline r1: [private Langfuse link omitted]
+candidate r1: [private Langfuse link omitted]
+candidate r2: [private Langfuse link omitted]
+baseline r2: [private Langfuse link omitted]
+baseline r3: [private Langfuse link omitted]
+candidate r3: [private Langfuse link omitted]
+
+APPLIED CHANGE
+The tested candidate is saved separately; no live prompt update is recorded.

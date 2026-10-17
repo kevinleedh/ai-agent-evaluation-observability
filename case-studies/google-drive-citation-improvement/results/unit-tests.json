@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "tests": 30,
+  "command": "python -m unittest discover -v",
+  "working_directory": "lab",
+  "python": "3.12.12",
+  "remote_services": "mocked; no API calls"
+}

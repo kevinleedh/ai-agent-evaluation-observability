@@ -1,0 +1,2852 @@
+{
+  "study": {
+    "hypothesis": "Scoping claims to requested facts avoids unrelated claims with weak citations while preserving explicit relationship answers.",
+    "scope": "Fresh final-answer generations at a reconstructed checkpoint with frozen evidence; no live Drive requests.",
+    "baseline_source": "lab/experiments/citation-coverage-v1/candidate.txt",
+    "changed_variable": "Only the relevance and no-unrelated-filler block; both prompts already contain the citation-coverage instruction.",
+    "dataset_sha256": "6058f085a9cb667f94332f64a15f89d83ed1c471ccf3d062c62c1bed953282ff",
+    "baseline_sha256": "e0d814acc7e527bdbc746050940027761251a0db319822c93faf962ae1b7721e",
+    "candidate_sha256": "120794be04d2944913ca79b9d3f25d9d9142e7a4e21523ba0c60f51c0750a07c",
+    "judge_sha256": "d1c1b7238c9ddad7127891751089bc0d2baa3f3947e3a85521cf2e05a733a5c8",
+    "answer_model": "grok-4.7",
+    "judge_model": "grok-4.7",
+    "parameters": {
+      "reasoning": {
+        "effort": "low"
+      },
+      "max_output_tokens": 6000
+    },
+    "previous_response_id": null,
+    "automatic_retries": 0,
+    "trials_per_case_variant": 3,
+    "case_count": 7,
+    "target_case_ids": [
+      "approver_owner_distinction",
+      "launch_customer_role_distinction"
+    ],
+    "primary_measure": "All emitted claims fully supported by attached quotes AND task success AND code integrity.",
+    "decision_policy": "No unconditional promotion with a new regression, missing result, or judge disagreement on reference checks. Report no demonstrated lift if the baseline also succeeds.",
+    "limits": "Exploratory hand-selected synthetic-document cases, same-model judge, no independent held-out set. Refined evaluator is shared by both fresh variants; do not compare its pass rate directly with the previous study.",
+    "judge_version": "2-independent-task-and-citation",
+    "revision": "2-relevance-guard",
+    "trigger": "Revision 1 correctly answered role questions but one venue response added unrelated schedule claims with incomplete citation scope."
+  },
+  "status": "completed",
+  "calibration": [
+    {
+      "name": "isolated_actual_role_quote_failure",
+      "expected": {
+        "grounded": false,
+        "task_success": true,
+        "citation_pass": false
+      },
+      "actual": {
+        "grounded": false,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote directly names Minji as the launch owner for Project Aurora."
+          },
+          {
+            "claim_id": "aurora_roles_distinct",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quotes only label Seoyeon as Approver and say the Responsibilities document assigns roles and points to the Final Launch Approval for the schedule. They do not state that the approver and launch owner are distinct roles, nor that Seoyeon approved the final launch schedule."
+          }
+        ],
+        "reason": "Requested launch date and launch owner are correct and fully quoted. The extra role claim is factually present in the full reads but not supported by its attached quotes, so grounding fails. Limitations match the successful reads and review records.",
+        "failure_types": [
+          "insufficient_attached_quote"
+        ],
+        "citation_pass": false
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "same_answer_with_complete_role_quote",
+      "expected": {
+        "grounded": true,
+        "task_success": true,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached sentence states the final approved launch date is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached sentence states that Minji is the launch owner for Project Aurora."
+          },
+          {
+            "claim_id": "aurora_roles_distinct",
+            "quote_supports_full_claim": true,
+            "reason": "Together the quotes identify Seoyeon as Approver on the final approval record, state that approver and launch owner are distinct, and say the Responsibilities document defines role assignments while directing readers to the Final Launch Approval for the schedule."
+          }
+        ],
+        "reason": "All three claims are fully supported by their attached quotes. Required facts (November 20, 2026 and launch owner Minji) are correct and complete. Limitation statements about the non-final November 15 and 18 dates, Junho’s inquiries role, and unused unread files match the successful reads and review record.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "supported_date_but_missing_owner",
+      "expected": {
+        "grounded": true,
+        "task_success": false,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": false,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date for Project Aurora is November 20, 2026, matching the entire claim."
+          }
+        ],
+        "reason": "The sole claim is fully supported by its attached quote and limitations are empty, so grounding holds. The answer omits the launch owner Minji, which the successful responsibilities read establishes and the question requested, without marking that fact unresolved.",
+        "failure_types": [
+          "missing_supported_fact"
+        ],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "missing_answer",
+      "expected": {
+        "grounded": true,
+        "task_success": false,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": false,
+        "claim_checks": [],
+        "reason": "The successful reads establish both requested facts: the Final Launch Approval states the final approved launch date is November 20, 2026, and the Responsibilities document states the launch owner is Minji. The submission contains no claims and only notes that no complete answer was submitted, so those supported facts are missing. That omission does not itself make a document-factual limitation unsupported, so grounding is unaffected while task success fails.",
+        "failure_types": [
+          "missing_supported_fact",
+          "unjustified_abstention"
+        ],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "no_reads_justified_abstention",
+      "expected": {
+        "grounded": true,
+        "task_success": true,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "All selected Aurora document reads failed, so no document body supports a launch date or launch owner. The empty claims correctly abstain, and the limitation is supported by the failed-read records rather than by inventing facts from metadata or unread files.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "wrong_owner_from_approver_label",
+      "expected": {
+        "grounded": false,
+        "task_success": false,
+        "citation_pass": false
+      },
+      "actual": {
+        "grounded": false,
+        "task_success": false,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote only names Seoyeon as Approver. The same approval document says the approver and launch owner are distinct roles, and the responsibilities document names Minji as launch owner, so the quote does not support the claim that the launch owner is Seoyeon."
+          }
+        ],
+        "reason": "The only claim treats the approver label as the launch owner, which the attached quote does not establish and the successful reads contradict (launch owner is Minji). The final approved launch date, November 20, 2026, is present in the approval read but is missing from the answer.",
+        "failure_types": [
+          "insufficient_attached_quote",
+          "wrong_authority_or_role",
+          "missing_supported_fact"
+        ],
+        "citation_pass": false
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "faithful_paraphrase_of_supersedes",
+      "expected": {
+        "grounded": true,
+        "task_success": false,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": false,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_approval_precedence",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states that this approval supersedes both the October 1, 2026 draft schedule and the October 8, 2026 meeting proposal, which fully supports the claim."
+          }
+        ],
+        "reason": "The only submitted claim is fully supported by its attached quote, and limitations are empty, so the answer is grounded. It fails task success because the successful reads establish the requested final approved launch date (November 20, 2026) and launch owner (Minji), but neither fact appears in the claims.",
+        "failure_types": [
+          "missing_supported_fact"
+        ],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    }
+  ],
+  "experiments": [],
+  "records": [
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "approver",
+              "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon"
+                }
+              ]
+            },
+            {
+              "claim_id": "launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The approver and launch owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document names Minji as launch owner and Junho as customer inquiries owner, but does not itself name the final-approval approver. The draft plan and meeting notes do not assign these roles."
+        },
+        "usage": {
+          "input": 5280,
+          "output": 340,
+          "total": 5620
+        },
+        "latency_seconds": 3.835
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "approver",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval header identifies this as Project Aurora's final launch approval and labels Approver: Seoyeon."
+          },
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached responsibilities sentence directly states that Minji is the launch owner for Project Aurora."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval sentence explicitly states that the approver and launch owner are distinct roles."
+          }
+        ],
+        "reason": "All three claims are fully supported by their attached quotes, and the limitations match the successful reads. The required facts are correct and complete.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "None of the successfully read Project Aurora documents (final launch approval, launch review meeting notes, responsibilities, and launch plan draft) state where the launch event will take place. They address schedule and roles only, so the venue remains unresolved."
+        },
+        "usage": {
+          "input": 5253,
+          "output": 195,
+          "total": 5448
+        },
+        "latency_seconds": 2.945
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "No claims were submitted. The limitation correctly states that the four successful Aurora reads cover schedule and roles only and do not establish a launch-event venue, leaving the location unresolved rather than asserting that none exists.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "All four selected Project Aurora documents failed to read, including the final launch approval, meeting notes, responsibilities assignment, and draft launch plan. No document contents were available, so neither the final approved launch date nor the launch owner can be established. The Borealis schedule was excluded as a different project. Drive timestamps and filenames alone do not establish the decision."
+        },
+        "usage": {
+          "input": 4311,
+          "output": 101,
+          "total": 4412
+        },
+        "latency_seconds": 2.692
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "All selected Aurora reads failed, so no document contents were available. Empty claims correctly leave the launch date and owner unresolved, and the limitation is supported by the failed-read records, exclusion of Borealis, and metadata-only candidate records.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "limitations": "The launch owner could not be determined because the Aurora Responsibilities document failed to read. The Final Launch Approval names Seoyeon only as approver and states that the approver and launch owner are distinct roles to be found in that separate document. Draft and meeting dates of November 15, 2026 and November 18, 2026 are not final.",
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_approval_precedence",
+              "claim": "The Final Launch Approval supersedes the October 1, 2026 Launch Plan Draft and the October 8, 2026 Launch Review Meeting Notes, and takes precedence if launch dates conflict.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes. If launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            }
+          ]
+        },
+        "usage": {
+          "input": 5050,
+          "output": 371,
+          "total": 5421
+        },
+        "latency_seconds": 5.059
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the final approved launch date for Project Aurora is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora_approval_precedence",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quotes state that this approval supersedes the October 1 draft and October 8 meeting proposal and takes precedence if launch dates conflict."
+          }
+        ],
+        "reason": "Both claims are fully supported by attached quotes. The date is correct, and the unread responsibilities document makes the launch owner properly unresolved rather than filled from the approver role. Limitations match the failed read and successful documents.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "c1",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim_id": "c2",
+              "claim": "Minji owns launch execution for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "Minji is responsible for launch readiness checks and launch execution."
+                }
+              ]
+            },
+            {
+              "claim_id": "c3",
+              "claim": "The customer inquiries owner for Project Aurora is Junho.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The customer inquiries owner for Project Aurora is Junho."
+                }
+              ]
+            },
+            {
+              "claim_id": "c4",
+              "claim": "Junho owns receiving and answering customer inquiries for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "Junho is responsible for receiving and answering customer inquiries."
+                }
+              ]
+            },
+            {
+              "claim_id": "c5",
+              "claim": "The launch owner and customer inquiries owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner and customer inquiries owner are distinct roles."
+                }
+              ]
+            }
+          ],
+          "limitations": "Role assignments come from the final Responsibilities document. The draft plan and meeting notes do not name these owners. The Final Launch Approval names Seoyeon as approver and states that the approver and launch owner are distinct roles, but does not itself name the launch owner or customer inquiries owner."
+        },
+        "usage": {
+          "input": 5270,
+          "output": 426,
+          "total": 5696
+        },
+        "latency_seconds": 3.497
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "c1",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the launch owner for Project Aurora is Minji."
+          },
+          {
+            "claim_id": "c2",
+            "quote_supports_full_claim": true,
+            "reason": "The quote says Minji is responsible for launch execution; “owns” is a faithful paraphrase, and the cited document is exclusively Project Aurora’s responsibilities."
+          },
+          {
+            "claim_id": "c3",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the customer inquiries owner for Project Aurora is Junho."
+          },
+          {
+            "claim_id": "c4",
+            "quote_supports_full_claim": true,
+            "reason": "The quote says Junho is responsible for receiving and answering customer inquiries, which fully supports the ownership paraphrase in the Aurora responsibilities document."
+          },
+          {
+            "claim_id": "c5",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote explicitly states that the launch owner and customer inquiries owner are distinct roles."
+          }
+        ],
+        "reason": "All five claims are fully supported by their attached quotes from the final Aurora Responsibilities document, and the limitation statements match the successful reads. Required facts (Minji owns launch execution, Junho owns customer inquiries, and the roles are distinct) are correct and covered.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approved launch date could not be established because the read of 03_Aurora_Final_Launch_Approval.txt failed. The draft plan only proposes November 15, 2026 and is pending approval, and the review notes only propose November 18, 2026 without granting final approval."
+        },
+        "usage": {
+          "input": 5142,
+          "output": 147,
+          "total": 5289
+        },
+        "latency_seconds": 1.91
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the launch owner for Project Aurora is Minji."
+          }
+        ],
+        "reason": "The sole claim is fully supported by its attached quote. The limitation correctly treats the failed final-approval read as blocking the launch date and accurately characterizes the draft and meeting dates as non-final proposals. The requested owner is correct and the unsupported date is explicitly unresolved.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "baseline",
+      "trial": 1,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The draft planned November 15, 2026 and the meeting-proposed November 18, 2026 are not final. Seoyeon is the approver in the final approval, and Junho is the customer inquiries owner; neither is the launch owner."
+        },
+        "usage": {
+          "input": 5267,
+          "output": 243,
+          "total": 5510
+        },
+        "latency_seconds": 3.296
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date for Project Aurora is November 20, 2026, matching the full claim."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the launch owner for Project Aurora is Minji, matching the full claim."
+          }
+        ],
+        "reason": "Both claims are fully supported by exact attached quotes from successful reads. Limitation statements about non-final November 15 and November 18 dates, Seoyeon as approver, and Junho as inquiries owner (distinct from launch owner Minji) are also supported by the reads. Required facts are correct and complete.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "launch_execution_owner",
+              "claim": "Minji owns launch execution for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution."
+                }
+              ]
+            },
+            {
+              "claim_id": "customer_inquiries_owner",
+              "claim": "Junho owns customer inquiries for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The launch owner and customer inquiries owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner and customer inquiries owner are distinct roles."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document is the source of these role assignments. Other Aurora documents address schedule approval and do not assign these roles."
+        },
+        "usage": {
+          "input": 5333,
+          "output": 304,
+          "total": 5637
+        },
+        "latency_seconds": 3.194
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "launch_execution_owner",
+            "quote_supports_full_claim": true,
+            "reason": "Quote states Minji is the launch owner and is responsible for launch execution for Project Aurora."
+          },
+          {
+            "claim_id": "customer_inquiries_owner",
+            "quote_supports_full_claim": true,
+            "reason": "Quote names Junho as the customer inquiries owner and assigns receiving and answering inquiries to Junho."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "Quote explicitly states the launch owner and customer inquiries owner are distinct roles."
+          }
+        ],
+        "reason": "All three claims are fully supported by attached quotes from the responsibilities document, and the limitation correctly notes that other Aurora documents do not assign these roles. Requested facts are complete and correct.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "The read Project Aurora documents (final launch approval, launch review meeting notes, responsibilities, and launch plan draft) do not state where the launch event will take place. They address schedule, approval, and role assignments only, so the venue is not established by the available evidence."
+        },
+        "usage": {
+          "input": 5316,
+          "output": 257,
+          "total": 5573
+        },
+        "latency_seconds": 3.002
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "The successful reads cover only schedule, approval, and role assignments and never name a launch venue. Empty claims plus an explicit unresolved-venue limitation correctly cover the requested fact without asserting that no venue exists.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "approver",
+              "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "Approver: Seoyeon"
+                }
+              ]
+            },
+            {
+              "claim_id": "launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The approver and launch owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document names Minji as launch owner and does not itself state that the approver role is distinct; that distinction is stated in the Final Launch Approval. Meeting notes and the draft plan do not name the approver or launch owner."
+        },
+        "usage": {
+          "input": 5343,
+          "output": 283,
+          "total": 5626
+        },
+        "latency_seconds": 2.729
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "approver",
+            "quote_supports_full_claim": true,
+            "reason": "The cited Final Launch Approval document line names Seoyeon as Approver, supporting the full claim."
+          },
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached responsibilities quote states verbatim that Minji is Project Aurora's launch owner."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval quote explicitly states that the approver and launch owner are distinct roles."
+          }
+        ],
+        "reason": "All three claims are fully supported by their attached quotes, match the successful reads, and the limitations accurately describe what those documents do and do not state.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_launch_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+                }
+              ]
+            }
+          ],
+          "limitations": "The launch owner is not established. The responsibilities document could not be read, and the final approval states that the launch owner is a distinct role to be consulted in that separate document without naming the owner. Draft and meeting dates are proposals, not the final approval."
+        },
+        "usage": {
+          "input": 5113,
+          "output": 247,
+          "total": 5360
+        },
+        "latency_seconds": 2.751
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_launch_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached final-approval quotes state the November 20, 2026 date and that this approval supersedes the earlier draft and meeting schedules."
+          }
+        ],
+        "reason": "The sole claim is fully supported by the final-approval quotes. The limitation correctly leaves the launch owner unresolved because the responsibilities document failed to read and the approval does not name that distinct role. Draft and meeting dates are explicitly proposals.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "The final approved launch date and launch owner for Project Aurora could not be established. Reads of the final approval, meeting notes, responsibilities, and draft plan documents all failed, and metadata alone is not evidence of their contents. The Borealis schedule was excluded as a different project."
+        },
+        "usage": {
+          "input": 4374,
+          "output": 86,
+          "total": 4460
+        },
+        "latency_seconds": 2.552
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "No claims were submitted. All selected document reads failed, so limitations correctly leave the Aurora launch date and launch owner unresolved and do not treat metadata or the excluded Borealis file as content evidence.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approval names Seoyeon as approver and states that the approver and launch owner are distinct roles. The responsibilities document, not the approval, assigns the launch owner. Draft and meeting dates of November 15 and November 18 are not final."
+        },
+        "usage": {
+          "input": 5330,
+          "output": 294,
+          "total": 5624
+        },
+        "latency_seconds": 2.953
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval quote states the final approved Aurora launch date is November 20, 2026, and the second quote establishes that this approval supersedes the earlier draft and meeting schedules."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached responsibilities quote directly states that the launch owner for Project Aurora is Minji."
+          }
+        ],
+        "reason": "Both claims are fully supported by their attached quotes. The limitations correctly distinguish Seoyeon as approver from Minji as launch owner and correctly treat November 15 and November 18 as non-final dates. Required facts are complete and correct.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "candidate",
+      "trial": 1,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approved launch date could not be established because the read of 03_Aurora_Final_Launch_Approval.txt failed. The draft plan states a November 15, 2026 date as a proposal awaiting approval, and the meeting notes state a November 18, 2026 proposal that was not an approved launch date. Neither document establishes a final approved date."
+        },
+        "usage": {
+          "input": 5205,
+          "output": 163,
+          "total": 5368
+        },
+        "latency_seconds": 2.437
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that Minji is the launch owner for Project Aurora."
+          }
+        ],
+        "reason": "The owner claim is fully supported by its attached quote. The failed approval read and the draft and meeting-note language support the stated inability to establish a final launch date, which is correctly left unresolved.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "The read Project Aurora documents establish a final approved launch date of November 20, 2026 and name roles, but none states where the launch event will take place. Location is not established by the absence of a venue in those files."
+        },
+        "usage": {
+          "input": 5316,
+          "output": 88,
+          "total": 5404
+        },
+        "latency_seconds": 1.724
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "No claims were submitted. The limitation correctly states that the successful Aurora reads fix the approved date as November 20, 2026 and name roles, while none states a launch-event venue, and it does not treat that absence as proof that no venue exists. The requested location is therefore properly left unresolved.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "c1",
+              "claim": "Minji owns launch execution for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution."
+                }
+              ]
+            },
+            {
+              "claim_id": "c2",
+              "claim": "Junho owns customer inquiries for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries."
+                }
+              ]
+            },
+            {
+              "claim_id": "c3",
+              "claim": "The launch owner and customer inquiries owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner and customer inquiries owner are distinct roles."
+                }
+              ]
+            }
+          ],
+          "limitations": "The Final Launch Approval states that the approver and launch owner are distinct roles and names Seoyeon as approver, but role ownership of launch execution and customer inquiries is established in the Responsibilities document. Draft and meeting notes do not assign these owners."
+        },
+        "usage": {
+          "input": 5333,
+          "output": 298,
+          "total": 5631
+        },
+        "latency_seconds": 3.14
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "c1",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quotes name Minji as Project Aurora launch owner and state she is responsible for launch execution."
+          },
+          {
+            "claim_id": "c2",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quotes name Junho as customer inquiries owner and state he receives and answers those inquiries."
+          },
+          {
+            "claim_id": "c3",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote explicitly states that the launch owner and customer inquiries owner are distinct roles."
+          }
+        ],
+        "reason": "All three requested facts are correctly supported by the Responsibilities document and the attached quotes. The limitation accurately reflects the approval document and the absence of owner assignments in the draft and meeting notes.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "approver",
+              "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "Approver: Seoyeon"
+                }
+              ]
+            },
+            {
+              "claim_id": "launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The approver and launch owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ],
+          "limitations": "Role names come from the final approval and responsibilities documents. Meeting notes and the draft plan do not assign these roles and are not the final approval."
+        },
+        "usage": {
+          "input": 5343,
+          "output": 295,
+          "total": 5638
+        },
+        "latency_seconds": 3.446
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "approver",
+            "quote_supports_full_claim": true,
+            "reason": "The attached 'Approver: Seoyeon' line is in Project Aurora's Final Launch Approval and fully supports that Seoyeon is its approver."
+          },
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The responsibilities quote states verbatim that Minji is Project Aurora's launch owner."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The final-approval quote explicitly says the approver and launch owner are distinct roles."
+          }
+        ],
+        "reason": "All three requested facts are correct in the successful reads and each attached quote fully supports its claim. The limitation correctly notes that only the final approval and responsibilities documents assign these roles.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "The selected Project Aurora files (final launch approval, launch review meeting notes, responsibilities, and launch plan draft) could not be read due to simulated read failures. File names and metadata are not evidence of contents, so the final approved launch date and launch owner cannot be established. The Borealis schedule was excluded as a different project."
+        },
+        "usage": {
+          "input": 4374,
+          "output": 97,
+          "total": 4471
+        },
+        "latency_seconds": 2.408
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "All selected Aurora documents failed to read, so neither the approved launch date nor the launch owner is available. Empty claims plus an explicit unresolved limitation match the failed-read records and do not invent facts from titles or the excluded Borealis file.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora-launch-date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora-launch-owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approval names Seoyeon as approver and directs role assignments to the Responsibilities document; it does not itself name the launch owner. Draft and meeting dates (November 15 and November 18, 2026) are proposals, not the final approved date."
+        },
+        "usage": {
+          "input": 5330,
+          "output": 227,
+          "total": 5557
+        },
+        "latency_seconds": 3.113
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora-launch-date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the final approved launch date for Project Aurora is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora-launch-owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the launch owner for Project Aurora is Minji."
+          }
+        ],
+        "reason": "Both claims are fully supported by exact quotes from the successful reads. The limitation correctly notes that Seoyeon is the approver, role assignments are in the Responsibilities document, and the November 15 and November 18 dates are proposals rather than the final approved date.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_launch_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "If launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document could not be read, and the final approval explicitly says the launch owner is a distinct role assigned in that separate document. No successfully read document names the launch owner, so that fact is unresolved. Draft and meeting dates (November 15 and November 18, 2026) are proposals, not the final approval."
+        },
+        "usage": {
+          "input": 5113,
+          "output": 243,
+          "total": 5356
+        },
+        "latency_seconds": 3.865
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_launch_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval sentence states the final approved launch date is November 20, 2026, and the precedence quote confirms that approval controls conflicting schedules."
+          }
+        ],
+        "reason": "The sole claim is fully supported by the final-approval quotes. The failed responsibilities read and the approval's statement that the launch owner is a distinct role assigned elsewhere justify leaving the owner unresolved. Draft and meeting dates are correctly treated as non-final.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "candidate",
+      "trial": 2,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approved launch date for Project Aurora could not be established because the read of 03_Aurora_Final_Launch_Approval.txt failed. The draft plan proposes November 15, 2026 and the meeting notes propose November 18, 2026, but both explicitly state those dates are not final approvals."
+        },
+        "usage": {
+          "input": 5205,
+          "output": 152,
+          "total": 5357
+        },
+        "latency_seconds": 1.842
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the launch owner for Project Aurora is Minji, which is the entire claim."
+          }
+        ],
+        "reason": "The sole claim is fully supported by its attached quote. The limitation correctly treats the launch date as unresolved because the final-approval read failed, and the successful draft and meeting reads explicitly label November 15 and November 18 as non-final proposals. The requested owner fact is correct and the unsupported date is not filled in.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "launch_owner",
+              "claim": "Minji is the launch owner for Project Aurora and is responsible for launch execution.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution."
+                }
+              ]
+            },
+            {
+              "claim_id": "inquiries_owner",
+              "claim": "Junho is the customer inquiries owner for Project Aurora and is responsible for receiving and answering customer inquiries.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The launch owner and customer inquiries owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner and customer inquiries owner are distinct roles."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document is final and effective as of October 13, 2026. The draft launch plan and meeting notes do not assign these roles. The final launch approval names Seoyeon as approver and states that the approver and launch owner are distinct, but it does not name the launch or inquiries owners."
+        },
+        "usage": {
+          "input": 5270,
+          "output": 334,
+          "total": 5604
+        },
+        "latency_seconds": 2.974
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states both that Minji is Project Aurora's launch owner and that Minji is responsible for launch execution."
+          },
+          {
+            "claim_id": "inquiries_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states both that Junho is the customer inquiries owner and that Junho receives and answers customer inquiries."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote directly states that the launch owner and customer inquiries owner are distinct roles."
+          }
+        ],
+        "reason": "All three claims are fully supported by their attached responsibilities quotes and match the successful reads. The limitations accurately describe the effective date, the absence of these role assignments in the draft and meeting notes, and the approval document's distinct approver role without naming those owners.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+              "claim_id": "approver",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "Approver: Seoyeon"
+                }
+              ]
+            },
+            {
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "claim_id": "launch_owner",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim": "The approver and launch owner are distinct roles.",
+              "claim_id": "distinct_roles",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ],
+          "limitations": "The Responsibilities document names Minji as launch owner and does not itself compare that role with the approver. The distinct-roles statement is taken from the Final Launch Approval. Meeting notes and the draft plan do not assign these roles."
+        },
+        "usage": {
+          "input": 5280,
+          "output": 281,
+          "total": 5561
+        },
+        "latency_seconds": 3.494
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "approver",
+            "quote_supports_full_claim": true,
+            "reason": "The Final Launch Approval document labels Approver: Seoyeon, which fully supports Seoyeon as the approver of that approval."
+          },
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached Responsibilities quote states exactly that the launch owner for Project Aurora is Minji."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The attached Final Launch Approval sentence expressly states that the approver and launch owner are distinct roles."
+          }
+        ],
+        "reason": "All three requested facts are correct in the successful reads and each attached quote supports the full corresponding claim. The limitations accurately describe what the other documents do and do not say.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "c1",
+              "claim": "The read Project Aurora documents do not state where the launch event will take place.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            }
+          ],
+          "limitations": "None of the successfully read Project Aurora documents state a venue or location for the launch event. The final approval establishes only the launch date of November 20, 2026, and the other Aurora documents address draft or proposed dates and role assignments, not a place."
+        },
+        "usage": {
+          "input": 5253,
+          "output": 200,
+          "total": 5453
+        },
+        "latency_seconds": 3.052
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": false,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "c1",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote only states the approved date and that this approval supersedes earlier schedules. It does not mention venue or show that the other read Aurora documents omit a location, so it does not support the full claim."
+          }
+        ],
+        "reason": "The answer correctly leaves the venue unresolved because none of the successful reads name a launch location, but the sole attached quote is only about the date and precedence and does not support that absence claim. Citation failure does not overturn task success.",
+        "failure_types": [
+          "insufficient_attached_quote"
+        ],
+        "citation_pass": false
+      },
+      "judge_error": null,
+      "citation_pass": false,
+      "study_pass": false,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "All four selected Project Aurora documents failed to read, so neither the final approved launch date nor the launch owner can be established from document text. File names and metadata were not used as evidence of contents. The Borealis schedule was excluded as a different project."
+        },
+        "usage": {
+          "input": 4311,
+          "output": 82,
+          "total": 4393
+        },
+        "latency_seconds": 2.44
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "No claims were submitted. All selected Aurora documents failed to read, so the explicit limitation that neither the final launch date nor the launch owner can be established is supported by the read-failure records. Excluding Borealis and refusing to treat filenames as contents is appropriate. Empty claims are justified.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            }
+          ],
+          "limitations": "The launch owner for Project Aurora could not be established because the responsibilities document failed to read and no successfully read document names that owner. The final approval states that the approver and launch owner are distinct roles and directs readers to the separate Responsibilities document. Draft and meeting dates (November 15 and November 18, 2026) are not the approved launch date."
+        },
+        "usage": {
+          "input": 5050,
+          "output": 284,
+          "total": 5334
+        },
+        "latency_seconds": 3.877
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached final-approval quotes state the November 20, 2026 date and that this approval supersedes earlier schedules, supporting the entire claim."
+          }
+        ],
+        "reason": "The sole claim is fully supported by the final-approval quotes. The owner is correctly left unresolved: the responsibilities read failed, and no successful read names a launch owner while the approval text distinguishes that role from the approver. Draft and meeting dates are accurately distinguished as non-final.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_approval_precedence",
+              "claim": "The Final Launch Approval supersedes the October 1, 2026 Launch Plan Draft and the October 8, 2026 Launch Review Meeting Notes, and takes precedence if launch dates conflict.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes. If launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approval names Seoyeon as approver and directs role assignments to the Responsibilities document; it does not itself name the launch owner. Draft and meeting dates of November 15 and November 18, 2026 are proposals, not the final approved date."
+        },
+        "usage": {
+          "input": 5267,
+          "output": 367,
+          "total": 5634
+        },
+        "latency_seconds": 6.77
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date for Project Aurora is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora_approval_precedence",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states that this approval supersedes both earlier schedules and takes precedence if launch dates conflict."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote directly names Minji as the launch owner for Project Aurora."
+          }
+        ],
+        "reason": "All claims are fully supported by their attached quotes, and the limitation correctly distinguishes the approver, launch owner, and non-final draft and meeting dates using the successful reads. Required facts are correct and complete.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trial": 2,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora-launch-owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approved launch date could not be determined because the read of 03_Aurora_Final_Launch_Approval.txt failed. The draft plan and meeting notes state that November 15, 2026 and November 18, 2026 are not final approved dates, and the responsibilities document says to consult the Final Launch Approval for the launch schedule."
+        },
+        "usage": {
+          "input": 5142,
+          "output": 190,
+          "total": 5332
+        },
+        "latency_seconds": 2.339
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora-launch-owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the launch owner for Project Aurora is Minji."
+          }
+        ],
+        "reason": "The only claim is fully supported by its attached quote. The limitation correctly records the failed approval-document read and that the draft and meeting dates are not final, matching the successful reads and the failed-read record. The requested owner is correctly stated and the unavailable launch date is left unresolved.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "None of the successfully read Project Aurora documents states where the launch event will take place. The final approval, draft plan, meeting notes, and responsibilities document address launch dates and roles only."
+        },
+        "usage": {
+          "input": 5253,
+          "output": 75,
+          "total": 5328
+        },
+        "latency_seconds": 2.407
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "The question asks for the launch event venue. No successful read states a location, and the empty claims correctly leave that fact unresolved. The limitation accurately reports that the Aurora documents cover dates and roles only and does not assert that no venue exists.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "limitations": "The draft and meeting notes do not name the approver or launch owner and are not final approvals. The customer inquiries owner is a separate role and was not requested.",
+          "claims": [
+            {
+              "claim_id": "approver",
+              "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon"
+                }
+              ]
+            },
+            {
+              "claim_id": "launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The approver and launch owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ]
+        },
+        "usage": {
+          "input": 5280,
+          "output": 352,
+          "total": 5632
+        },
+        "latency_seconds": 3.239
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "approver",
+            "quote_supports_full_claim": true,
+            "reason": "The attached final-approval header names Seoyeon as Approver of Project Aurora's Final Launch Approval."
+          },
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The responsibilities quote states verbatim that Minji is the launch owner for Project Aurora."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The approval quote explicitly says the approver and launch owner are distinct roles."
+          }
+        ],
+        "reason": "All three requested facts are correct, complete, and fully supported by their attached quotes. The limitations match the successful reads: draft and meeting notes name neither role and are not final approvals, and the inquiries owner is a distinct unrequested role.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "launch_owner",
+              "claim": "Minji is the launch owner for Project Aurora and is responsible for launch execution.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution."
+                }
+              ]
+            },
+            {
+              "claim_id": "inquiries_owner",
+              "claim": "Junho is the customer inquiries owner for Project Aurora and is responsible for receiving and answering customer inquiries.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries."
+                }
+              ]
+            },
+            {
+              "claim_id": "distinct_roles",
+              "claim": "The launch owner and the customer inquiries owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner and customer inquiries owner are distinct roles."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document is the role-assignment source. The final approval names Seoyeon as approver and says the approver and launch owner are distinct, but it does not name the launch-execution or customer-inquiries owners. The draft and meeting notes do not assign these roles."
+        },
+        "usage": {
+          "input": 5270,
+          "output": 345,
+          "total": 5615
+        },
+        "latency_seconds": 3.765
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states that Minji is Project Aurora's launch owner and is responsible for launch execution."
+          },
+          {
+            "claim_id": "inquiries_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states that Junho is the customer inquiries owner and is responsible for receiving and answering inquiries."
+          },
+          {
+            "claim_id": "distinct_roles",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote directly states that the launch owner and customer inquiries owner are distinct roles."
+          }
+        ],
+        "reason": "All three requested facts are correct, complete, and fully supported by their attached quotes. The limitations accurately describe the approval, draft, and meeting records.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "All selected Project Aurora documents failed to read, so the final approved launch date and launch owner cannot be established from document text. File names and timestamps alone are not evidence of contents or of a final decision."
+        },
+        "usage": {
+          "input": 4311,
+          "output": 113,
+          "total": 4424
+        },
+        "latency_seconds": 2.357
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "All four selected Aurora documents failed to read, so no document text supports a launch date or owner. Empty claims and an explicit limitation correctly leave both facts unresolved; metadata is not treated as content.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "If launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ],
+          "limitations": "The October 1 draft planned November 15 and the October 8 meeting proposed November 18, but neither finalized the date. Seoyeon is the approver, not the launch owner. Junho is the customer inquiries owner, not the launch owner."
+        },
+        "usage": {
+          "input": 5267,
+          "output": 340,
+          "total": 5607
+        },
+        "latency_seconds": 3.159
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval quote states the final approved Project Aurora launch date is November 20, 2026, and the precedence quote confirms that approval controls conflicting dates."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The responsibilities quote directly names Minji as Project Aurora's launch owner; the approval quote only reinforces that this role is distinct from the approver."
+          }
+        ],
+        "reason": "Both requested facts are correct and fully supported by their attached quotes. The limitation statements about the November 15 draft, November 18 proposal, Seoyeon as approver, and Junho as inquiries owner are also supported by the successful reads.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approved launch date for Project Aurora could not be established because the read of 03_Aurora_Final_Launch_Approval.txt failed. The draft plan and meeting notes state only non-final dates (November 15, 2026 as a draft proposal and November 18, 2026 as a meeting proposal) and say final approval is in a separate Final Launch Approval."
+        },
+        "usage": {
+          "input": 5142,
+          "output": 192,
+          "total": 5334
+        },
+        "latency_seconds": 3.124
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that the launch owner for Project Aurora is Minji."
+          }
+        ],
+        "reason": "The sole claim is fully supported by the responsibilities document. The limitation correctly treats the final launch date as unresolved because the approval file failed to read, and the draft and meeting notes explicitly mark November 15 and November 18 as non-final proposals.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trial": 3,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "If launch dates conflict across documents, this Final Launch Approval takes precedence."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_date_supersedes",
+              "claim": "The November 20, 2026 approval supersedes the October 1, 2026 draft schedule and the October 8, 2026 meeting proposal.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+                }
+              ]
+            }
+          ],
+          "limitations": "The launch owner for Project Aurora is not established. The Final Launch Approval states that the approver and launch owner are distinct roles and that role assignments are in a separate Responsibilities document. That Responsibilities file failed to read, so no supported launch-owner name is available. The draft date of November 15, 2026 and the meeting proposal of November 18, 2026 are not final."
+        },
+        "usage": {
+          "input": 5050,
+          "output": 431,
+          "total": 5481
+        },
+        "latency_seconds": 4.385
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": false,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that Project Aurora’s final approved launch date is November 20, 2026, and the precedence quote confirms that approval controls conflicting dates."
+          },
+          {
+            "claim_id": "aurora_date_supersedes",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote supports supersession of the October 1 draft schedule and October 8 meeting proposal, but it only says “this approval” and does not identify that approval as November 20, 2026."
+          }
+        ],
+        "reason": "The requested launch date is correctly stated and the unknown launch owner is explicitly left unresolved from the failed responsibilities read and successful approval text. Grounding fails solely because the supersession claim\\u2019s attached quote does not establish the November 20 date.",
+        "failure_types": [
+          "insufficient_attached_quote"
+        ],
+        "citation_pass": false
+      },
+      "judge_error": null,
+      "citation_pass": false,
+      "study_pass": false,
+      "trace_id": null
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "None of the read Project Aurora documents state a venue or location for the launch event. The final approval, draft, meeting notes, and responsibilities file address schedule and roles only, not where the event will take place."
+        },
+        "usage": {
+          "input": 5316,
+          "output": 58,
+          "total": 5374
+        },
+        "latency_seconds": 1.99
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "No claims were submitted. The limitation is supported by the successful reads: none of the Aurora documents state a launch venue, and their substantive content covers schedule and roles only. Empty claims are justified because the requested location is unresolved rather than contradicted or invented.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [],
+          "limitations": "The final approval, meeting notes, responsibilities, and draft plan files for Project Aurora all failed to read. Filenames and modification timestamps are not document contents, so neither the final approved launch date nor the launch owner can be established from the available evidence."
+        },
+        "usage": {
+          "input": 4374,
+          "output": 82,
+          "total": 4456
+        },
+        "latency_seconds": 2.221
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "All selected Aurora documents failed to read, so no successful bodies establish a launch date or owner. Empty claims plus an explicit limitation matching those failed-read records are justified; filenames and timestamps were not treated as contents.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_execution_owner",
+              "claim": "Minji owns launch execution for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_customer_inquiries_owner",
+              "claim": "Junho owns customer inquiries for Project Aurora.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries."
+                }
+              ]
+            },
+            {
+              "claim_id": "roles_are_distinct",
+              "claim": "The launch owner and customer inquiries owner are distinct roles.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner and customer inquiries owner are distinct roles."
+                }
+              ]
+            }
+          ],
+          "limitations": "The responsibilities document is the source for these role assignments. The final launch approval identifies Seoyeon as approver and states that the approver and launch owner are distinct roles, but does not name the launch-execution or customer-inquiries owners. Draft and meeting documents do not assign those owners."
+        },
+        "usage": {
+          "input": 5333,
+          "output": 322,
+          "total": 5655
+        },
+        "latency_seconds": 3.491
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_execution_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote names Minji as Project Aurora launch owner and states Minji is responsible for launch execution."
+          },
+          {
+            "claim_id": "aurora_customer_inquiries_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote names Junho as customer inquiries owner and assigns receiving and answering customer inquiries."
+          },
+          {
+            "claim_id": "roles_are_distinct",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote explicitly states the launch owner and customer inquiries owner are distinct roles."
+          }
+        ],
+        "reason": "All three claims are fully supported by their attached quotes from the successful responsibilities read. Limitation statements about Seoyeon as approver, distinct approver and launch-owner roles, and the absence of those owner assignments in the approval, draft, and meeting documents match the successful reads. Required facts are correct and complete.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+              "claim_id": "c1",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "Approver: Seoyeon"
+                }
+              ]
+            },
+            {
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "claim_id": "c2",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            },
+            {
+              "claim": "The approver and launch owner are distinct roles.",
+              "claim_id": "c3",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+                }
+              ]
+            }
+          ],
+          "limitations": ""
+        },
+        "usage": {
+          "input": 5343,
+          "output": 615,
+          "total": 5958
+        },
+        "latency_seconds": 6.536
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "c1",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval-record label 'Approver: Seoyeon' directly identifies Seoyeon as the approver of that final launch approval."
+          },
+          {
+            "claim_id": "c2",
+            "quote_supports_full_claim": true,
+            "reason": "The responsibilities quote states verbatim that the launch owner for Project Aurora is Minji."
+          },
+          {
+            "claim_id": "c3",
+            "quote_supports_full_claim": true,
+            "reason": "The approval quote explicitly states that the approver and launch owner are distinct roles, not merely naming one role."
+          }
+        ],
+        "reason": "All three claims are fully supported by their attached quotes and match the successful reads. No limitations were asserted.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                },
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+                }
+              ]
+            }
+          ],
+          "limitations": "The launch owner for Project Aurora could not be determined because the responsibilities document failed to read. The final approval identifies Seoyeon as approver and states that the approver and launch owner are distinct roles, but it does not name the launch owner."
+        },
+        "usage": {
+          "input": 5113,
+          "output": 243,
+          "total": 5356
+        },
+        "latency_seconds": 2.448
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached approval quotes state the final approved launch date is November 20, 2026 and that this approval supersedes the earlier draft and meeting schedules, covering the full claim."
+          }
+        ],
+        "reason": "The sole claim is fully supported by the Final Launch Approval quotes. The responsibilities document failed to read, and the approval text names Seoyeon only as approver while stating the launch owner is a distinct role assigned elsewhere, so leaving the owner unresolved is correct and supported.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_final_date",
+              "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+              "evidence": [
+                {
+                  "document_id": "aurora-final-approval",
+                  "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+                }
+              ]
+            },
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The Final Launch Approval states that the approver and launch owner are distinct roles and directs role assignments to the Responsibilities document. Seoyeon is named as approver, not launch owner. Draft and meeting dates of November 15 and November 18, 2026 are proposals, not the final approved date."
+        },
+        "usage": {
+          "input": 5330,
+          "output": 235,
+          "total": 5565
+        },
+        "latency_seconds": 2.168
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote from the Final Launch Approval states the final approved launch date for Project Aurora is November 20, 2026, matching the entire claim."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote from the Responsibilities document states the launch owner for Project Aurora is Minji, matching the entire claim."
+          }
+        ],
+        "reason": "Both required facts are correct and fully supported by exact attached quotes. Limitation statements about distinct approver/owner roles, Seoyeon as approver, and November 15/18 proposal dates are supported by the successful reads.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "candidate",
+      "trial": 3,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "output": {
+        "execution_status": "completed",
+        "submission": {
+          "claims": [
+            {
+              "claim_id": "aurora_launch_owner",
+              "claim": "The launch owner for Project Aurora is Minji.",
+              "evidence": [
+                {
+                  "document_id": "aurora-responsibilities",
+                  "quote": "The launch owner for Project Aurora is Minji."
+                }
+              ]
+            }
+          ],
+          "limitations": "The final approved launch date could not be established because the read of 03_Aurora_Final_Launch_Approval.txt failed. The draft plan and meeting notes explicitly state that November 15, 2026 and November 18, 2026 are not final approvals."
+        },
+        "usage": {
+          "input": 5205,
+          "output": 168,
+          "total": 5373
+        },
+        "latency_seconds": 2.523
+      },
+      "code_pass": true,
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+      "judge": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states exactly that the launch owner for Project Aurora is Minji."
+          }
+        ],
+        "reason": "The sole claim is fully supported by its attached quote. The limitation correctly leaves the launch date unresolved based on the failed approval-document read and the successful draft and meeting notes, which deny final approval of the November dates.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "judge_error": null,
+      "citation_pass": true,
+      "study_pass": true,
+      "trace_id": null
+    }
+  ],
+  "reference_checks_reused_from": "runs/citation-experiments/20261017T035344Z.json",
+  "summary": [
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 2,
+      "task_passes": 3,
+      "combined_passes": 2,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 2,
+      "task_passes": 3,
+      "combined_passes": 2,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    }
+  ],
+  "all_cases_recorded": true,
+  "public_export": {
+    "source_file": "runs/citation-experiments-v2/20261017T035841Z.json",
+    "source_sha256": "0a0cc163e19c7194dff9914fb04bbc9a3849d4e2197bb8f61564159578f2dd6c",
+    "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+  }
+}

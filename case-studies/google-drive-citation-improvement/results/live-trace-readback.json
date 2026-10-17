@@ -1,0 +1,154 @@
+[
+  {
+    "status": "answered",
+    "root_input_and_output_match_local_run": true,
+    "raw_mcp_outputs": [
+      {
+        "name": "mcp.google_drive-list-files",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 2235,
+        "returned_payload_sha256": "8ac31f56f8fa14f55f149844f919eed0e6bf33d4b38e03b6e87e6fc5114a6b29"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 4121,
+        "returned_payload_sha256": "4cdf9120e79cdf93958a0d0044e7e42ad48e29503b677669a6c74ddc9b938368"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 7510,
+        "returned_payload_sha256": "ab7107444f5697405d32e66d29f13bdb2663c4a47cdfdfe544dce81aeacce0a0"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 2520,
+        "returned_payload_sha256": "77dd583d39cf54805facf91f611ff1159e332f0450e3c86f02adff4b2d3f48fc"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 2286,
+        "returned_payload_sha256": "50cae836911ed21b48373f1cdc39b2cfe23f2198519254756bc1f54bac68a713"
+      }
+    ],
+    "read_bodies": [
+      {
+        "title": "03_Aurora_Final_Launch_Approval.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 810,
+        "byte_count": 812,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      },
+      {
+        "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 719,
+        "byte_count": 721,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      },
+      {
+        "title": "04_Aurora_Responsibilities.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 674,
+        "byte_count": 676,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      },
+      {
+        "title": "01_Aurora_Launch_Plan_Draft.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 654,
+        "byte_count": 656,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      }
+    ],
+    "actual_raw_mcp_observations": 5,
+    "model_calls": 4,
+    "continuation_chain_verified": true,
+    "recording_checks_passed": true,
+    "semantic_answer_accuracy_evaluated_by_this_script": false,
+    "public_export": "Stored readback result; private trace and original signed MCP payloads not published."
+  },
+  {
+    "status": "answered",
+    "root_input_and_output_match_local_run": true,
+    "raw_mcp_outputs": [
+      {
+        "name": "mcp.google_drive-list-files",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 2713,
+        "returned_payload_sha256": "a2bab329baa3a32d75abe4549b6e9e71374f18d6a7ec5e61c3819fd9c5075bf1"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 3882,
+        "returned_payload_sha256": "4377ac156ddbfa60e31823e06eaf4169ed5727820d6f34332c1fbfa7adf94db2"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 3871,
+        "returned_payload_sha256": "53b3fa8a4776b5a90ddc2cc1d7c37075ffe56e01476f3c7029528763bc14c282"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 3814,
+        "returned_payload_sha256": "86de4bc9d46c8d4e0382bdc64ad111b3eca2f4faebc9d2ee1a1e069216caaebd"
+      },
+      {
+        "name": "mcp.google_drive-download-file",
+        "full_payload_matches": true,
+        "returned_payload_bytes": 3858,
+        "returned_payload_sha256": "dffad86950c57f130c398d699fcaab2b5cd854bb7a3f68434a6f985ad26d4dbf"
+      }
+    ],
+    "read_bodies": [
+      {
+        "title": "03_Aurora_Final_Launch_Approval.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 810,
+        "byte_count": 812,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      },
+      {
+        "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 719,
+        "byte_count": 721,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      },
+      {
+        "title": "04_Aurora_Responsibilities.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 674,
+        "byte_count": 676,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      },
+      {
+        "title": "01_Aurora_Launch_Plan_Draft.txt",
+        "full_text_visible_in_langfuse": true,
+        "character_count": 654,
+        "byte_count": 656,
+        "matches_original_fixture": true,
+        "full_text_in_subsequent_grok_input": true
+      }
+    ],
+    "actual_raw_mcp_observations": 5,
+    "model_calls": 4,
+    "continuation_chain_verified": true,
+    "recording_checks_passed": true,
+    "semantic_answer_accuracy_evaluated_by_this_script": false,
+    "public_export": "Stored readback result; private trace and original signed MCP payloads not published."
+  }
+]

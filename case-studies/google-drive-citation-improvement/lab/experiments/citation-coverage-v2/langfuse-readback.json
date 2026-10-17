@@ -1,0 +1,16 @@
+[
+  {
+    "variant": "baseline",
+    "trace_id": null,
+    "answer_prompt_matches_frozen_version": true,
+    "answer_output_matches_local_result": true,
+    "judge_output_recorded": true
+  },
+  {
+    "variant": "candidate",
+    "trace_id": null,
+    "answer_prompt_matches_frozen_version": true,
+    "answer_output_matches_local_result": true,
+    "judge_output_recorded": true
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "files_checked": 88,
+  "problems": [],
+  "scope": "English text, local Markdown targets, Python compilation and private-value/credential scans. Secret values are never included in this report."
+}

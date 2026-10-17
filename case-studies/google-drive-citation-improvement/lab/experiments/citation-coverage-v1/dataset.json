@@ -1,0 +1,1068 @@
+[
+  {
+    "input": {
+      "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which is the likely source of the approved launch date and authority.",
+            "information_needed": "The final approved launch date for Project Aurora and any named launch owner or approving authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Aurora launch review notes may contain proposed dates or role assignments that must be distinguished from final approvals.",
+            "information_needed": "Whether the notes record a proposal only or a final approval of the launch date and launch owner."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This file is for Project Borealis, not Project Aurora, so it cannot answer the Aurora launch question.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Aurora responsibilities file is needed to distinguish the launch owner from other roles such as approver or inquiries owner.",
+            "information_needed": "Which person is assigned as launch owner for Project Aurora versus other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "The Aurora launch plan is labeled a draft, so it must be read to avoid treating draft dates as the final approved date.",
+            "information_needed": "The draft proposed launch date and any stated owner, and whether the document claims final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final Aurora approval document is the primary source for the approved launch date.",
+          "information_needed": "Final approved launch date and any launch owner stated with approval authority.",
+          "status": "failed",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "error_type": "ValueError",
+          "validation_error": "Expected one original-file Pipedream File Stash resource URL"
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes needed to distinguish proposals from final approval.",
+          "information_needed": "Whether notes are proposals only and any stated launch date or owner.",
+          "status": "read",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "text": "Project Aurora — Launch Review Meeting Notes\nDocument ID: aurora-launch-meeting\nStatus: Review record / Launch date not finalized\nMeeting date: October 8, 2026\nCreated: October 8, 2026\n\nMeeting topic\nThe team reviewed the testing period for the November 15 launch proposed in the draft plan.\n\nA proposal was made to change the launch date for Project Aurora to November 18, 2026.\nNovember 18, 2026 is a date proposed during the meeting, not an approved launch date.\nThe meeting did not grant final approval for a launch date.\nThe final schedule will be announced in a separate Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 721,
+            "character_count": 719,
+            "md5_matches_drive_metadata": true,
+            "sha256": "ecd3709601ca70a363c8588c503c69671fb794b22be2fe8b319f7d11e0c708ab",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities file needed to identify the launch owner role.",
+          "information_needed": "Named launch owner versus approver and inquiries owner.",
+          "status": "read",
+          "title": "04_Aurora_Responsibilities.txt",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "text": "Project Aurora — Responsibilities\nDocument ID: aurora-responsibilities\nStatus: Final / Effective\nEffective date: October 13, 2026\nVersion: 1.0\n\nThe launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution.\n\nThe customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries.\n\nThe launch owner and customer inquiries owner are distinct roles.\nThis document defines role assignments; consult the Final Launch Approval for the launch schedule.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 676,
+            "character_count": 674,
+            "md5_matches_drive_metadata": true,
+            "sha256": "84bee15f299bfd5c3dd2190492bad30ca8638720bf7bb1257fd2111da015d357",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan needed to avoid treating draft dates as final.",
+          "information_needed": "Draft launch date and whether it claims final approval.",
+          "status": "read",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "text": "Project Aurora — Launch Plan Draft\nDocument ID: aurora-launch-draft\nStatus: Draft / Pending final approval\nCreated: October 1, 2026\nVersion: 0.1\n\nThis document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.\n\nThe draft planned launch date for Project Aurora is November 15, 2026.\nThis draft was prepared to discuss feature development and internal review timelines.\nThe actual launch date must be confirmed against the subsequently issued Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 656,
+            "character_count": 654,
+            "md5_matches_drive_metadata": true,
+            "sha256": "2106d20028cc9f953020f10b4ec4382533fa33c2d44cbdb4ea10ae1f09c260ef",
+            "truncated_by_client": false
+          }
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [
+        "The launch owner is Minji."
+      ],
+      "required_uncertainty": [
+        "The final approved launch date cannot be established from available reads."
+      ]
+    },
+    "metadata": {
+      "case_id": "approval_read_failed",
+      "origin": "observed_failure",
+      "source_trace_id": null,
+      "input_sha256": "2bb9ca58cfb7f17aa4649cd91b311dc67b7eba81b198e53d399ccea56613ff64",
+      "suite": "regression"
+    }
+  },
+  {
+    "input": {
+      "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which should contain the approved launch date.",
+            "information_needed": "Final approved launch date and any statement of launch owner or approval authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Meeting notes may propose dates or owners that must be distinguished from final approval.",
+            "information_needed": "Proposed launch date and role assignments versus any final decision language."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This is Project Borealis, not Project Aurora.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Responsibilities document may name the launch owner separately from approver or inquiries owner.",
+            "information_needed": "Named launch owner for Project Aurora and distinction from other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "Draft plan may conflict with the final approval and should be compared, not treated as final.",
+            "information_needed": "Draft launch date and proposed owner so they can be distinguished from final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final launch approval document for Project Aurora.",
+          "information_needed": "Final approved launch date and any owner or approval language.",
+          "status": "read",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "text": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon\n\nThe final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence.\n\nApproval scope\nThis document is the final approval record for the launch schedule.\nThe approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 812,
+            "character_count": 810,
+            "md5_matches_drive_metadata": true,
+            "sha256": "823567d6d2a057a229cf0d7d0146568089eabd52110274360b8b33d8e06ce356",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes to distinguish proposals from final approval.",
+          "information_needed": "Proposed dates and role assignments versus final decision language.",
+          "status": "read",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "text": "Project Aurora — Launch Review Meeting Notes\nDocument ID: aurora-launch-meeting\nStatus: Review record / Launch date not finalized\nMeeting date: October 8, 2026\nCreated: October 8, 2026\n\nMeeting topic\nThe team reviewed the testing period for the November 15 launch proposed in the draft plan.\n\nA proposal was made to change the launch date for Project Aurora to November 18, 2026.\nNovember 18, 2026 is a date proposed during the meeting, not an approved launch date.\nThe meeting did not grant final approval for a launch date.\nThe final schedule will be announced in a separate Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 721,
+            "character_count": 719,
+            "md5_matches_drive_metadata": true,
+            "sha256": "ecd3709601ca70a363c8588c503c69671fb794b22be2fe8b319f7d11e0c708ab",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities document likely names the launch owner.",
+          "information_needed": "Launch owner distinct from approver and inquiries owner.",
+          "status": "read",
+          "title": "04_Aurora_Responsibilities.txt",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "text": "Project Aurora — Responsibilities\nDocument ID: aurora-responsibilities\nStatus: Final / Effective\nEffective date: October 13, 2026\nVersion: 1.0\n\nThe launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution.\n\nThe customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries.\n\nThe launch owner and customer inquiries owner are distinct roles.\nThis document defines role assignments; consult the Final Launch Approval for the launch schedule.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 676,
+            "character_count": 674,
+            "md5_matches_drive_metadata": true,
+            "sha256": "84bee15f299bfd5c3dd2190492bad30ca8638720bf7bb1257fd2111da015d357",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan to compare against final approval.",
+          "information_needed": "Draft launch date and proposed owner.",
+          "status": "read",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "text": "Project Aurora — Launch Plan Draft\nDocument ID: aurora-launch-draft\nStatus: Draft / Pending final approval\nCreated: October 1, 2026\nVersion: 0.1\n\nThis document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.\n\nThe draft planned launch date for Project Aurora is November 15, 2026.\nThis draft was prepared to discuss feature development and internal review timelines.\nThe actual launch date must be confirmed against the subsequently issued Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 656,
+            "character_count": 654,
+            "md5_matches_drive_metadata": true,
+            "sha256": "2106d20028cc9f953020f10b4ec4382533fa33c2d44cbdb4ea10ae1f09c260ef",
+            "truncated_by_client": false
+          }
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [
+        "The final approved launch date is November 20, 2026.",
+        "The launch owner is Minji."
+      ],
+      "required_uncertainty": []
+    },
+    "metadata": {
+      "case_id": "all_required_reads_succeeded",
+      "origin": "observed_success",
+      "source_trace_id": null,
+      "input_sha256": "e1bc36a0fd9bdb8f4e783c9b38b215bb1e88851043deed69638d5fb2fa6cf1cf",
+      "suite": "regression"
+    }
+  },
+  {
+    "input": {
+      "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which should contain the approved launch date.",
+            "information_needed": "Final approved launch date and any statement of launch owner or approval authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Meeting notes may propose dates or owners that must be distinguished from final approval.",
+            "information_needed": "Proposed launch date and role assignments versus any final decision language."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This is Project Borealis, not Project Aurora.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Responsibilities document may name the launch owner separately from approver or inquiries owner.",
+            "information_needed": "Named launch owner for Project Aurora and distinction from other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "Draft plan may conflict with the final approval and should be compared, not treated as final.",
+            "information_needed": "Draft launch date and proposed owner so they can be distinguished from final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final launch approval document for Project Aurora.",
+          "information_needed": "Final approved launch date and any owner or approval language.",
+          "status": "read",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "text": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon\n\nThe final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence.\n\nApproval scope\nThis document is the final approval record for the launch schedule.\nThe approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 812,
+            "character_count": 810,
+            "md5_matches_drive_metadata": true,
+            "sha256": "823567d6d2a057a229cf0d7d0146568089eabd52110274360b8b33d8e06ce356",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes to distinguish proposals from final approval.",
+          "information_needed": "Proposed dates and role assignments versus final decision language.",
+          "status": "read",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "text": "Project Aurora — Launch Review Meeting Notes\nDocument ID: aurora-launch-meeting\nStatus: Review record / Launch date not finalized\nMeeting date: October 8, 2026\nCreated: October 8, 2026\n\nMeeting topic\nThe team reviewed the testing period for the November 15 launch proposed in the draft plan.\n\nA proposal was made to change the launch date for Project Aurora to November 18, 2026.\nNovember 18, 2026 is a date proposed during the meeting, not an approved launch date.\nThe meeting did not grant final approval for a launch date.\nThe final schedule will be announced in a separate Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 721,
+            "character_count": 719,
+            "md5_matches_drive_metadata": true,
+            "sha256": "ecd3709601ca70a363c8588c503c69671fb794b22be2fe8b319f7d11e0c708ab",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities document likely names the launch owner.",
+          "information_needed": "Launch owner distinct from approver and inquiries owner.",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "status": "failed",
+          "error_type": "SimulatedReadFailure",
+          "validation_error": "Controlled read failure for this counterfactual case."
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan to compare against final approval.",
+          "information_needed": "Draft launch date and proposed owner.",
+          "status": "read",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "text": "Project Aurora — Launch Plan Draft\nDocument ID: aurora-launch-draft\nStatus: Draft / Pending final approval\nCreated: October 1, 2026\nVersion: 0.1\n\nThis document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.\n\nThe draft planned launch date for Project Aurora is November 15, 2026.\nThis draft was prepared to discuss feature development and internal review timelines.\nThe actual launch date must be confirmed against the subsequently issued Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 656,
+            "character_count": 654,
+            "md5_matches_drive_metadata": true,
+            "sha256": "2106d20028cc9f953020f10b4ec4382533fa33c2d44cbdb4ea10ae1f09c260ef",
+            "truncated_by_client": false
+          }
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [
+        "The final approved launch date is November 20, 2026."
+      ],
+      "required_uncertainty": [
+        "The launch owner cannot be established from available reads."
+      ]
+    },
+    "metadata": {
+      "case_id": "owner_read_failed",
+      "origin": "derived_counterfactual",
+      "source_trace_id": null,
+      "input_sha256": "6ea95404d8a22dcb1495784355ee1066bc1ab9a0157975ccb6b0bedb78dd6ae8",
+      "suite": "regression"
+    }
+  },
+  {
+    "input": {
+      "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which should contain the approved launch date.",
+            "information_needed": "Final approved launch date and any statement of launch owner or approval authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Meeting notes may propose dates or owners that must be distinguished from final approval.",
+            "information_needed": "Proposed launch date and role assignments versus any final decision language."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This is Project Borealis, not Project Aurora.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Responsibilities document may name the launch owner separately from approver or inquiries owner.",
+            "information_needed": "Named launch owner for Project Aurora and distinction from other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "Draft plan may conflict with the final approval and should be compared, not treated as final.",
+            "information_needed": "Draft launch date and proposed owner so they can be distinguished from final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final launch approval document for Project Aurora.",
+          "information_needed": "Final approved launch date and any owner or approval language.",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "status": "failed",
+          "error_type": "SimulatedReadFailure",
+          "validation_error": "Controlled read failure for this counterfactual case."
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes to distinguish proposals from final approval.",
+          "information_needed": "Proposed dates and role assignments versus final decision language.",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "status": "failed",
+          "error_type": "SimulatedReadFailure",
+          "validation_error": "Controlled read failure for this counterfactual case."
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities document likely names the launch owner.",
+          "information_needed": "Launch owner distinct from approver and inquiries owner.",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "status": "failed",
+          "error_type": "SimulatedReadFailure",
+          "validation_error": "Controlled read failure for this counterfactual case."
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan to compare against final approval.",
+          "information_needed": "Draft launch date and proposed owner.",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "status": "failed",
+          "error_type": "SimulatedReadFailure",
+          "validation_error": "Controlled read failure for this counterfactual case."
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [],
+      "required_uncertainty": [
+        "Neither the final approved launch date nor the launch owner can be established."
+      ]
+    },
+    "metadata": {
+      "case_id": "all_reads_failed",
+      "origin": "derived_counterfactual",
+      "source_trace_id": null,
+      "input_sha256": "670cd405f85c7f96e13d79b3b65e4ea7da2993f593e89ce038187c87fa12b8a2",
+      "suite": "regression"
+    }
+  },
+  {
+    "input": {
+      "question": "Where will the launch event for Project Aurora take place?",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which should contain the approved launch date.",
+            "information_needed": "Final approved launch date and any statement of launch owner or approval authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Meeting notes may propose dates or owners that must be distinguished from final approval.",
+            "information_needed": "Proposed launch date and role assignments versus any final decision language."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This is Project Borealis, not Project Aurora.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Responsibilities document may name the launch owner separately from approver or inquiries owner.",
+            "information_needed": "Named launch owner for Project Aurora and distinction from other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "Draft plan may conflict with the final approval and should be compared, not treated as final.",
+            "information_needed": "Draft launch date and proposed owner so they can be distinguished from final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final launch approval document for Project Aurora.",
+          "information_needed": "Final approved launch date and any owner or approval language.",
+          "status": "read",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "text": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon\n\nThe final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence.\n\nApproval scope\nThis document is the final approval record for the launch schedule.\nThe approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 812,
+            "character_count": 810,
+            "md5_matches_drive_metadata": true,
+            "sha256": "823567d6d2a057a229cf0d7d0146568089eabd52110274360b8b33d8e06ce356",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes to distinguish proposals from final approval.",
+          "information_needed": "Proposed dates and role assignments versus final decision language.",
+          "status": "read",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "text": "Project Aurora — Launch Review Meeting Notes\nDocument ID: aurora-launch-meeting\nStatus: Review record / Launch date not finalized\nMeeting date: October 8, 2026\nCreated: October 8, 2026\n\nMeeting topic\nThe team reviewed the testing period for the November 15 launch proposed in the draft plan.\n\nA proposal was made to change the launch date for Project Aurora to November 18, 2026.\nNovember 18, 2026 is a date proposed during the meeting, not an approved launch date.\nThe meeting did not grant final approval for a launch date.\nThe final schedule will be announced in a separate Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 721,
+            "character_count": 719,
+            "md5_matches_drive_metadata": true,
+            "sha256": "ecd3709601ca70a363c8588c503c69671fb794b22be2fe8b319f7d11e0c708ab",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities document likely names the launch owner.",
+          "information_needed": "Launch owner distinct from approver and inquiries owner.",
+          "status": "read",
+          "title": "04_Aurora_Responsibilities.txt",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "text": "Project Aurora — Responsibilities\nDocument ID: aurora-responsibilities\nStatus: Final / Effective\nEffective date: October 13, 2026\nVersion: 1.0\n\nThe launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution.\n\nThe customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries.\n\nThe launch owner and customer inquiries owner are distinct roles.\nThis document defines role assignments; consult the Final Launch Approval for the launch schedule.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 676,
+            "character_count": 674,
+            "md5_matches_drive_metadata": true,
+            "sha256": "84bee15f299bfd5c3dd2190492bad30ca8638720bf7bb1257fd2111da015d357",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan to compare against final approval.",
+          "information_needed": "Draft launch date and proposed owner.",
+          "status": "read",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "text": "Project Aurora — Launch Plan Draft\nDocument ID: aurora-launch-draft\nStatus: Draft / Pending final approval\nCreated: October 1, 2026\nVersion: 0.1\n\nThis document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.\n\nThe draft planned launch date for Project Aurora is November 15, 2026.\nThis draft was prepared to discuss feature development and internal review timelines.\nThe actual launch date must be confirmed against the subsequently issued Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 656,
+            "character_count": 654,
+            "md5_matches_drive_metadata": true,
+            "sha256": "2106d20028cc9f953020f10b4ec4382533fa33c2d44cbdb4ea10ae1f09c260ef",
+            "truncated_by_client": false
+          }
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [],
+      "required_uncertainty": [
+        "The available documents do not establish the launch event venue. Do not assert that no venue exists."
+      ]
+    },
+    "metadata": {
+      "case_id": "venue_not_in_documents",
+      "origin": "derived_question",
+      "source_trace_id": null,
+      "input_sha256": "b974509acb6d8ad491b6bf993a89de22e471a158b2efb7889fd6ace499d512a2",
+      "suite": "regression"
+    }
+  },
+  {
+    "input": {
+      "question": "Who is the approver of Project Aurora's final launch approval, who is the launch owner, and are these distinct roles? Give a separate claim and an exact supporting quote for each fact.",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which should contain the approved launch date.",
+            "information_needed": "Final approved launch date and any statement of launch owner or approval authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Meeting notes may propose dates or owners that must be distinguished from final approval.",
+            "information_needed": "Proposed launch date and role assignments versus any final decision language."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This is Project Borealis, not Project Aurora.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Responsibilities document may name the launch owner separately from approver or inquiries owner.",
+            "information_needed": "Named launch owner for Project Aurora and distinction from other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "Draft plan may conflict with the final approval and should be compared, not treated as final.",
+            "information_needed": "Draft launch date and proposed owner so they can be distinguished from final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final launch approval document for Project Aurora.",
+          "information_needed": "Final approved launch date and any owner or approval language.",
+          "status": "read",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "text": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon\n\nThe final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence.\n\nApproval scope\nThis document is the final approval record for the launch schedule.\nThe approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 812,
+            "character_count": 810,
+            "md5_matches_drive_metadata": true,
+            "sha256": "823567d6d2a057a229cf0d7d0146568089eabd52110274360b8b33d8e06ce356",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes to distinguish proposals from final approval.",
+          "information_needed": "Proposed dates and role assignments versus final decision language.",
+          "status": "read",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "text": "Project Aurora — Launch Review Meeting Notes\nDocument ID: aurora-launch-meeting\nStatus: Review record / Launch date not finalized\nMeeting date: October 8, 2026\nCreated: October 8, 2026\n\nMeeting topic\nThe team reviewed the testing period for the November 15 launch proposed in the draft plan.\n\nA proposal was made to change the launch date for Project Aurora to November 18, 2026.\nNovember 18, 2026 is a date proposed during the meeting, not an approved launch date.\nThe meeting did not grant final approval for a launch date.\nThe final schedule will be announced in a separate Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 721,
+            "character_count": 719,
+            "md5_matches_drive_metadata": true,
+            "sha256": "ecd3709601ca70a363c8588c503c69671fb794b22be2fe8b319f7d11e0c708ab",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities document likely names the launch owner.",
+          "information_needed": "Launch owner distinct from approver and inquiries owner.",
+          "status": "read",
+          "title": "04_Aurora_Responsibilities.txt",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "text": "Project Aurora — Responsibilities\nDocument ID: aurora-responsibilities\nStatus: Final / Effective\nEffective date: October 13, 2026\nVersion: 1.0\n\nThe launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution.\n\nThe customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries.\n\nThe launch owner and customer inquiries owner are distinct roles.\nThis document defines role assignments; consult the Final Launch Approval for the launch schedule.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 676,
+            "character_count": 674,
+            "md5_matches_drive_metadata": true,
+            "sha256": "84bee15f299bfd5c3dd2190492bad30ca8638720bf7bb1257fd2111da015d357",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan to compare against final approval.",
+          "information_needed": "Draft launch date and proposed owner.",
+          "status": "read",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "text": "Project Aurora — Launch Plan Draft\nDocument ID: aurora-launch-draft\nStatus: Draft / Pending final approval\nCreated: October 1, 2026\nVersion: 0.1\n\nThis document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.\n\nThe draft planned launch date for Project Aurora is November 15, 2026.\nThis draft was prepared to discuss feature development and internal review timelines.\nThe actual launch date must be confirmed against the subsequently issued Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 656,
+            "character_count": 654,
+            "md5_matches_drive_metadata": true,
+            "sha256": "2106d20028cc9f953020f10b4ec4382533fa33c2d44cbdb4ea10ae1f09c260ef",
+            "truncated_by_client": false
+          }
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [
+        "Seoyeon is the approver.",
+        "Minji is the launch owner.",
+        "The approver and launch owner are distinct roles."
+      ],
+      "required_uncertainty": []
+    },
+    "metadata": {
+      "case_id": "approver_owner_distinction",
+      "origin": "new_relationship_probe",
+      "source_trace_id": null,
+      "input_sha256": "6cb86575984c8bdb52cbe0b520af171c8f099e961b4b16f03afa7f1842b7f087",
+      "suite": "relationship_target"
+    }
+  },
+  {
+    "input": {
+      "question": "Who owns launch execution and who owns customer inquiries for Project Aurora? Explain whether these are distinct roles. Support each fact with an exact quote.",
+      "candidates": [
+        {
+          "id": "aurora-final-approval",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "url": "https://example.invalid/drive/aurora-final-approval",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-meeting",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "url": "https://example.invalid/drive/aurora-meeting",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "borealis-final-schedule",
+          "title": "05_Borealis_Final_Launch_Schedule.txt",
+          "url": "https://example.invalid/drive/borealis-final-schedule",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-responsibilities",
+          "title": "04_Aurora_Responsibilities.txt",
+          "url": "https://example.invalid/drive/aurora-responsibilities",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        },
+        {
+          "id": "aurora-draft",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "url": "https://example.invalid/drive/aurora-draft",
+          "mime_type": "text/plain",
+          "modified_time": "2026-10-17T00:35:08.000Z"
+        }
+      ],
+      "candidate_review": {
+        "decisions": [
+          {
+            "document_id": "aurora-final-approval",
+            "decision": "select",
+            "reason": "Filename indicates the final launch approval for Project Aurora, which should contain the approved launch date.",
+            "information_needed": "Final approved launch date and any statement of launch owner or approval authority."
+          },
+          {
+            "document_id": "aurora-meeting",
+            "decision": "select",
+            "reason": "Meeting notes may propose dates or owners that must be distinguished from final approval.",
+            "information_needed": "Proposed launch date and role assignments versus any final decision language."
+          },
+          {
+            "document_id": "borealis-final-schedule",
+            "decision": "exclude",
+            "reason": "This is Project Borealis, not Project Aurora.",
+            "information_needed": ""
+          },
+          {
+            "document_id": "aurora-responsibilities",
+            "decision": "select",
+            "reason": "Responsibilities document may name the launch owner separately from approver or inquiries owner.",
+            "information_needed": "Named launch owner for Project Aurora and distinction from other roles."
+          },
+          {
+            "document_id": "aurora-draft",
+            "decision": "select",
+            "reason": "Draft plan may conflict with the final approval and should be compared, not treated as final.",
+            "information_needed": "Draft launch date and proposed owner so they can be distinguished from final approval."
+          }
+        ],
+        "basis": "question_and_file_metadata_only",
+        "reason_kind": "model_declared_before_fetch"
+      },
+      "read_documents": [
+        {
+          "document_id": "aurora-final-approval",
+          "selection_reason": "Final launch approval document for Project Aurora.",
+          "information_needed": "Final approved launch date and any owner or approval language.",
+          "status": "read",
+          "title": "03_Aurora_Final_Launch_Approval.txt",
+          "source_url": "https://example.invalid/drive/aurora-final-approval",
+          "text": "Project Aurora — Final Launch Approval\nDocument ID: aurora-launch-final\nStatus: Final approval / Effective\nApproval date: October 14, 2026\nVersion: 1.0\nApprover: Seoyeon\n\nThe final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence.\n\nApproval scope\nThis document is the final approval record for the launch schedule.\nThe approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 812,
+            "character_count": 810,
+            "md5_matches_drive_metadata": true,
+            "sha256": "823567d6d2a057a229cf0d7d0146568089eabd52110274360b8b33d8e06ce356",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-meeting",
+          "selection_reason": "Meeting notes to distinguish proposals from final approval.",
+          "information_needed": "Proposed dates and role assignments versus final decision language.",
+          "status": "read",
+          "title": "02_Aurora_Launch_Review_Meeting_Notes.txt",
+          "source_url": "https://example.invalid/drive/aurora-meeting",
+          "text": "Project Aurora — Launch Review Meeting Notes\nDocument ID: aurora-launch-meeting\nStatus: Review record / Launch date not finalized\nMeeting date: October 8, 2026\nCreated: October 8, 2026\n\nMeeting topic\nThe team reviewed the testing period for the November 15 launch proposed in the draft plan.\n\nA proposal was made to change the launch date for Project Aurora to November 18, 2026.\nNovember 18, 2026 is a date proposed during the meeting, not an approved launch date.\nThe meeting did not grant final approval for a launch date.\nThe final schedule will be announced in a separate Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 721,
+            "character_count": 719,
+            "md5_matches_drive_metadata": true,
+            "sha256": "ecd3709601ca70a363c8588c503c69671fb794b22be2fe8b319f7d11e0c708ab",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-responsibilities",
+          "selection_reason": "Responsibilities document likely names the launch owner.",
+          "information_needed": "Launch owner distinct from approver and inquiries owner.",
+          "status": "read",
+          "title": "04_Aurora_Responsibilities.txt",
+          "source_url": "https://example.invalid/drive/aurora-responsibilities",
+          "text": "Project Aurora — Responsibilities\nDocument ID: aurora-responsibilities\nStatus: Final / Effective\nEffective date: October 13, 2026\nVersion: 1.0\n\nThe launch owner for Project Aurora is Minji.\nMinji is responsible for launch readiness checks and launch execution.\n\nThe customer inquiries owner for Project Aurora is Junho.\nJunho is responsible for receiving and answering customer inquiries.\n\nThe launch owner and customer inquiries owner are distinct roles.\nThis document defines role assignments; consult the Final Launch Approval for the launch schedule.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 676,
+            "character_count": 674,
+            "md5_matches_drive_metadata": true,
+            "sha256": "84bee15f299bfd5c3dd2190492bad30ca8638720bf7bb1257fd2111da015d357",
+            "truncated_by_client": false
+          }
+        },
+        {
+          "document_id": "aurora-draft",
+          "selection_reason": "Draft plan to compare against final approval.",
+          "information_needed": "Draft launch date and proposed owner.",
+          "status": "read",
+          "title": "01_Aurora_Launch_Plan_Draft.txt",
+          "source_url": "https://example.invalid/drive/aurora-draft",
+          "text": "Project Aurora — Launch Plan Draft\nDocument ID: aurora-launch-draft\nStatus: Draft / Pending final approval\nCreated: October 1, 2026\nVersion: 0.1\n\nThis document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.\n\nThe draft planned launch date for Project Aurora is November 15, 2026.\nThis draft was prepared to discuss feature development and internal review timelines.\nThe actual launch date must be confirmed against the subsequently issued Final Launch Approval.\n\nThis is a fictional document created for search and answer evaluation. It does not describe real business operations.\n",
+          "integrity": {
+            "byte_count": 656,
+            "character_count": 654,
+            "md5_matches_drive_metadata": true,
+            "sha256": "2106d20028cc9f953020f10b4ec4382533fa33c2d44cbdb4ea10ae1f09c260ef",
+            "truncated_by_client": false
+          }
+        }
+      ]
+    },
+    "expected_output": {
+      "required_claims": [
+        "Minji owns launch execution.",
+        "Junho owns customer inquiries.",
+        "Launch owner and customer inquiries owner are distinct roles."
+      ],
+      "required_uncertainty": []
+    },
+    "metadata": {
+      "case_id": "launch_customer_role_distinction",
+      "origin": "new_relationship_probe",
+      "source_trace_id": null,
+      "input_sha256": "f7bd0f508fda2f8b38b9f4b5bb95a09fe58ce60157b9f8eb35bf058b89a81444",
+      "suite": "relationship_target"
+    }
+  }
+]

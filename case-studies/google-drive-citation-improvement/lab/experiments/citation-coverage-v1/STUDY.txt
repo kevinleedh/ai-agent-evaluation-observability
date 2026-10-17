@@ -1,0 +1,58 @@
+CITATION COVERAGE EXPERIMENT
+
+Observed defect: a true statement about distinct roles was paired with quotes
+that named an approver and described a responsibilities document, but did not
+establish the stated distinction. The source contained a more suitable sentence.
+
+Hypothesis: a general instruction to make atomic claims and verify complete
+coverage by each claim's attached quotations improves source-grounded answers.
+
+The baseline is the prior partial-answer candidate, not the earlier baseline.
+The candidate adds only the claim-to-quote coverage block. No example answer,
+person name, date, or target quotation is added to the answer prompt.
+
+Seven frozen final-answer cases: five previous regression cases and two new
+questions explicitly requiring role distinctions. Three fresh trials per case
+and variant produce 42 answers. Both variants use the same Grok model, settings,
+structured submission tool, reconstructed history, evidence validator and judge.
+References are supplied to the judge only. Tool bodies and statuses stay fixed.
+No Google Drive/MCP request is made by this experiment.
+
+The evaluator checks every claim ID and its own quotes. Faithful paraphrases
+and direct logical entailment are valid; the judge should not demand verbatim
+wording between a claim and evidence. Seven reference checks include the actual
+insufficient-quote answer, that same answer with an appropriate additional
+quote, a missing supported fact, justified abstention, wrong-role inference,
+and a logical paraphrase. Any reference disagreement stops the comparison.
+
+Primary decision: complete attached-quote support plus task success and code
+integrity. Required relationships cannot be omitted just to avoid bad citations.
+Check all regression cases before promoting the prompt. Save all outputs and
+failures. Do not declare improvement if the baseline also succeeds.
+
+Scope: small exploratory synthetic-document study at the final-answer checkpoint.
+Same-model judge and hand-authored reference checks do not replace independent
+human review. The evaluator is refined from the previous experiment and shared
+by BOTH new variants, so old and new study aggregate pass rates are not directly
+comparable. No held-out generalization or live retrieval reliability claim.
+
+REPRODUCE
+cd lab
+.venv/bin/python citation_experiment.py --trials 3
+
+FILES
+baseline.txt / candidate.txt: the two frozen answer prompts.
+judge.txt: one frozen judge rubric shared by both variants.
+dataset.json: evidence snapshots, case provenance and evaluator-only references.
+manifest.json: hashes, hypothesis and settings.
+../../citation_experiment.py: experiment runner.
+../../runs/citation-experiments/: private outputs and Langfuse links.
+
+ADDED ANSWER INSTRUCTION
+Before submitting, check claim-to-quote coverage:
+- Write each claim as one independently checkable fact. Split combined facts when their evidence differs.
+- Compare the whole claim with ONLY its attached quotes. A fact elsewhere in the document does not repair an insufficient citation.
+- Select complete verbatim sentences or code excerpts that directly state or logically entail every factual part of the claim. Include adjacent relevant sentences when needed, within the existing quote-length limit.
+- Names and role labels alone do not establish an additional relationship, distinction, or authority rule. Cite text that establishes that relationship, or a set of quotes that jointly entails it.
+- If support is incomplete, find a better passage, add the necessary quote, split the claim, or narrow it to what the quotes support.
+- Preserve all requested supported facts. Do not drop a requested relationship or move it to limitations merely to avoid providing its citation.

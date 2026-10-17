@@ -1,0 +1,6 @@
+{
+  "server_url": "https://mcp.pipedream.net/v2",
+  "folder_id": "YOUR_TEST_FOLDER_ID",
+  "callback_port": 8766,
+  "environment": "drive-mcp-learning"
+}

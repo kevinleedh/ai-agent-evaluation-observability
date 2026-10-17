@@ -1,0 +1,38 @@
+CITATION COVERAGE REVISION 2: RELEVANCE GUARD
+
+TRIGGER
+The first citation-instruction candidate passed explicit role questions, but
+added unrelated schedule claims when asked about an unknown venue. Some extra
+claims exceeded their quotations. Another response used broad document-scope
+wording. This revision retains the citation check and adds only a relevance rule.
+
+COMPARISON
+Baseline: citation-coverage-v1/candidate.txt.
+Candidate: that exact baseline plus the relevance/no-filler block below.
+Seven frozen cases, identical bodies/statuses and judge, three fresh independent
+trials per case and variant. Both variants generate new outputs. No Drive calls.
+The two explicit role questions prevent success by simply omitting distinctions.
+
+EVALUATOR
+Reuse the seven successful reference checks from the completed first comparison
+because their dataset, model settings, expected labels and judge hash match.
+The first comparison found some potentially over-strict header/project-scope
+flags. Raw LLM decisions remain visible and require review, not blind acceptance.
+The original failed role quotation and the repaired quotation are explicitly
+checked before comparison. No known factual answer is inserted into the answer
+prompt. References go only to the judge.
+
+DECISION
+Require complete records, no judge errors, all candidate quote/task/code checks
+passed, and no observed critical regression before applying to the local lab.
+A passing pilot alone is not proof of general improvement. If both variants
+succeed, report no demonstrated pass-rate lift. Preserve unsuccessful revisions.
+
+REPRODUCE
+cd lab
+.venv/bin/python citation_experiment.py --study-version 2 --trials 3
+.venv/bin/python report_citation_experiment.py --study-version 2
+
+ADDED RULE
+Keep the answer scoped to the user's requested facts and relationships. Do not add unrelated background claims merely to show what was read.
+When no requested fact is supported, return empty claims and explain the evidence gap in limitations; do not substitute facts about other topics. Keep supported requested facts when only another requested part is unavailable.

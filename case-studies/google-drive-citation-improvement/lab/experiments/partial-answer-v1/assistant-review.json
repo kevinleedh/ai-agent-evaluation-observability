@@ -1,0 +1,22 @@
+[
+  {
+    "variant": "candidate",
+    "case_id": "all_required_reads_succeeded",
+    "trial": 2,
+    "original_trace_id": null,
+    "judge_trace_id": "e5f700a2e48c98385a165cad7dc0bb5f",
+    "reviewer": "Codex assistant; not independent human review",
+    "assessment": "Likely citation-coverage defect. The role claim includes the distinctness of approver and owner, but attached quotes only name the approver and describe the Responsibilities document. The read approval body contains an explicit distinct-roles sentence that was not quoted. The required date and owner themselves are correct.",
+    "llm_score_overwritten": false
+  },
+  {
+    "variant": "baseline",
+    "case_id": "owner_read_failed",
+    "trial": 2,
+    "original_trace_id": null,
+    "judge_trace_id": "4d9d0d21c491a8dc7e002743cd9ada62",
+    "reviewer": "Codex assistant; not independent human review",
+    "assessment": "Disputed judge flag / likely false positive. The quoted statement that this approval supersedes both earlier schedules reasonably supports precedence over those conflicting schedules. Do not count this as a confirmed application defect without human adjudication.",
+    "llm_score_overwritten": false
+  }
+]

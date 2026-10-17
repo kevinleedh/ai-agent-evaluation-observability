@@ -1,0 +1,27 @@
+INSPECT THE CLAIM AND ITS QUOTE
+
+HISTORICAL FAILURE (reference example, not a paired new trial)
+Claim: The approver and launch owner are distinct roles.
+Attached quotes named the approver and described the Responsibilities document.
+Those quotes did not establish the distinction. The original answer is retained in the previous study.
+
+NEW MODEL OUTPUT UNDER THE FINAL PROMPT
+Who is the approver of Project Aurora's final launch approval, who is the launch owner, and are these distinct roles? Give a separate claim and an exact supporting quote for each fact.
+
+Claim: The approver of Project Aurora's final launch approval is Seoyeon.
+Quote: Approver: Seoyeon
+
+Claim: The launch owner for Project Aurora is Minji.
+Quote: The launch owner for Project Aurora is Minji.
+
+Claim: The approver and launch owner are distinct roles.
+Quote: The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.
+
+The distinction is now supported by the explicit distinct-roles sentence.
+This is a newly generated answer, not a manual edit of the old answer.
+The fair comparison is the fresh baseline/candidate trial table in RESULTS.txt.
+The two relationship probes passed all six final-candidate trials. Their baseline trials also passed;
+do not claim a measured relationship-probe pass-rate lift in the final revision.
+
+READBACK
+Both sampled Langfuse answer prompts/outputs and judge outputs matched the local frozen records.

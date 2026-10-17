@@ -1,0 +1,276 @@
+{
+  "source_report": "lab/runs/citation-experiments-v2/latest.json",
+  "scope": "Fresh final-answer generations at a reconstructed checkpoint with frozen evidence; no live Drive requests.",
+  "summary": [
+    {
+      "variant": "baseline",
+      "trials": 21,
+      "code_passes": 21,
+      "citation_passes": 19,
+      "task_passes": 21,
+      "grounding_passes": 19,
+      "combined_passes": 19,
+      "judge_errors": 0,
+      "relationship_targets": 6,
+      "relationship_target_passes": 6,
+      "median_answer_latency_seconds": 3.159
+    },
+    {
+      "variant": "candidate",
+      "trials": 21,
+      "code_passes": 21,
+      "citation_passes": 21,
+      "task_passes": 21,
+      "grounding_passes": 21,
+      "combined_passes": 21,
+      "judge_errors": 0,
+      "relationship_targets": 6,
+      "relationship_target_passes": 6,
+      "median_answer_latency_seconds": 2.729
+    }
+  ],
+  "case_summary": [
+    {
+      "case_id": "all_reads_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_reads_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "all_required_reads_succeeded",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approval_read_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "approver_owner_distinction",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "launch_customer_role_distinction",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 2,
+      "task_passes": 3,
+      "combined_passes": 2,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "owner_read_failed",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "baseline",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 2,
+      "task_passes": 3,
+      "combined_passes": 2,
+      "judge_errors": 0
+    },
+    {
+      "case_id": "venue_not_in_documents",
+      "variant": "candidate",
+      "trials": 3,
+      "code_passes": 3,
+      "citation_passes": 3,
+      "task_passes": 3,
+      "combined_passes": 3,
+      "judge_errors": 0
+    }
+  ],
+  "flagged_answers": [
+    {
+      "variant": "baseline",
+      "trial": 2,
+      "case_id": "venue_not_in_documents",
+      "trace_id": null,
+      "submission": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "claim": "The read Project Aurora documents do not state where the launch event will take place.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "The final approved launch date for Project Aurora is November 20, 2026.\nThis approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.\nIf launch dates conflict across documents, this Final Launch Approval takes precedence."
+              }
+            ]
+          }
+        ],
+        "limitations": "None of the successfully read Project Aurora documents state a venue or location for the launch event. The final approval establishes only the launch date of November 20, 2026, and the other Aurora documents address draft or proposed dates and role assignments, not a place."
+      },
+      "judge": {
+        "grounded": false,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "c1",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote only states the approved date and that this approval supersedes earlier schedules. It does not mention venue or show that the other read Aurora documents omit a location, so it does not support the full claim."
+          }
+        ],
+        "reason": "The answer correctly leaves the venue unresolved because none of the successful reads name a launch location, but the sole attached quote is only about the date and precedence and does not support that absence claim. Citation failure does not overturn task success.",
+        "failure_types": [
+          "insufficient_attached_quote"
+        ],
+        "citation_pass": false
+      },
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores."
+    },
+    {
+      "variant": "baseline",
+      "trial": 3,
+      "case_id": "owner_read_failed",
+      "trace_id": null,
+      "submission": {
+        "claims": [
+          {
+            "claim_id": "aurora_final_date",
+            "claim": "The final approved launch date for Project Aurora is November 20, 2026.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "The final approved launch date for Project Aurora is November 20, 2026."
+              },
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "If launch dates conflict across documents, this Final Launch Approval takes precedence."
+              }
+            ]
+          },
+          {
+            "claim_id": "aurora_date_supersedes",
+            "claim": "The November 20, 2026 approval supersedes the October 1, 2026 draft schedule and the October 8, 2026 meeting proposal.",
+            "evidence": [
+              {
+                "document_id": "aurora-final-approval",
+                "quote": "This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes."
+              }
+            ]
+          }
+        ],
+        "limitations": "The launch owner for Project Aurora is not established. The Final Launch Approval states that the approver and launch owner are distinct roles and that role assignments are in a separate Responsibilities document. That Responsibilities file failed to read, so no supported launch-owner name is available. The draft date of November 15, 2026 and the meeting proposal of November 18, 2026 are not final."
+      },
+      "judge": {
+        "grounded": false,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states verbatim that Project Aurora’s final approved launch date is November 20, 2026, and the precedence quote confirms that approval controls conflicting dates."
+          },
+          {
+            "claim_id": "aurora_date_supersedes",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote supports supersession of the October 1 draft schedule and October 8 meeting proposal, but it only says “this approval” and does not identify that approval as November 20, 2026."
+          }
+        ],
+        "reason": "The requested launch date is correctly stated and the unknown launch owner is explicitly left unresolved from the failed responsibilities read and successful approval text. Grounding fails solely because the supersession claim\\u2019s attached quote does not establish the November 20 date.",
+        "failure_types": [
+          "insufficient_attached_quote"
+        ],
+        "citation_pass": false
+      },
+      "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores."
+    }
+  ],
+  "pilot_eligible": true,
+  "observed_suite_lift": true,
+  "experiments": [],
+  "conclusion": "The revised prompt has a higher observed combined pass count in this exploratory suite.",
+  "limits": "Exploratory hand-selected synthetic-document cases, same-model judge, no independent held-out set. Refined evaluator is shared by both fresh variants; do not compare its pass rate directly with the previous study."
+}

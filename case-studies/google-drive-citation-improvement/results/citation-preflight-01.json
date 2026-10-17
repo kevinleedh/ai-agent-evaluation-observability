@@ -1,0 +1,242 @@
+{
+  "study": {
+    "hypothesis": "Atomic claims and an explicit whole-claim/attached-quote check improve citation support without reducing required fact coverage.",
+    "scope": "Fresh final-answer generations at a reconstructed checkpoint with frozen evidence; no live Drive requests.",
+    "baseline_source": "lab/experiments/partial-answer-v1/candidate.txt",
+    "changed_variable": "Only the added claim-to-quote coverage instruction block.",
+    "dataset_sha256": "6058f085a9cb667f94332f64a15f89d83ed1c471ccf3d062c62c1bed953282ff",
+    "baseline_sha256": "ed6e3bfa95d513168d0b100ea1a8f1d655cf0dadb12e065c86f3330e26c2ab58",
+    "candidate_sha256": "e0d814acc7e527bdbc746050940027761251a0db319822c93faf962ae1b7721e",
+    "judge_sha256": "dc4876233ab5838e61161582265120ae06a0a2e6f9f663fcbb462d8721370ba7",
+    "answer_model": "grok-4.7",
+    "judge_model": "grok-4.7",
+    "parameters": {
+      "reasoning": {
+        "effort": "low"
+      },
+      "max_output_tokens": 6000
+    },
+    "previous_response_id": null,
+    "automatic_retries": 0,
+    "trials_per_case_variant": 3,
+    "case_count": 7,
+    "target_case_ids": [
+      "approver_owner_distinction",
+      "launch_customer_role_distinction"
+    ],
+    "primary_measure": "All emitted claims fully supported by attached quotes AND task success AND code integrity.",
+    "decision_policy": "No unconditional promotion with a new regression, missing result, or judge disagreement on reference checks. Report no demonstrated lift if the baseline also succeeds.",
+    "limits": "Exploratory hand-selected synthetic-document cases, same-model judge, no independent held-out set. Refined evaluator is shared by both fresh variants; do not compare its pass rate directly with the previous study."
+  },
+  "status": "reference_disagreement",
+  "calibration": [
+    {
+      "name": "actual_insufficient_role_quotes",
+      "expected": {
+        "grounded": false,
+        "task_success": true,
+        "citation_pass": false
+      },
+      "actual": {
+        "grounded": false,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date for Project Aurora is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora_approval_precedence",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote supports superseding the October 1 draft and October 8 proposal, but not the additional statement that the approval takes precedence if launch dates conflict."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote directly names Minji as the launch owner for Project Aurora."
+          },
+          {
+            "claim_id": "aurora_roles_distinct",
+            "quote_supports_full_claim": false,
+            "reason": "Approver: Seoyeon and the responsibilities quote do not establish that the approver and launch owner are distinct roles; that sentence was not attached."
+          }
+        ],
+        "reason": "Required launch date and owner are correctly claimed and cited, and limitations match the reads. Two extra claims include meanings not covered by their attached quotes, so the answer is not fully grounded.",
+        "failure_types": [
+          "insufficient_attached_quote"
+        ],
+        "citation_pass": false
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "same_answer_with_complete_role_quote",
+      "expected": {
+        "grounded": true,
+        "task_success": true,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date for Project Aurora is November 20, 2026."
+          },
+          {
+            "claim_id": "aurora_approval_precedence",
+            "quote_supports_full_claim": true,
+            "reason": "The quote says this approval supersedes the October 1 draft schedule and the October 8 meeting proposal, which entails precedence over those schedules."
+          },
+          {
+            "claim_id": "aurora_launch_owner",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote directly names Minji as the launch owner for Project Aurora."
+          },
+          {
+            "claim_id": "aurora_roles_distinct",
+            "quote_supports_full_claim": true,
+            "reason": "Quotes establish that the approver and launch owner are distinct roles, label Seoyeon as Approver, and state that the Responsibilities document assigns roles and points to the Final Launch Approval for the schedule."
+          }
+        ],
+        "reason": "Every claim is fully supported by its attached quotes, and the limitation statements match the successful reads.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "supported_date_but_missing_owner",
+      "expected": {
+        "grounded": true,
+        "task_success": false,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": false,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": true,
+            "reason": "The attached quote states the final approved launch date for Project Aurora is November 20, 2026, matching the claim in full."
+          }
+        ],
+        "reason": "The date claim is fully supported by its attached quote. The successfully read Responsibilities document establishes that the launch owner is Minji, but that requested fact is absent from the claims.",
+        "failure_types": [
+          "missing_supported_fact"
+        ],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "missing_answer",
+      "expected": {
+        "grounded": true,
+        "task_success": false,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": false,
+        "claim_checks": [],
+        "reason": "No claims were submitted, so there are no citation failures and grounding is not failed by a missing answer. The successful reads support both requested facts—the final approved launch date November 20, 2026 and launch owner Minji—so an empty answer is an unjustified abstention.",
+        "failure_types": [
+          "unjustified_abstention",
+          "missing_supported_fact"
+        ],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "no_reads_justified_abstention",
+      "expected": {
+        "grounded": true,
+        "task_success": true,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": true,
+        "task_success": true,
+        "claim_checks": [],
+        "reason": "No claims were submitted. Read records show every selected document read failed, so the limitation that neither the approved launch date nor the launch owner can be verified is supported. Empty claims are justified when no requested fact has a successful read.",
+        "failure_types": [],
+        "citation_pass": true
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "wrong_owner_from_approver_label",
+      "expected": {
+        "grounded": false,
+        "task_success": false,
+        "citation_pass": false
+      },
+      "actual": {
+        "grounded": false,
+        "task_success": false,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_final_date",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote only names Seoyeon as Approver. It does not say Seoyeon is the launch owner; the same document states the approver and launch owner are distinct roles."
+          }
+        ],
+        "reason": "The sole claim treats the named approver as the launch owner, which the attached quote does not establish. The reads support a November 20, 2026 final launch date and Minji as launch owner, neither of which appears in the answer.",
+        "failure_types": [
+          "insufficient_attached_quote",
+          "missing_supported_fact",
+          "wrong_authority_or_role"
+        ],
+        "citation_pass": false
+      },
+      "matched": true,
+      "trace_url": null
+    },
+    {
+      "name": "supersedes_entails_precedence",
+      "expected": {
+        "grounded": true,
+        "task_success": false,
+        "citation_pass": true
+      },
+      "actual": {
+        "grounded": false,
+        "task_success": false,
+        "claim_checks": [
+          {
+            "claim_id": "aurora_approval_precedence",
+            "quote_supports_full_claim": false,
+            "reason": "The attached quote supports superseding the October 1 draft schedule and the October 8 meeting proposal, but it does not state that the approval takes precedence if launch dates conflict. That additional meaning is absent from the attached quote."
+          }
+        ],
+        "reason": "The only claim's attached quote does not cover the conflict-precedence clause, and the answer omits the requested final launch date (November 20, 2026) and launch owner (Minji), both supported by successful reads.",
+        "failure_types": [
+          "insufficient_attached_quote",
+          "missing_supported_fact"
+        ],
+        "citation_pass": false
+      },
+      "matched": false,
+      "trace_url": null
+    }
+  ],
+  "experiments": [],
+  "records": [],
+  "summary": [],
+  "public_export": {
+    "source_file": "runs/citation-experiments/20261017T034939Z.json",
+    "source_sha256": "3732e2dd882ea975dbb3e89512e328cc3a9d9726829ed12e2c103ad674b4231f",
+    "changes": "Drive IDs and URLs pseudonymized; account/trace links removed; input hashes recomputed; answer wording, full evidence text, scores and judge reasons retained."
+  }
+}

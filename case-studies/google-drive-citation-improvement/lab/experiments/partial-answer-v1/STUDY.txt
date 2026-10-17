@@ -1,0 +1,119 @@
+Drive failure analysis and controlled answer-recovery experiment
+
+QUESTION
+Does explicitly requiring independent treatment of each requested fact reduce
+unnecessary whole-answer abstention when one document read fails?
+
+OBSERVED FAILURE
+Source trace: 15557ecfdbbf8a95f1b2d010d4c57bfd
+The final approval read failed, but Responsibilities was read successfully and
+established Minji as the launch owner. The model returned an empty claims array.
+It mentioned the owner in limitations instead of supplying an evidence-linked
+answer to the supported part of the question.
+
+ROOT-CAUSE ASSESSMENT
+There are two distinct issues: the download did not produce an acceptable file
+resource, and the final answer omitted a fact supported by a successful read.
+The old prompt's broad empty-answer instruction is a plausible contributor to
+the latter. It is a hypothesis, not a proven sole cause. Earlier live success
+after several simultaneous changes did not isolate the prompt's effect.
+
+REGISTERED CHANGE
+baseline.txt is the actual system prompt retrieved from the historical failure
+trace. candidate.txt is the existing updated Drive prompt. A preparation check
+ensures the only difference is replacement of the empty-answer instruction
+with explicit per-fact partial-answer instructions. No other application code
+or live Drive request changes are being compared in this study.
+
+FIVE FROZEN CASES
+1. approval_read_failed: actual recorded failure state.
+2. all_required_reads_succeeded: actual successful evidence state.
+3. owner_read_failed: controlled counterfactual of case 2.
+4. all_reads_failed: controlled counterfactual of case 2.
+5. venue_not_in_documents: new question using case 2's successful bodies.
+Derived cases are labelled; they are not represented as observed incidents.
+
+METHOD
+Reconstruct list, review and read exchanges from saved state and then run one
+new final-answer model call. Bodies and read statuses are copied unchanged.
+Historical tool-call timing, batching and every prior token are not replayed.
+Both variants receive the same reconstructed messages except the system rule.
+Only submit_answer is offered at this checkpoint. No Google Drive/MCP calls
+are made, and there is no automatic retry or corrective reprompt.
+
+Use the same Grok model ID, reasoning setting, token limit, submission schema,
+evidence validator, judge model and judge rubric. Start each request without a
+previous_response_id. Run each variant three times per case, alternating which
+variant runs first between rounds. The provider's model alias may change over
+time, so save provider IDs, timestamps, usage and prompt/data/rubric hashes.
+
+Reference answers and expected outcomes are evaluator-only data. They are
+excluded from answer-model messages. Download URLs and OAuth credentials are
+excluded from the frozen cases. Experiments and document bodies are sent to
+the already configured private Langfuse project and xAI connection.
+
+EVALUATION
+code_evidence_integrity: schema, successful-read IDs, quote presence; an empty
+answer can pass this check, so it is not a task-completion score.
+llm_grounding: semantic support for claims and limitations.
+llm_task_success: supported requested facts in claims plus justified uncertainty.
+study_pass: all three above pass. evaluation_completed is tracked separately;
+judge/API failures must not silently count as correct answers.
+
+The same-model judge is blinded to variant names. Before A/B, six hand-authored
+reference checks test obvious correct, wrong and over-abstaining submissions.
+These are limited sanity checks, not independent human calibration. A failed
+reference check stops the study. User review of final comparisons remains useful.
+
+DECISION RULE AND LIMITS
+Compare recovery cases by per-case pass counts; also inspect full-evidence and
+justified-abstention controls. Any new critical failure or evidence-integrity
+failure prevents an unqualified recommendation. Do not claim improvement if
+both variants already pass. Keep an inconclusive or negative result.
+Five hand-selected cases and three trials are exploratory. There is no held-out
+evaluation set or statistical proof of production performance. This experiment
+does not establish live MCP reliability or compare the full agent's selection
+and retrieval behavior. Those require a later integration experiment.
+
+FILES
+dataset.json: input snapshots, evaluator references and case provenance.
+manifest.json: hypothesis, scope, decision rule and artifact hashes.
+historical-review.json: collected historical statuses and focused classifications.
+judge.txt: original rubric (v1; missing metadata context, superseded).
+judge-v2.txt: corrected active rubric, allowing metadata-only filename facts.
+manifest-v2.json: active evaluator version; original manifest is retained.
+reference-label-audit.json: correction to an initially ambiguous sanity-check label.
+../../drive_experiment.py: reproducible SDK experiment runner.
+../../test_drive_experiment.py: leakage, failed-evidence and scoring checks.
+../../runs/experiments/: private outputs, scores and Langfuse experiment links.
+
+RUN AGAIN
+cd lab
+.venv/bin/python drive_experiment.py --trials 3
+
+VIEW
+Langfuse environment: drive-mcp-experiments
+Dataset: drive-partial-answer-v1
+Experiments: timestamp-baseline-r1 / timestamp-candidate-r1, then r2 and r3.
+Each repetition is a separate run. Compare matching cases and open their traces.
+Scores are produced by evaluator functions in the local SDK runner. This does
+not silently create or change hosted UI evaluator configurations or rules.
+
+EVALUATOR CORRECTION DURING THE FIRST EXPERIMENT
+The v1 judge received read records but not the candidate listing. It incorrectly
+marked mentions of an unread file name as unsupported, even though the answer
+model had seen that file name in the listing. Those are evaluator-input errors.
+The v2 judge receives the same candidate metadata as the answer model and may
+use it only for names/IDs, never unread document contents. Both prompt variants
+are rescored using their existing saved submissions, without regeneration.
+A seventh sanity check covers a listed-but-unread filename. Original v1 results
+are retained for audit and are not the final comparison.
+
+RESCORE EXISTING ANSWERS
+.venv/bin/python drive_experiment.py --rescore runs/experiments/ORIGINAL_REPORT.json
+
+REVIEW THE ACTUAL HISTORICAL ANSWERS
+.venv/bin/python drive_experiment.py --review-history
+This attaches explicitly named recovery_v1_* scores to the two source traces.
+The rubric hash records the current judge version; old local review files are
+retained separately. These are SDK scores, not a hosted UI evaluator definition.

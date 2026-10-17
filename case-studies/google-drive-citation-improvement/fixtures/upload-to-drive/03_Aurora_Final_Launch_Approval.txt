@@ -1,0 +1,16 @@
+Project Aurora — Final Launch Approval
+Document ID: aurora-launch-final
+Status: Final approval / Effective
+Approval date: October 14, 2026
+Version: 1.0
+Approver: Seoyeon
+
+The final approved launch date for Project Aurora is November 20, 2026.
+This approval supersedes the schedule in the October 1, 2026 Launch Plan Draft and the schedule proposal in the October 8, 2026 Launch Review Meeting Notes.
+If launch dates conflict across documents, this Final Launch Approval takes precedence.
+
+Approval scope
+This document is the final approval record for the launch schedule.
+The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments.
+
+This is a fictional document created for search and answer evaluation. It does not describe real business operations.

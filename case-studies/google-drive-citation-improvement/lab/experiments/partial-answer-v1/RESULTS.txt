@@ -1,0 +1,73 @@
+DRIVE FAILURE ANALYSIS: FIRST CONTROLLED EXPERIMENT
+
+DECISION
+No demonstrated improvement in partial-answer recovery: both prompts completed all recorded recovery trials. The historical over-abstention is real but did not recur at this reconstructed final-answer checkpoint.
+Do not claim that the prompt fix is proven effective or that live Drive reliability improved.
+
+WHAT WAS DONE
+Collected eight saved Drive runs and classified recorded listing/read failures.
+Re-evaluated the actual over-abstaining answer and an actual successful answer.
+Compared the historical prompt with the updated per-fact partial-answer prompt.
+Five frozen evidence cases x two prompt variants x 3 trials = 30 generated answers.
+The only answer-generation difference was the registered prompt rule. No live Drive calls.
+
+CORRECTED RESULTS
+Variant | trials | code | semantic grounding | task success | all checks
+baseline | 15 | 15 | 14 | 15 | 14
+candidate | 15 | 15 | 14 | 15 | 14
+
+BY CASE (combined pass count / trials)
+all_reads_failed / baseline: 3/3
+all_reads_failed / candidate: 3/3
+all_required_reads_succeeded / baseline: 3/3
+all_required_reads_succeeded / candidate: 2/3
+approval_read_failed / baseline: 3/3
+approval_read_failed / candidate: 3/3
+owner_read_failed / baseline: 2/3
+owner_read_failed / candidate: 3/3
+venue_not_in_documents / baseline: 3/3
+venue_not_in_documents / candidate: 3/3
+
+EVALUATOR ERROR FOUND AND CORRECTED
+The first judge input omitted file-list metadata and selection records. It falsely rejected
+known file names and recorded exclusions. The metadata-aware v2 judge receives those records
+while still forbidding file names as proof of unread contents. BOTH variants were rescored.
+6 combined judgments changed. All 30 saved answer outputs remained identical.
+Original scores and reports are retained. Use judge-v2 experiments for the final comparison.
+
+REMAINING FLAGS FOR REVIEW
+candidate r2 all_required_reads_succeeded: Required facts are correctly claimed with exact supporting quotes: November 20, 2026 (aurora_final_date) and Minji as launch owner (aurora_launch_owner). Limitations match the read draft, meeting notes, and responsibilities text. Grounding fails because two extra claims exceed their quotes: aurora_approval_precedence asserts conflict precedence not present in its quote, and aurora_roles_distinct asserts distinct roles and Seoyeon as schedule approver beyond the cited quotes.
+baseline r2 owner_read_failed: The required launch date (November 20, 2026) is correctly stated in claims with a full supporting quote from the successfully read final approval. The launch owner is unavailable because the Responsibilities document read failed, and limitations explicitly leave that fact unresolved rather than substituting the approver. Claim aurora_approval_precedence is not fully grounded: its quote supports superseding the October 1 draft and October 8 proposal, but not the additional assertion that the approval “takes precedence if dates conflict.”
+
+INTERPRETATION AND NEXT EXPERIMENT
+The historical failure omitted a supported owner from claims despite a successful read.
+Reconstructing the final-answer checkpoint did not reproduce that omission in either prompt.
+Do not infer a unique cause: model variability and the reconstructed earlier context remain possible factors.
+Investigate remaining claim/quote coverage flags by reading each full claim and its attached quote.
+For recovery, the next stronger test should replay the full agent loop with a frozen backend.
+Preserve this suite as regression coverage, add new independent cases, and validate live MCP separately.
+
+LIMITS
+Five hand-selected cases, 3 trials per variant, no held-out set, and a same-model judge.
+Sanity checks are hand-authored references, not independent human calibration.
+Reconstructed history does not preserve every historical token, hidden state, or tool-call batch.
+Rescore experiment durations measure replay/scoring. Answer latency is retained in the original outputs.
+Full model alias, hashes, original trace IDs, outputs and judge reasons are retained for review.
+
+CORRECTED LANGFUSE EXPERIMENTS
+baseline r1: [private Langfuse link omitted]
+candidate r1: [private Langfuse link omitted]
+candidate r2: [private Langfuse link omitted]
+baseline r2: [private Langfuse link omitted]
+baseline r3: [private Langfuse link omitted]
+candidate r3: [private Langfuse link omitted]
+
+REPRODUCE
+cd lab
+.venv/bin/python drive_experiment.py --trials 3
+.venv/bin/python report_drive_experiment.py
+
+ASSISTANT REVIEW OF REMAINING FLAGS
+candidate r2 all_required_reads_succeeded: Likely citation-coverage defect. The role claim includes the distinctness of approver and owner, but attached quotes only name the approver and describe the Responsibilities document. The read approval body contains an explicit distinct-roles sentence that was not quoted. The required date and owner themselves are correct.
+baseline r2 owner_read_failed: Disputed judge flag / likely false positive. The quoted statement that this approval supersedes both earlier schedules reasonably supports precedence over those conflicting schedules. Do not count this as a confirmed application defect without human adjudication.
+Original LLM scores remain unchanged. See assistant-review.json; human review is still pending.

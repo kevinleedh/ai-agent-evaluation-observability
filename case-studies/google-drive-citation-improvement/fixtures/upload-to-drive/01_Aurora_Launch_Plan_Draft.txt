@@ -1,0 +1,13 @@
+Project Aurora — Launch Plan Draft
+Document ID: aurora-launch-draft
+Status: Draft / Pending final approval
+Created: October 1, 2026
+Version: 0.1
+
+This document records the initial launch plan for Project Aurora. The schedule below is a proposal awaiting approval and is not final.
+
+The draft planned launch date for Project Aurora is November 15, 2026.
+This draft was prepared to discuss feature development and internal review timelines.
+The actual launch date must be confirmed against the subsequently issued Final Launch Approval.
+
+This is a fictional document created for search and answer evaluation. It does not describe real business operations.

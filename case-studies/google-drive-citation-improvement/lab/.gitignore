@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+.auth/
+.venv/
+__pycache__/
+*.pyc
+runs/
+settings.local.json

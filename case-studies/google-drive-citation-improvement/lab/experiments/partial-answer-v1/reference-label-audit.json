@@ -1,0 +1,14 @@
+{
+  "initial_sanity_check_report": "runs/experiments/20261017T031354Z.json",
+  "case": "over_abstention",
+  "initial_expected": {
+    "grounded": true,
+    "task_success": false
+  },
+  "corrected_expected": {
+    "grounded": false,
+    "task_success": false
+  },
+  "reason": "The fixture says neither requested fact can be answered, contradicting the successfully read owner evidence. This is an unsupported limitation, not only an omission. The judge was correct to reject grounding. No judge rubric or study input was changed. Correction made before any A/B model run.",
+  "reference_checks_are_not_independent_human_calibration": true
+}

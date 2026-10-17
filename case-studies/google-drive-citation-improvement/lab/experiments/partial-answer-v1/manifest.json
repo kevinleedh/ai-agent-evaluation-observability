@@ -1,0 +1,23 @@
+{
+  "hypothesis": "An explicit per-fact partial-answer rule improves recovery when one required read fails without harming full answers or abstention.",
+  "scope": "Reconstructed final-answer checkpoint with frozen successful/failed read results; not full agent replay or live MCP testing.",
+  "dataset_sha256": "1cc9ec0d33032d6f01dfec02cac154b59cbbd102a34c9a357e7c57a25f7403bc",
+  "baseline_sha256": "71a8301ea75e1ca1cade336ae17290191870be4a5ccaf64f1314faeafd6e9e50",
+  "candidate_sha256": "ed6e3bfa95d513168d0b100ea1a8f1d655cf0dadb12e065c86f3330e26c2ab58",
+  "judge_sha256": "866ddcbdd4e97962c5eca65cc776a89e821908a0250900ee4d7b2593734107b9",
+  "answer_model": "grok-4.7",
+  "judge_model": "grok-4.7",
+  "parameters": {
+    "reasoning": {
+      "effort": "low"
+    },
+    "max_output_tokens": 6000
+  },
+  "previous_response_id": null,
+  "model_calls_per_answer": 1,
+  "automatic_retries": 0,
+  "proposed_trials_per_case_and_variant": 3,
+  "interpretation": "Exploratory, five hand-selected cases. No held-out set or calibrated production accuracy claim. Same-model judge requires human review.",
+  "decision_policy": "Require no failed critical controls and no code-integrity failures. Claim improvement only if repeated recovery improves; otherwise report no demonstrated lift.",
+  "public_export": "Drive IDs/URLs pseudonymized; public dataset/input hashes recomputed. Evidence text and prompt text unchanged."
+}

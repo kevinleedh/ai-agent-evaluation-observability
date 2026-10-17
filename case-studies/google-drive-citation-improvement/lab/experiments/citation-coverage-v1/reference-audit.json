@@ -1,0 +1,12 @@
+{
+  "source_report": "lab/runs/citation-experiments/20261017T034939Z.json",
+  "stage": "before any A/B answers were generated",
+  "initial_reference": "supersedes_entails_precedence",
+  "issue": "The prior disputed claim says takes precedence if launch dates conflict, while the quote explicitly supersedes only two earlier schedules. Its scope is debatable, so a True hard reference label was unjustified.",
+  "replacement": "The final approval replaces the October 1 draft schedule and the October 8 meeting proposal.",
+  "reason": "This is a faithful paraphrase within the same two-schedule scope, without the disputed general conflict clause.",
+  "answer_prompts_changed": false,
+  "judge_rubric_changed": false,
+  "dataset_changed": false,
+  "all_initial_results_retained": true
+}

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-17T04:02:24.165319+00:00",
+  "baseline_sha256": "e0d814acc7e527bdbc746050940027761251a0db319822c93faf962ae1b7721e",
+  "candidate_sha256": "120794be04d2944913ca79b9d3f25d9d9142e7a4e21523ba0c60f51c0750a07c",
+  "source_report": "lab/runs/citation-experiments-v2/latest.json",
+  "live_before_sha256": "ed6e3bfa95d513168d0b100ea1a8f1d655cf0dadb12e065c86f3330e26c2ab58",
+  "live_prompt_version": "3-claim-quote-coverage",
+  "observed_suite_lift": true,
+  "basis": "All candidate cases passed the exploratory pilot; no required-fact loss or observed critical regression.",
+  "scope": "Local prompt update; production-wide improvement is not established."
+}

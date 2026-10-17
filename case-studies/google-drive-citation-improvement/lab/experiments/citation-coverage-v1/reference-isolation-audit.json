@@ -1,0 +1,8 @@
+{
+  "stage": "before any A/B answer generation",
+  "reason": "The role-citation control also contained a separate disputed precedence claim. Remove only that auxiliary claim from BOTH the incorrect and repaired reference answers to isolate the accepted role-citation defect. Preserve the original full answer and all earlier reference judgments.",
+  "rubric_clarification": "Task success is factual correctness and requested-fact coverage, independently of quote sufficiency. An insufficient quote alone fails citation support and grounding, not task completeness.",
+  "answer_prompts_changed": false,
+  "dataset_changed": false,
+  "judge_updated_for_both_future_variants": true
+}

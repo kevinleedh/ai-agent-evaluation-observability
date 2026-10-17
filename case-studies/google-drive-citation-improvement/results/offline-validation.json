@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "api_calls": 0,
+  "semantic_judgments_repeated": false,
+  "saved_record_checks": 144,
+  "unique_generated_answers": 114,
+  "successful_frozen_body_checks": 58,
+  "partial_answer_rescore_changes": 6,
+  "live_runs": 8,
+  "totals": {
+    "partial-answer-initial-judge.json": {
+      "baseline": {
+        "answers": 15,
+        "code": 15,
+        "grounding": 9,
+        "task": 15,
+        "combined": 9
+      },
+      "candidate": {
+        "answers": 15,
+        "code": 15,
+        "grounding": 13,
+        "task": 15,
+        "combined": 13
+      }
+    },
+    "partial-answer-corrected-judge.json": {
+      "baseline": {
+        "answers": 15,
+        "code": 15,
+        "grounding": 14,
+        "task": 15,
+        "combined": 14
+      },
+      "candidate": {
+        "answers": 15,
+        "code": 15,
+        "grounding": 14,
+        "task": 15,
+        "combined": 14
+      }
+    },
+    "citation-coverage-v1.json": {
+      "baseline": {
+        "answers": 21,
+        "code": 21,
+        "grounding": 15,
+        "task": 21,
+        "combined": 15,
+        "citation": 15
+      },
+      "candidate": {
+        "answers": 21,
+        "code": 21,
+        "grounding": 19,
+        "task": 21,
+        "combined": 19,
+        "citation": 19
+      }
+    },
+    "citation-coverage-v2.json": {
+      "baseline": {
+        "answers": 21,
+        "code": 21,
+        "grounding": 19,
+        "task": 21,
+        "combined": 19,
+        "citation": 19
+      },
+      "candidate": {
+        "answers": 21,
+        "code": 21,
+        "grounding": 21,
+        "task": 21,
+        "combined": 21,
+        "citation": 21
+      }
+    }
+  },
+  "scope": "Public hashes, complete original evidence bodies, prompt differences, deterministic replay, saved-score aggregation, example provenance and basic publication checks."
+}

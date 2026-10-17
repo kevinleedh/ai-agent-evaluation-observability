@@ -1,0 +1,80 @@
+{
+  "case_id": "approver_owner_distinction",
+  "variant": "candidate",
+  "trial": 1,
+  "input_sha256": "87bf51b67ec87e9d96f1e712b6fd58cdfc9d0995ccaf521b638a7cf8d47ce96d",
+  "output": {
+    "execution_status": "completed",
+    "submission": {
+      "claims": [
+        {
+          "claim_id": "approver",
+          "claim": "The approver of Project Aurora's final launch approval is Seoyeon.",
+          "evidence": [
+            {
+              "document_id": "aurora-final-approval",
+              "quote": "Approver: Seoyeon"
+            }
+          ]
+        },
+        {
+          "claim_id": "launch_owner",
+          "claim": "The launch owner for Project Aurora is Minji.",
+          "evidence": [
+            {
+              "document_id": "aurora-responsibilities",
+              "quote": "The launch owner for Project Aurora is Minji."
+            }
+          ]
+        },
+        {
+          "claim_id": "distinct_roles",
+          "claim": "The approver and launch owner are distinct roles.",
+          "evidence": [
+            {
+              "document_id": "aurora-final-approval",
+              "quote": "The approver and launch owner are distinct roles; consult the separate Responsibilities document for role assignments."
+            }
+          ]
+        }
+      ],
+      "limitations": "The draft plan and meeting notes do not name the final-launch approver or launch owner. The responsibilities document does not itself name the approver."
+    },
+    "usage": {
+      "input": 5280,
+      "output": 282,
+      "total": 5562
+    },
+    "latency_seconds": 3.872
+  },
+  "code_pass": true,
+  "code_reason": "Schema, successful-read references and quote presence passed; completeness and meaning are separate scores.",
+  "judge": {
+    "grounded": true,
+    "task_success": true,
+    "claim_checks": [
+      {
+        "claim_id": "approver",
+        "quote_supports_full_claim": true,
+        "reason": "The final-launch approval document labels Approver: Seoyeon, which identifies Seoyeon as that approval's approver."
+      },
+      {
+        "claim_id": "launch_owner",
+        "quote_supports_full_claim": true,
+        "reason": "The responsibilities document explicitly states that the launch owner for Project Aurora is Minji."
+      },
+      {
+        "claim_id": "distinct_roles",
+        "quote_supports_full_claim": true,
+        "reason": "The attached sentence directly states that the approver and launch owner are distinct roles."
+      }
+    ],
+    "reason": "All three requested facts are correctly stated and fully supported by their attached quotes. Limitation statements match the successful reads.",
+    "failure_types": [],
+    "citation_pass": true
+  },
+  "judge_error": null,
+  "citation_pass": true,
+  "study_pass": true,
+  "trace_id": null
+}

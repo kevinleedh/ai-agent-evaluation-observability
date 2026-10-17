@@ -1,0 +1,82 @@
+[
+  {
+    "file": "drive-20261017T020908902755Z.json",
+    "trace_url": null,
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "successful_reads": 1,
+    "failed_reads": 3,
+    "classification": "read_failure",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T021311485047Z.json",
+    "trace_url": null,
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "successful_reads": 4,
+    "failed_reads": 0,
+    "classification": "no_failure_classified",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T021852567004Z.json",
+    "trace_url": null,
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "abstained",
+    "successful_reads": 3,
+    "failed_reads": 1,
+    "classification": "tool_failure_and_missing_supported_answer",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T022515156865Z.json",
+    "trace_url": null,
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "abstained",
+    "successful_reads": 0,
+    "failed_reads": 0,
+    "classification": "listing_failure",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T022704127129Z.json",
+    "trace_url": null,
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "successful_reads": 4,
+    "failed_reads": 0,
+    "classification": "no_failure_classified",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T023032125619Z.json",
+    "trace_url": null,
+    "question": "What are the final approved launch date and launch owner for Project Aurora? Support each fact with an exact quote from the documents.",
+    "status": "answered",
+    "successful_reads": 4,
+    "failed_reads": 0,
+    "classification": "no_failure_classified",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T023209253943Z.json",
+    "trace_url": null,
+    "question": "The final approved launch date for Project Aurora is November 15, 2026, right? Verify this using an exact quote from the documents.",
+    "status": "answered",
+    "successful_reads": 4,
+    "failed_reads": 0,
+    "classification": "no_failure_classified",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  },
+  {
+    "file": "drive-20261017T023607335083Z.json",
+    "trace_url": null,
+    "question": "How did the launch date for Project Aurora change between the draft plan and final approval? Provide an exact quote supporting each date.",
+    "status": "answered",
+    "successful_reads": 3,
+    "failed_reads": 0,
+    "classification": "no_failure_classified",
+    "classification_scope": "Recorded statuses plus focused review of the known partial-answer failure; not a complete semantic audit."
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "hypothesis": "Scoping claims to requested facts avoids unrelated claims with weak citations while preserving explicit relationship answers.",
+  "scope": "Fresh final-answer generations at a reconstructed checkpoint with frozen evidence; no live Drive requests.",
+  "baseline_source": "lab/experiments/citation-coverage-v1/candidate.txt",
+  "changed_variable": "Only the relevance and no-unrelated-filler block; both prompts already contain the citation-coverage instruction.",
+  "dataset_sha256": "6058f085a9cb667f94332f64a15f89d83ed1c471ccf3d062c62c1bed953282ff",
+  "baseline_sha256": "e0d814acc7e527bdbc746050940027761251a0db319822c93faf962ae1b7721e",
+  "candidate_sha256": "120794be04d2944913ca79b9d3f25d9d9142e7a4e21523ba0c60f51c0750a07c",
+  "judge_sha256": "d1c1b7238c9ddad7127891751089bc0d2baa3f3947e3a85521cf2e05a733a5c8",
+  "answer_model": "grok-4.7",
+  "judge_model": "grok-4.7",
+  "parameters": {
+    "reasoning": {
+      "effort": "low"
+    },
+    "max_output_tokens": 6000
+  },
+  "previous_response_id": null,
+  "automatic_retries": 0,
+  "trials_per_case_variant": 3,
+  "case_count": 7,
+  "target_case_ids": [
+    "approver_owner_distinction",
+    "launch_customer_role_distinction"
+  ],
+  "primary_measure": "All emitted claims fully supported by attached quotes AND task success AND code integrity.",
+  "decision_policy": "No unconditional promotion with a new regression, missing result, or judge disagreement on reference checks. Report no demonstrated lift if the baseline also succeeds.",
+  "limits": "Exploratory hand-selected synthetic-document cases, same-model judge, no independent held-out set. Refined evaluator is shared by both fresh variants; do not compare its pass rate directly with the previous study.",
+  "judge_version": "2-independent-task-and-citation",
+  "revision": "2-relevance-guard",
+  "trigger": "Revision 1 correctly answered role questions but one venue response added unrelated schedule claims with incomplete citation scope.",
+  "public_export": "Drive IDs/URLs pseudonymized; public dataset/input hashes recomputed. Evidence text and prompt text unchanged."
+}

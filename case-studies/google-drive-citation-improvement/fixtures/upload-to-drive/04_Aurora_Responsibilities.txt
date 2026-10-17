@@ -1,0 +1,16 @@
+Project Aurora — Responsibilities
+Document ID: aurora-responsibilities
+Status: Final / Effective
+Effective date: October 13, 2026
+Version: 1.0
+
+The launch owner for Project Aurora is Minji.
+Minji is responsible for launch readiness checks and launch execution.
+
+The customer inquiries owner for Project Aurora is Junho.
+Junho is responsible for receiving and answering customer inquiries.
+
+The launch owner and customer inquiries owner are distinct roles.
+This document defines role assignments; consult the Final Launch Approval for the launch schedule.
+
+This is a fictional document created for search and answer evaluation. It does not describe real business operations.
